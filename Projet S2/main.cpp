@@ -5,7 +5,10 @@
 
 int main()
 {
-    Graphe monGraphe{"graphe1.txt"};
+    Graphe monGraphe{"graphe_etoile1.txt"};
+    monGraphe.afficher();
+
+    /*
     int a,choix;
     monGraphe.afficher();
     do
@@ -35,6 +38,8 @@ int main()
         }
 
     }while (choix!=4);
+
+    */
 
     return 0;
 }

@@ -22,10 +22,10 @@ Graphe::Graphe(std::string fichier)
 
     int indice,x,y;
     char lettre;
+    ifs>>indice>>lettre>>x>>y;
     for(int i=0;i<ordre;++i)
     {
-        m_sommets.push_back(new Sommet{i});
-        ifs>>indice>>lettre>>x>>y;
+        m_sommets.push_back(new Sommet{i,lettre,x,y});
     }
     if ( ifs.fail() )
         throw std::runtime_error("Probleme lecture donnees du graphe");
@@ -59,16 +59,15 @@ void Graphe::afficher ()const
         std::cout<<"non oriente";
     else
         std::cout<<"oriente";
-    std::cout<<std::endl
-             <<"ordre = "
-             <<m_sommets.size();
-    std::cout<<std::endl
+
+    std::cout<<"ordre = "<<m_sommets.size();
+    std::cout << "sommets \n:" <<std::endl;
+   /* std::cout<<std::endl
              <<"listes d'adjacence :"
              <<std::endl;
     for (auto it : m_sommets)
         it->afficher();
-
-
+    */
 
 }
 

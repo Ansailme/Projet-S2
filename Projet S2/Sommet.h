@@ -18,7 +18,7 @@ private :
     std::vector<Sommet*> m_adjacents;
 
 public :
-    Sommet (int num,char lettre,int x, int y);
+    Sommet (int num, char lettre, int x, int y);
     char getLettre() const;
     int getX() const;
     int getY() const;
