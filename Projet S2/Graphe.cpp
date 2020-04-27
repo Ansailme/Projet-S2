@@ -20,13 +20,30 @@ Graphe::Graphe(std::string fichier)
     if ( ifs.fail() )
         throw std::runtime_error("Probleme lecture ordre du graphe");
 
-    for (int i=0; i<ordre; ++i)
-        m_sommets.push_back( new Sommet{i});
+    int indice,x,y;
+    char id
+    if ( ifs.fail() )
+        throw std::runtime_error("Probleme lecture ordre du graphe");
 
+    for(int i=0;i<ordre;++i)
+    {
+        ifs>>indice>>id>>x>>y;
+
+        if(m_orient==0)
+        {
+
+        }
+    }
+
+/*
     int taille;
-    ifs >> taille;
-    if ( ifs.fail())
-        throw std::runtime_error ("Probleme lecture de la taille");
+    ifs taille;
+    if ( ifs.fail() )
+        throw std::runtime_error("Probleme lecture ordre du graphe");
+
+    for(i=0;i<ordre;++i)
+        m_sommets.push_back(new Sommet{i});
+*/
 
     int nb1, nb2;
     for (int j=0; j<taille; ++j) //pour chaque arrete/arc on lit les extremités

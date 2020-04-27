@@ -11,12 +11,17 @@
 class Sommet
 {
 private :
+    char m_lettre;
+    int m_x,m_y;
     int m_num;
     int m_couleur; //0 -> B //1->G //2->N
     std::vector<Sommet*> m_adjacents;
 
 public :
-    Sommet (int num);
+    Sommet (int num,char lettre,int x, int y);
+    char getLettre() const;
+    int getX() const;
+    int getY() const;
     int getNum ()const;
     void afficher ()const;
     void remplir(Sommet* adjacent);

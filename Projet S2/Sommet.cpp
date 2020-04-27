@@ -1,7 +1,7 @@
 #include "sommet.h"
 
 Sommet::Sommet (int num)
-    :m_num{num},m_couleur {0}
+    :m_num{num},m_lettre{lettre},m_x{x},m_y{y}
 {}
 
 void Sommet::remplir(Sommet* adjacent)
@@ -13,6 +13,21 @@ void Sommet::remplir(Sommet* adjacent)
 int Sommet::getNum ()const
 {
     return m_num;
+}
+
+char Sommet::getLettre() const
+{
+    return m_lettre;
+}
+
+int Sommet::getX() const
+{
+    return m_x;
+}
+
+int Sommet::getY() const
+{
+    return m_y;
 }
 
 void Sommet::afficher ()const
