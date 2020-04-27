@@ -1,23 +1,26 @@
 #ifndef GRAPHE_H_INCLUDED
 #define GRAPHE_H_INCLUDED
 
-#include "Sommet.h"
+#include "sommet.h"
 
-
-class Graph
+class Graphe
 {
-private:
-    std::vector <Sommet*> total;
+private :
+    int m_orient; // 0 si non-oriente // 1 si oriente
+    std::vector <Sommet*> m_sommets;
 
-public:
-    Graph(std::string nomfichier);
-    ~Graph();
-    void chemin(int premier, int arrive);
-    void affichage(int arrive) const;
-    void afficher_graphe() const;
-
-
+public :
+    Graphe (std::string fichier);
+    ~Graphe();
+    void afficher ()const;
+    void BFS(int premier);
+    Sommet* recupSommet(int indice);
+    void DFS(int premier);
+    void recuDFS(std::map<int, int>& i_preds,Sommet* s);
+    void recherchecompoConnexes();
 };
+
+
 
 #endif // GRAPHE_H_INCLUDED
 

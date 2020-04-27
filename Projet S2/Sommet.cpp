@@ -1,85 +1,71 @@
-#include "Sommet.h"
+#include "sommet.h"
 
-Sommet::Sommet(const int id)
-:m_id{id},m_precedent{nullptr}, m_poids_precedent{-1},m_marque{false}
+Sommet::Sommet (int num)
+    :m_num{num},m_couleur {0}
+{}
+
+void Sommet::remplir(Sommet* adjacent)
 {
+     m_adjacents.push_back(adjacent);
+
 }
 
-int Sommet::get_id() const
+int Sommet::getNum ()const
 {
-    return m_id;
+    return m_num;
 }
 
-/*
-const std::vector <std::pair <Sommet*,int>> & Sommet::get_voisins() const
+void Sommet::afficher ()const
 {
-    return &m_voisin;
-}
-*/
-
-void Sommet::ajouter_voisin(std::pair <Sommet*,int> cote)
-{
-    m_voisin.push_back(cote);
+    std::cout<<std::endl<<"\t sommet "
+                        <<m_num<<" : ";
+    for (auto it : m_adjacents)
+        std::cout<<it->getNum()<<" ";
 }
 
-void Sommet::afficher() const
+void Sommet::reinitialiserCouleur()
 {
-    for(auto s : m_voisin)
+    m_couleur=0;
+}
+
+void Sommet::setCouleur(int nv)
+{
+    m_couleur=nv;
+}
+
+void Sommet::setAdjacents(int i)
+{
+    for (auto it : m_adjacents)
     {
-        std::cout << s.first->get_id() << " " ;
+        if (i==1)//si gris
+            if (it->getCouleur()!=2)//verifie que le sommet a pas déjà été étudier
+                it->setCouleur(i); //met en gris
     }
 }
 
-void Sommet::afficher_result() const
+int Sommet::getCouleur()const
 {
-    std::cout << m_id ;
-    if(m_precedent!=nullptr)
-    {
-        std::cout << "<--";
-        m_precedent->afficher_result();
-    }
+    return m_couleur;
 }
 
-int Sommet::afficher_poids() const
-{
 
-    if(m_precedent!=nullptr)
-    {
-        std::cout << m_poids_precedent ;
-        std::cout << "+";
-        return m_poids_precedent+m_precedent->afficher_poids();
-    }
-    return 0;
+bool Sommet::estAdjacentA(int i)
+{
+    bool adjacent=false;
+    for (auto it : m_adjacents)
+        if (it->getNum()==i)
+            adjacent=true;
+    return adjacent;
 }
 
-std::pair <Sommet*,int> Sommet::get_voisin(int i, Sommet* p)
+bool Sommet::estDegreImpair()
 {
-    if( m_voisin[i].first->m_poids_precedent<0 ||  m_voisin[i].first->m_poids_precedent>m_voisin[i].second)
-    {
-        m_voisin[i].first->m_precedent=p;
-        m_voisin[i].first->m_poids_precedent=m_voisin[i].second;
-    }
+    bool temp;
 
-    return m_voisin[i];
+    if(m_adjacents.size()%2==0)
+        temp=false;
+    else
+        temp=true;
+
+    return temp;
 }
-
-bool Sommet::get_marque() const
-{
-    return m_marque;
-}
-
-bool Sommet::get_marque_voisin(int i) const
-{
-    return m_voisin[i].first->m_marque;
-}
-
-size_t Sommet::nb_voisin() const
-{
-    return m_voisin.size();
-}
-
-void Sommet::marque()
-{
-    m_marque=true;
-}
-

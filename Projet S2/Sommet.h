@@ -1,7 +1,12 @@
 #ifndef SOMMET_H_INCLUDED
 #define SOMMET_H_INCLUDED
 
-#include "cmp.h"
+#include <vector>
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <string>
+#include <map>
 
 class Sommet
 {

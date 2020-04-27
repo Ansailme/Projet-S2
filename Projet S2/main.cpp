@@ -1,26 +1,40 @@
 #include <iostream>
-#include "Graphe.h"
 
-/*
-Source :
-    file:///C:/Users/alexa/Downloads/Aide_TP2_TP3_partie2_Dijkstra.pdf
-    https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-using-priority_queue-stl/?ref=lbp&fbclid=IwAR1xrePCIcKHmC-cql7nehODwp7ldLnewmUF3FdVSzs2qkQ1PWOfcCcWdK0
-*/
 
 
 int main()
 {
-    int premier,dernier;
+    Graphe monGraphe{"graphe1.txt"};
+    int a,choix;
+    monGraphe.afficher();
+    do
+    {
+        std::cout<<std::endl;
+        std::cout<<std::endl<<"\t1) BFS"
+                 <<std::endl<<"\t2) DFS"
+                 <<std::endl<<"\t3) Recherche des composantes connexes et cycle/chaine eulerienne"
+                 <<std::endl<<"\t4) Quitter"
+                 <<std::endl<<"Faites votre choix : ";
+        std::cin>>choix;
+        switch(choix)
+        {
+        case 1 :
+            std::cout<<std::endl<<"Premier ? ";
+            std::cin>>a;
+            monGraphe.BFS(a);
+            break;
+        case 2:
+            std::cout<<std::endl<<"Premier ? ";
+            std::cin>>a;
+            monGraphe.DFS(a);
+            break;
+        case 3 :
+            monGraphe.recherchecompoConnexes();
+            break;
+        }
 
+    }while (choix!=4);
 
-
-    Graph tot("sommet&force.txt");
-    tot.afficher_graphe();
-    std::cout << "Entrer sommet 1: ";
-    std::cin >> premier;
-    std::cout << "Etrer dernier sommet: ";
-    std::cin >> dernier;
-    tot.chemin(premier, dernier);
-    tot.affichage(dernier);
-
+    return 0;
 }
+
