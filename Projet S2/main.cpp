@@ -6,20 +6,16 @@
 int main()
 {
     Graphe monGraphe{"graphe_etoile1.txt"};
-    monGraphe.afficher();
-    monGraphe.lectureFichierP("ponderation_etoile1.txt");
-    monGraphe.afficherPoids();
 
-/*
     int a,choix;
-    monGraphe.afficher();
     do
     {
         std::cout<<std::endl;
-        std::cout<<std::endl<<"\t1) BFS"
-                 <<std::endl<<"\t2) DFS"
+        std::cout<<std::endl<<"\t1) BFS " //à voir
+                 <<std::endl<<"\t2) DFS " //à boire
                  <<std::endl<<"\t3) Recherche des composantes connexes et cycle/chaine eulerienne"
-                 <<std::endl<<"\t4) Quitter"
+                 <<std::endl<<"\t4) Afficher Graphe et Pondération"
+                 <<std::endl<<"\t5) Quitter"
                  <<std::endl<<"Faites votre choix : ";
         std::cin>>choix;
         switch(choix)
@@ -37,10 +33,13 @@ int main()
         case 3 :
             monGraphe.recherchecompoConnexes();
             break;
+        case 4 :
+                monGraphe.afficher();
+                monGraphe.lectureFichierP("ponderation_etoile1.txt");
+                monGraphe.afficherPoids();
         }
 
-    }while (choix!=4);
-*/
+    }while (choix!=5);
 
 
     return 0;
