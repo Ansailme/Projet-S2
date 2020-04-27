@@ -106,7 +106,7 @@ void Graphe::afficher()const
 
     std::cout << "taille : " << m_aretes.size();
 
-    std::cout << "\nliste des aretes :\n";
+    std::cout << "\nliste des aretes graphe_etoile1.txt :\n";
     for(auto s : m_aretes)
     {
         std::cout<<"\t"<<s->getIndice()<<" ";
@@ -119,7 +119,7 @@ void Graphe::afficher()const
 
 void Graphe::afficherPoids()const
 {
-    std::cout << "\n\n\nliste des aretes :\n";
+    std::cout << "\n\n\nliste des aretes ponderation_etoile1.txt:\n";
     for(auto s : m_aretes)
     {
         std::cout<<"\t"<<s->getIndice()<<" ";
@@ -128,6 +128,7 @@ void Graphe::afficherPoids()const
         std::cout<<s->poids;
         std::cout << std::endl;
     }
+
 }
 
 void Graphe::BFS(int premier)
