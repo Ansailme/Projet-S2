@@ -34,6 +34,7 @@
 		</Compiler>
 		<Unit filename="Sommet.cpp" />
 		<Unit filename="Sommet.h" />
+		<Unit filename="graphe.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
