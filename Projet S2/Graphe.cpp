@@ -1,6 +1,7 @@
 #include "graphe.h"
 #include <queue>
 #include <map>
+#include <iostream>
 
 ///Source : code TP1 M.Fercoq
 
@@ -22,9 +23,10 @@ Graphe::Graphe(std::string fichier)
 
     int indice,x,y;
     char lettre;
-    ifs>>indice>>lettre>>x>>y;
+
     for(int i=0;i<ordre;++i)
     {
+        ifs>>indice>>lettre>>x>>y;
         m_sommets.push_back(new Sommet{i,lettre,x,y});
     }
     if ( ifs.fail() )
@@ -39,7 +41,7 @@ Graphe::Graphe(std::string fichier)
     for (int j=0; j<taille; ++j) //pour chaque arrete/arc on lit les extremités
     {
         ifs>>indiceTaille>>nb1>>nb2;
-        if (m_orient==0) //si non oriente
+        if(m_orient==0) //si non oriente
         {
             m_sommets[nb1]->remplir(m_sommets[nb2]); //on ajoute le sommet nb2 comme adejacent au sommet nb1
             m_sommets[nb2]->remplir(m_sommets[nb1]); //on ajoute le sommet nb1 comme adejacent au sommet nb2
@@ -51,17 +53,27 @@ Graphe::Graphe(std::string fichier)
 }
 
 
-void Graphe::afficher ()const
+void Graphe::afficher()const
 {
-    std::cout<<std::endl;
     std::cout<<"graphe ";
+
     if (m_orient==0)
         std::cout<<"non oriente";
     else
         std::cout<<"oriente";
 
-    std::cout<<"ordre = "<<m_sommets.size();
-    std::cout << "sommets \n:" <<std::endl;
+    std::cout<<" d'ordre : "<<m_sommets.size();
+    std::cout << "\n";
+
+    for( auto s : m_sommets)
+    {
+        std::cout << s->getNum();
+        std::cout << s->getLettre();
+        std::cout << s->getX();
+        std::cout << s->getY();
+        std::cout << std::endl;
+    }
+
    /* std::cout<<std::endl
              <<"listes d'adjacence :"
              <<std::endl;

@@ -12,7 +12,7 @@ private :
 public :
     Graphe (std::string fichier);
     ~Graphe();
-    void afficher ()const;
+    void afficher()const;
     void BFS(int premier);
     Sommet* recupSommet(int indice);
     void DFS(int premier);

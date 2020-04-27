@@ -23,7 +23,7 @@ public :
     int getX() const;
     int getY() const;
     int getNum ()const;
-    void afficher ()const;
+    void afficher_num()const;
     void remplir(Sommet* adjacent);
     void reinitialiserCouleur();
     void setCouleur(int nv);
