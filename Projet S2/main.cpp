@@ -1,4 +1,5 @@
 #include <iostream>
+#include "graphe.h"
 
 
 
