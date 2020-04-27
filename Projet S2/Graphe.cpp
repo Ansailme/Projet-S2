@@ -62,9 +62,11 @@ void Graphe::afficher()const
     else
         std::cout<<"oriente";
 
-    std::cout<<" d'ordre : "<<m_sommets.size();
-    std::cout << "\n";
+    std::cout<<" d'ordre : "<< m_sommets.size();
+    std::cout << std::endl;
+    std::cout << std::endl;
 
+    std::cout << "liste sommet :\n";
     for( auto s : m_sommets)
     {
         std::cout << s->getNum();
@@ -74,12 +76,13 @@ void Graphe::afficher()const
         std::cout << std::endl;
     }
 
-   /* std::cout<<std::endl
-             <<"listes d'adjacence :"
-             <<std::endl;
-    for (auto it : m_sommets)
-        it->afficher();
-    */
+    std::cout << "taille : " <<
+
+    std::cout << "liste des aretes :\n";
+    for(auto s : m_sommets)
+    {
+        std::cout
+    }
 
 }
 
