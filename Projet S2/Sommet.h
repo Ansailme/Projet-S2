@@ -31,8 +31,6 @@ public :
     int getCouleur()const;
     bool estAdjacentA(int i);
     bool estDegreImpair();
-
-
 };
 
 #endif // SOMMET_H_INCLUDED

@@ -1,7 +1,7 @@
 #include "sommet.h"
 
-Sommet::Sommet (int num)
-    :m_num{num},m_lettre{lettre},m_x{x},m_y{y}
+Sommet::Sommet (int num, int couleur, char lettre, int x, int y)
+    :m_num{num},m_couleur {0}, m_lettre{lettre},m_x{x},m_y{y}
 {}
 
 void Sommet::remplir(Sommet* adjacent)

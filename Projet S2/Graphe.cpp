@@ -21,34 +21,24 @@ Graphe::Graphe(std::string fichier)
         throw std::runtime_error("Probleme lecture ordre du graphe");
 
     int indice,x,y;
-    char id
-    if ( ifs.fail() )
-        throw std::runtime_error("Probleme lecture ordre du graphe");
-
+    char lettre;
     for(int i=0;i<ordre;++i)
     {
-        ifs>>indice>>id>>x>>y;
-
-        if(m_orient==0)
-        {
-
-        }
-    }
-
-/*
-    int taille;
-    ifs taille;
-    if ( ifs.fail() )
-        throw std::runtime_error("Probleme lecture ordre du graphe");
-
-    for(i=0;i<ordre;++i)
         m_sommets.push_back(new Sommet{i});
-*/
+        ifs>>indice>>lettre>>x>>y;
+    }
+    if ( ifs.fail() )
+        throw std::runtime_error("Probleme lecture donnees du graphe");
 
-    int nb1, nb2;
+    int taille;
+    ifs >> taille;
+    if ( ifs.fail() )
+        throw std::runtime_error("Probleme lecture taille du graphe");
+
+    int nb1, nb2, indiceTaille;
     for (int j=0; j<taille; ++j) //pour chaque arrete/arc on lit les extremités
     {
-        ifs>>nb1>>nb2;
+        ifs>>indiceTaille>>nb1>>nb2;
         if (m_orient==0) //si non oriente
         {
             m_sommets[nb1]->remplir(m_sommets[nb2]); //on ajoute le sommet nb2 comme adejacent au sommet nb1
@@ -58,8 +48,6 @@ Graphe::Graphe(std::string fichier)
             m_sommets[nb1]->remplir(m_sommets[nb2]); //on ajoute le sommet nb2 comme adejacent au sommet nb1
     }
     ifs.close();
-
-
 }
 
 
