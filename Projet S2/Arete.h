@@ -1,5 +1,5 @@
-#ifndef SOMMET_H_INCLUDED
-#define SOMMET_H_INCLUDED
+#ifndef ARETE_H_INCLUDED
+#define ARETE_H_INCLUDED
 
 #include <vector>
 #include <iostream>
@@ -13,19 +13,18 @@ class Arete
 {
 private :
     int m_indice;
-    int m_indice2;
-    int m_poids;
     int m_extrem1;
     int m_extrem2;
 
 public :
-    Arete (int indice, int indice2, int poids,int m_extrem1, int m_extrem2);
+    Arete (int indice,int m_extrem1, int m_extrem2);
     int getIndice ()const;
-    int getIndice2()const;
-    int getPoids () const;
     int getExtrem1 ()const;
     int getExtrem2 ()const;
 
+    /*int m_indice2;
+    int m_poids;
+*/
 };
 
-#endif // SOMMET_H_INCLUDED
+#endif // ARETE_H_INCLUDED

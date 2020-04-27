@@ -40,6 +40,8 @@ Graphe::Graphe(std::string fichier)
     for (int j=0; j<taille; ++j) //pour chaque arrete/arc on lit les extremités
     {
         ifs>>indiceTaille>>nb1>>nb2;
+        m_aretes.push_back(new Arete {j, nb1, nb2});
+
         if(m_orient==0) //si non oriente
         {
             m_sommets[nb1]->remplir(m_sommets[nb2]); //on ajoute le sommet nb2 comme adejacent au sommet nb1
@@ -92,21 +94,23 @@ void Graphe::afficher()const
     std::cout << "liste sommet :\n";
     for( auto s : m_sommets)
     {
-        std::cout << s->getNum();
-        std::cout << s->getLettre();
-        std::cout << s->getX();
-        std::cout << s->getY();
+        std::cout << "\t"<<s->getNum()<<" ";
+        std::cout << s->getLettre()<<" ";
+        std::cout << s->getX()<<" ";
+        std::cout << s->getY()<<" ";
         std::cout << std::endl;
     }
 
     std::cout << "taille : " << m_aretes.size();
-/*
-    std::cout << "liste des aretes :\n";
-    for(auto s : m_sommets)
+
+    std::cout << "\nliste des aretes :\n";
+    for(auto s : m_aretes)
     {
-        std::cout
+        std::cout<<"\t"<<s->getIndice()<<" ";
+        std::cout<<s->getExtrem1()<<" ";
+        std::cout<<s->getExtrem2()<<" ";
+        std::cout << std::endl;
     }
-*/
 }
 
 void Graphe::BFS(int premier)
