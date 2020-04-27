@@ -1,19 +1,26 @@
 #ifndef GRAPHE_H_INCLUDED
 #define GRAPHE_H_INCLUDED
 
-#include "sommet.h"
+#include "Sommet.h"
 
-class Graphe
+
+class Graph
 {
-private :
-    std::vector <Sommet*> m_sommets;
+private:
+    std::vector <Sommet*> total;
 
-public :
-    Graphe (std::string fichier);
-    void afficher ()const;
-    void recherchePlusCourtChemin(int i_debut, int i_fin);
-    void affichageLongeur(int i_fin, int temp);
+public:
+    Graph(std::string nomfichier);
+    ~Graph();
+    void chemin(int premier, int arrive);
+    void affichage(int arrive) const;
+    void afficher_graphe() const;
+
+
 };
 
-
 #endif // GRAPHE_H_INCLUDED
+
+
+
+//total[i]->get_voisin()[j].first/second

@@ -1,24 +1,26 @@
-#include "graphe.h"
+#include <iostream>
+#include "Graphe.h"
+
+/*
+Source :
+    file:///C:/Users/alexa/Downloads/Aide_TP2_TP3_partie2_Dijkstra.pdf
+    https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-using-priority_queue-stl/?ref=lbp&fbclid=IwAR1xrePCIcKHmC-cql7nehODwp7ldLnewmUF3FdVSzs2qkQ1PWOfcCcWdK0
+*/
+
 
 int main()
 {
-    Graphe a("data.txt");
-    int i_debut,i_fin;
-    a.afficher();
-    int stop;
-    do
-    {
-        std::cout<<std::endl<<"Pour la recherche du plus court chemin :"
-                 <<std::endl<<"Choisir le sommet de depart : ";
-        std::cin>>i_debut;
-        std::cout<<std::endl<<"Choisir le sommet d'arrivee : ";
-        std::cin>>i_fin;
-        a.recherchePlusCourtChemin(i_debut,i_fin);
-        std::cout<<std::endl<<"Pour quitter tapez 1 sinon taper 0"<<std::endl;
-        std::cin>>stop;
-    }while (stop!=1);
+    int premier,dernier;
 
-    return 0;
+
+
+    Graph tot("sommet&force.txt");
+    tot.afficher_graphe();
+    std::cout << "Entrer sommet 1: ";
+    std::cin >> premier;
+    std::cout << "Etrer dernier sommet: ";
+    std::cin >> dernier;
+    tot.chemin(premier, dernier);
+    tot.affichage(dernier);
+
 }
-
-
