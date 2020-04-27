@@ -5,7 +5,7 @@
 
 int main()
 {
-    Graphe monGraphe{"graphe_etoile1.txt"};
+    Graphe monGraphe{"graphe_etoile2.txt"};
 
     int a,choix;
     do
@@ -35,7 +35,7 @@ int main()
             break;
         case 4 :
                 monGraphe.afficher();
-                monGraphe.lectureFichierP("ponderation_etoile1.txt");
+                monGraphe.lectureFichierP("ponderation_etoile2.txt");
                 monGraphe.afficherPoids();
         }
 
