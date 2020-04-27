@@ -21,12 +21,11 @@ Graphe::Graphe(std::string fichier)
     if ( ifs.fail() )
         throw std::runtime_error("Probleme lecture ordre du graphe");
 
-    int indice,x,y;
+    int num,x,y;
     char lettre;
-
     for(int i=0;i<ordre;++i)
     {
-        ifs>>indice>>lettre>>x>>y;
+        ifs>>num>>lettre>>x>>y;
         m_sommets.push_back(new Sommet{i,lettre,x,y});
     }
     if ( ifs.fail() )
@@ -49,7 +48,31 @@ Graphe::Graphe(std::string fichier)
         else //si oriente
             m_sommets[nb1]->remplir(m_sommets[nb2]); //on ajoute le sommet nb2 comme adejacent au sommet nb1
     }
+
     ifs.close();
+/*
+    std::ifstream ifs{fichier2}; //ouverture en mode lecture
+    if (!ifs)
+        throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier );
+
+    int nbr_arete;
+    ifs >> nbr_arete;
+    if ( ifs.fail() )
+        throw std::runtime_error("Probleme lecture nombre d'arete du graphe");
+
+    int indiceTaille2, poids;
+    for(int k=0; k<nbr_arete; k++)
+    {
+        ifs>>indiceTaille2>>poids;
+        m_arete.push_back(new Arete{k,poids});
+    }
+    if ( ifs.fail() )
+        throw std::runtime_error("Probleme lecture donnees du graphe");
+
+
+
+    ifs.close();
+    */
 }
 
 
@@ -76,14 +99,14 @@ void Graphe::afficher()const
         std::cout << std::endl;
     }
 
-    std::cout << "taille : " <<
-
+    std::cout << "taille : " << m_aretes.size();
+/*
     std::cout << "liste des aretes :\n";
     for(auto s : m_sommets)
     {
         std::cout
     }
-
+*/
 }
 
 void Graphe::BFS(int premier)
