@@ -1,11 +1,41 @@
 #include <iostream>
-#include "Sommet.h"
+#include "graphe.h"
+
+
 
 int main()
 {
-    std::cout << "Hello world!" << std::endl;
-    std::cout << "dites moi si ca fonctionne"<<std::endl;
-    std::cout << "c'est good" << std::endl;
+    Graphe monGraphe{"graphe1.txt"};
+    int a,choix;
+    monGraphe.afficher();
+    do
+    {
+        std::cout<<std::endl;
+        std::cout<<std::endl<<"\t1) BFS"
+                 <<std::endl<<"\t2) DFS"
+                 <<std::endl<<"\t3) Recherche des composantes connexes et cycle/chaine eulerienne"
+                 <<std::endl<<"\t4) Quitter"
+                 <<std::endl<<"Faites votre choix : ";
+        std::cin>>choix;
+        switch(choix)
+        {
+        case 1 :
+            std::cout<<std::endl<<"Premier ? ";
+            std::cin>>a;
+            monGraphe.BFS(a);
+            break;
+        case 2:
+            std::cout<<std::endl<<"Premier ? ";
+            std::cin>>a;
+            monGraphe.DFS(a);
+            break;
+        case 3 :
+            monGraphe.recherchecompoConnexes();
+            break;
+        }
+
+    }while (choix!=4);
+
     return 0;
 }
 
