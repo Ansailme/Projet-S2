@@ -7,3 +7,4 @@ int main()
     std::cout << "c'est good" << std::endl;
     return 0;
 }
+
