@@ -14,7 +14,9 @@ private :
 public :
     Graphe (std::string fichier);
     ~Graphe();
+    void lectureFichierP(std::string fichier2);
     void afficher()const;
+    void afficherPoids()const;
     void BFS(int premier);
     Sommet* recupSommet(int indice);
     void DFS(int premier);

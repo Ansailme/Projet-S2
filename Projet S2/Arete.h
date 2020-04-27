@@ -22,9 +22,8 @@ public :
     int getExtrem1 ()const;
     int getExtrem2 ()const;
 
-    /*int m_indice2;
-    int m_poids;
-*/
+    int poids;
+
 };
 
 #endif // ARETE_H_INCLUDED

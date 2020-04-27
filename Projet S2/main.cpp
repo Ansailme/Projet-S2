@@ -7,6 +7,8 @@ int main()
 {
     Graphe monGraphe{"graphe_etoile1.txt"};
     monGraphe.afficher();
+    monGraphe.lectureFichierP("ponderation_etoile1.txt");
+   // monGraphe.afficherPoids();
 
 /*
     int a,choix;

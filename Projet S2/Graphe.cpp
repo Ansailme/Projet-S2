@@ -52,29 +52,32 @@ Graphe::Graphe(std::string fichier)
     }
 
     ifs.close();
-/*
-    std::ifstream ifs{fichier2}; //ouverture en mode lecture
-    if (!ifs)
-        throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier );
+
+}
+
+void Graphe::lectureFichierP(std::string fichier2)
+{
+    std::ifstream ifs2{fichier2}; //ouverture en mode lecture
+    if (!ifs2)
+        throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier2 );
 
     int nbr_arete;
-    ifs >> nbr_arete;
-    if ( ifs.fail() )
+    ifs2 >> nbr_arete;
+    if ( ifs2.fail() )
         throw std::runtime_error("Probleme lecture nombre d'arete du graphe");
 
     int indiceTaille2, poids;
     for(int k=0; k<nbr_arete; k++)
     {
-        ifs>>indiceTaille2>>poids;
-        m_arete.push_back(new Arete{k,poids});
+        ifs2>>indiceTaille2>>poids;
+        m_aretes[indiceTaille2]->poids = poids;
     }
-    if ( ifs.fail() )
+    if ( ifs2.fail() )
         throw std::runtime_error("Probleme lecture donnees du graphe");
 
 
+    ifs2.close();
 
-    ifs.close();
-    */
 }
 
 
@@ -109,6 +112,20 @@ void Graphe::afficher()const
         std::cout<<"\t"<<s->getIndice()<<" ";
         std::cout<<s->getExtrem1()<<" ";
         std::cout<<s->getExtrem2()<<" ";
+        std::cout << std::endl;
+    }
+}
+
+
+void Graphe::afficherPoids()const
+{
+    std::cout << "\n\n\nliste des aretes :\n";
+    for(auto s : m_aretes)
+    {
+        std::cout<<"\t"<<s->getIndice()<<" ";
+        std::cout<<s->getExtrem1()<<" ";
+        std::cout<<s->getExtrem2()<<" ";
+        std::cout<<s->poids;
         std::cout << std::endl;
     }
 }
