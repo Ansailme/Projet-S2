@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Sommet.h"
 
 int main()
 {
