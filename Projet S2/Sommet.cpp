@@ -40,15 +40,16 @@ void Sommet::afficher_num()const
         std::cout<<it->getNum()<<" ";
 }
 
-/*
-void Sommet::dessinerS(int x,int y) const
+
+void Sommet::dessinerS(Svgfile& svgout) const
 {
     Couleur jaune{255,200,0};
-    Svgfile svgout;
+    Couleur noir{0,0,0};
 
-    svgout.addDisk(x*100,y*100,5,jaune );
+    svgout.addDisk(m_x*100,m_y*100,5,jaune );
+    svgout.addText(m_x*100-5,m_y*100-5,m_lettre,noir);
 }
-*/
+
 
 void Sommet::reinitialiserCouleur()
 {

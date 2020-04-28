@@ -134,23 +134,15 @@ void Graphe::afficherPoids()const
     }
 }
 
-void Graphe::dessinerGraphe () const
+void Graphe::dessinerGraphe() const
 {
-    /*
-    for(auto s : m_sommets)
-    {
-        s->dessinerS(s->getX(),s->getY());
-    }
-    */
-
     Svgfile svgout;
-    Couleur jaune{255,200,0};
-    Couleur noir{0,0,0};
+
     for(auto s : m_sommets)
     {
-        svgout.addDisk(s->getX()*100,s->getY()*100,5, jaune);
-        svgout.addText((s->getX()*100)-5,(s->getY()*100)-5,s->getLettre(),noir);
+        s->dessinerS(svgout);
     }
+
 }
 
 void Graphe::BFS(int premier)

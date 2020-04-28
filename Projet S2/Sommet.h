@@ -7,6 +7,7 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include "svgfile.h"
 
 
 class Sommet
@@ -25,7 +26,7 @@ public :
     int getY() const;
     int getNum ()const;
     void afficher_num()const;
-    void dessinerS(int x,int y) const;
+    void dessinerS(Svgfile& svgout) const;
     void remplir(Sommet* adjacent);
     void reinitialiserCouleur();
     void setCouleur(int nv);
