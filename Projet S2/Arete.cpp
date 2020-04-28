@@ -1,19 +1,29 @@
 #include "Arete.h"
+#include "couleur.h"
 
 Arete::Arete(int indice, int extrem1, int extrem2)
     :m_indice{indice}, m_extrem1{extrem1},m_extrem2{extrem2}
-    {}
-    int Arete::getIndice ()const
-    {
-        return m_indice;
-    }
+{}
 
-    int Arete::getExtrem1 ()const
-    {
-        return m_extrem1;
-    }
-     int Arete::getExtrem2 ()const
-    {
-        return m_extrem2;
-    }
+int Arete::getIndice ()const
+{
+    return m_indice;
+}
+
+int Arete::getExtrem1 ()const
+{
+    return m_extrem1;
+}
+
+int Arete::getExtrem2 ()const
+{
+    return m_extrem2;
+}
+
+void Arete::dessinerA(Svgfile& svgout)const
+{
+    Couleur noir{0,0,0};
+
+    svgout.addLine(m_sommet[0]->getX(),m_sommet[0]->getY(),m_sommet[1]->getX(),m_sommet[1]->getY(),noir);
+}
 

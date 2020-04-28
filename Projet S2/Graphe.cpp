@@ -134,6 +134,8 @@ void Graphe::afficherPoids()const
     }
 }
 
+
+
 void Graphe::dessinerGraphe() const
 {
     Svgfile svgout;
@@ -142,7 +144,14 @@ void Graphe::dessinerGraphe() const
     {
         s->dessinerS(svgout);
     }
-
+/*
+    for(auto s : m_aretes)
+    {
+        std::cout << "good";
+        s->dessinerA(svgout);
+    }
+    std::cout << "gooood";
+*/
 }
 
 void Graphe::BFS(int premier)
