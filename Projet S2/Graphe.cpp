@@ -1,4 +1,8 @@
 #include "graphe.h"
+#include "svgfile.h"
+#include "couleur.h"
+#include "util.h"
+
 #include <queue>
 #include <map>
 #include <iostream>
@@ -128,6 +132,20 @@ void Graphe::afficherPoids()const
         std::cout<<s->poids;
         std::cout << std::endl;
     }
+}
+
+void Graphe::dessinerGraphe () const
+{
+    Svgfile svgout;
+    Couleur jaune{255,200,0};
+     for(auto s : m_sommets)
+    {
+        svgout.addDisk(s->getX()*100,s->getY()*100,5, jaune);
+    }
+    /* for(auto s : m_sommets)
+    {
+        svgout.addLine();
+    }*/
 
 }
 

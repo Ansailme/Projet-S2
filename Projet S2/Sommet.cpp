@@ -1,4 +1,6 @@
 #include "sommet.h"
+#include "svgfile.h"
+#include "couleur.h"
 
 Sommet::Sommet (int num, char lettre, int x, int y)
     :m_num{num},m_couleur {0}, m_lettre{lettre},m_x{x},m_y{y}
@@ -28,6 +30,7 @@ int Sommet::getY() const
 {
     return m_y;
 }
+
 
 void Sommet::afficher_num()const
 {
