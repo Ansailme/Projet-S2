@@ -20,17 +20,19 @@ Graphe::Graphe(std::string fichier)
     if ( ifs.fail() )
         throw std::runtime_error("Probleme lecture de l'orientation");
 
-    int ordre;
-    ifs >> ordre;
+    int m_ordre;
+    ifs >> m_ordre;
     if ( ifs.fail() )
         throw std::runtime_error("Probleme lecture ordre du graphe");
 
     int num,x,y;
     std::string lettre;
-    for(int i=0;i<ordre;++i)
+    //deg.resize(m_ordre);
+    for(int i=0;i<m_ordre;++i)
     {
         ifs>>num>>lettre>>x>>y;
         m_sommets.push_back(new Sommet{i,lettre,x,y});
+        //deg[i]=0;
     }
     if ( ifs.fail() )
         throw std::runtime_error("Probleme lecture donnees du graphe");
@@ -131,52 +133,105 @@ void Graphe::afficherPoids()const
         std::cout << std::endl;
     }
 
-/*
-    std::cout << m_sommets[0]->getX();
-    std::cout << std::endl;
-    std::cout << m_aretes[0]->getExtrem1();
-    std::cout << std::endl;
-    std::cout << m_aretes[1]->getExtrem1();
-    std::cout << std::endl;
-    std::cout << m_aretes[2]->getExtrem1();
-    std::cout << std::endl;
-    std::cout << m_aretes[3]->getExtrem1();
-*/
-
 }
 
 
 void Graphe::c_degre()
 {
 
+
+
+
+/*
+    for(int i=0;i<m_sommets.size();++i)
+    {
+        if(m_sommets[i]->estAdjacentA(m_sommets[i]->getNum()))
+            std::cout << m_sommets[i]->getX;
+    }
+*/
+
+    int choix;
+
+    std::cout << "rentrer le sommet : " ;
+    std::cin >> choix ;
+
+    //std::cout << "le sommet " << choix << " a un degre de : " << deg[choix] << std::endl;
+
+/*
+    for(auto s : m_sommets)
+    {
+        std::cout << "good" ;
+        if(s->estAdjacentA(choix))
+        {
+            std::cout << std::endl;
+            std::cout << "good" ;
+        }
+
+    }
+*/
+
+    /*
+    int compteur,compteur2;
+
+    for(int j=0;j<m_sommets.size();++j)
+    {
+        compteur=0;
+        compteur2=0;
+
+        for(auto s : m_aretes)
+        {
+            if((s->getExtrem1()) == (m_sommets[j]->getNum()))
+            {
+                compteur++;
+            }
+             if((s->getExtrem2()) == (m_sommets[j]->getNum()))
+            {
+                compteur2++;
+            }
+            std::cout << compteur << std::endl;
+            std::cout << compteur2 << std::endl;
+            std::cout << std::endl;
+        }
+    }
+    */
+
+
+
+
+
+/*
     int i=0, j=0, degre=0,compteur;
     int tab[degre];
 
 
-    for(i=0;i<m_aretes.size();++i)
+    for(i=0;i<m_sommets.size();++i)
     {
-        //for(j=0;j<m_sommets.size();++j)
+        compteur=0;
+
+        for(j=0;j<m_aretes.size();++j)
         {
-            if(((m_aretes[j]->getExtrem1()) == j) || ((m_aretes[j]->getExtrem2()) == j))
+            if(((m_aretes[i]->getExtrem1()) == m_sommets[i]->getNum()) || ((m_aretes[i]->getExtrem2()) == m_sommets[i]->getNum()))
             {
 
                 compteur++;
 
             }
 
+
+            std::cout << compteur << std::endl;
+
+            //std::cout << j << std::endl;
+            //std::cout << i << std::endl;
+            //std::cout << std::endl;
         }
         //std::cout << m_aretes[i]->getExtrem1() << std::endl;
 
-        compteur=0;
 
-        //std::cout << i << std::endl;
-
-        std::cout << compteur << std::endl;
         tab[degre]=compteur;
         //std::cout << tab[degre] << std::endl;
 
     }
-
+*/
 
 }
 
