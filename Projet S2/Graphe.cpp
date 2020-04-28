@@ -154,20 +154,19 @@ void Graphe::afficherPoids()const
                 /*m_aretes[j]->m_sommet[0].getX() = m_sommets[i]->getX();
                 m_aretes[j]->m_sommet[0].getY() = m_sommets[i]->getY();
                 m_aretes[j]->m_sommet[1].getX() = m_sommets[i]->getX();
-                m_aretes[j]->m_sommet[1].getY() = m_sommets[i]->getY();*/
+                m_aretes[j]->m_sommet[1].getY() = m_sommets[i]->getY();
 
                 std::cout << std::endl;
                 std::cout << m_aretes[2]->m_sommet[0].getX() << " " << m_aretes[2]->m_sommet[0].getY();
                 std::cout << std::endl;
                 std::cout << m_aretes[j]->m_sommet[1].getX() << " " << m_aretes[j]->m_sommet[1].getY();
                 std::cout << std::endl;
-/*
+
                 std::cout << m_sommets[i]->getX() << " "<< m_sommets[i]->getY();
                 std::cout << std::endl;
-*/
-                i_pred=i;
-                j_pred=j;
 
+                i_pred=i;
+                j_pred=j;*/
             }
         }
     }
