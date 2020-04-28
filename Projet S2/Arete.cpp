@@ -1,9 +1,14 @@
 #include "Arete.h"
 #include "couleur.h"
 
-Arete::Arete(int indice, int extrem1, int extrem2)
+Arete::Arete(int indice, int extrem1, int extrem2,Sommet* extremite1, Sommet* extremite2)
     :m_indice{indice}, m_extrem1{extrem1},m_extrem2{extrem2}
-{}
+{
+    m_sommet[0]=extremite1;
+    m_sommet[1]=extremite2;
+    std::cout << m_sommet[0]->getX() << m_sommet[0]->getY() << std::endl;
+
+}
 
 int Arete::getIndice ()const
 {
@@ -24,6 +29,6 @@ void Arete::dessinerA(Svgfile& svgout)const
 {
     Couleur noir{0,0,0};
 
-    svgout.addLine(m_sommet[0]->getX(),m_sommet[0]->getY(),m_sommet[1]->getX(),m_sommet[1]->getY(),noir);
+    svgout.addLine(m_sommet[0]->getX()*100,m_sommet[0]->getY()*100,m_sommet[1]->getX()*100,m_sommet[1]->getY()*100,noir);
 }
 

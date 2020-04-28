@@ -44,7 +44,7 @@ Graphe::Graphe(std::string fichier)
     for (int j=0; j<taille; ++j) //pour chaque arrete/arc on lit les extremités
     {
         ifs>>indiceTaille>>nb1>>nb2;
-        m_aretes.push_back(new Arete {j, nb1, nb2});
+        m_aretes.push_back(new Arete {j, nb1, nb2,m_sommets[nb1],m_sommets[nb2]});
 
         if(m_orient==0) //si non oriente
         {
@@ -143,64 +143,60 @@ void Graphe::afficherPoids()const
     std::cout << m_aretes[3]->getExtrem1();
 */
 
-    int i_pred=1,j_pred=1;
-    std::cout << std::endl;
-    for(int i=0;i<m_sommets.size();++i)
+}
+
+
+void Graphe::c_degre()
+{
+
+    int i=0, j=0, degre=0,compteur;
+    int tab[degre];
+
+
+    for(i=0;i<m_aretes.size();++i)
     {
-        for(int j=0;j<m_aretes.size();++j)
+        for(j=0;j<m_sommets.size();++j)
         {
-            if(((m_aretes[j]->getExtrem1()) == (m_sommets[i]->getNum()) || ((m_aretes[j]->getExtrem2()) == (m_sommets[i]->getNum()))) && ((j_pred!=j) && (i_pred!=i)))
+            if(((m_aretes[j]->getExtrem1()) == j) || ((m_aretes[j]->getExtrem2()) == j))
             {
-                /*m_aretes[j]->m_sommet[0].getX() = m_sommets[i]->getX();
-                m_aretes[j]->m_sommet[0].getY() = m_sommets[i]->getY();
-                m_aretes[j]->m_sommet[1].getX() = m_sommets[i]->getX();
-                m_aretes[j]->m_sommet[1].getY() = m_sommets[i]->getY();*/
-
-                std::cout << std::endl;
-                std::cout << m_aretes[2]->m_sommet[0].getX() << " " << m_aretes[2]->m_sommet[0].getY();
-                std::cout << std::endl;
-                std::cout << m_aretes[j]->m_sommet[1].getX() << " " << m_aretes[j]->m_sommet[1].getY();
-                std::cout << std::endl;
-/*
-                std::cout << m_sommets[i]->getX() << " "<< m_sommets[i]->getY();
-                std::cout << std::endl;
-*/
-                i_pred=i;
-                j_pred=j;
-
+                compteur++;
             }
+
         }
+        //std::cout << m_aretes[i]->getExtrem1() << std::endl;
+
+        compteur=0;
+
+        //std::cout << i << std::endl;
+
+        std::cout << compteur << std::endl;
+        tab[degre]=compteur;
+        //std::cout << tab[degre] << std::endl;
+
     }
 
-}
-
-                //m_vect_triangle.push_back(new Triangle);
-                //m_vect_triangle[m_vect_triangle.size()-1]->saisir_indice(m_vect_sommet);
-
-/*
-void Room::init_ref_pos(std::map<std::string,Coords>&m_map,double width,double height)
-{
-    m_map["tl"]={0,0};
-    m_map["tc"]={width/2.0,0};
-    m_map["tr"]={width,0};
-    m_map["ml"]={0,height/2.0};
-    m_map["mc"]={width/2.0,height/2.0};
-    m_map["mr"]={width,height/2.0};
-    m_map["bl"]={0,height};
-    m_map["bc"]={width/2.0,height};
-    m_map["br"]={width,height};
 
 }
-*/
 
-/*
-void Graphe::verification(std::map<int,int,int>&m_map)
+
+void Graphe::verification()
 {
 
+int i_pred=1,j_pred=1;
+std::cout << std::endl;
 
+for(int j=0;j<m_aretes.size();++j)
+    {
+        std::cout << std::endl;
+        std::cout << m_aretes[j]->m_sommet[0]->getX() << " " << m_aretes[j]->m_sommet[0]->getY();
+        std::cout << std::endl;
+        std::cout << m_aretes[j]->m_sommet[1]->getX() << " " << m_aretes[j]->m_sommet[1]->getY();
+        std::cout << std::endl;
 
+    }
 }
-*/
+
+
 
 void Graphe::dessinerGraphe() const
 {
@@ -210,14 +206,12 @@ void Graphe::dessinerGraphe() const
     {
         s->dessinerS(svgout);
     }
-/*
+
     for(auto s : m_aretes)
     {
-        std::cout << "good";
         s->dessinerA(svgout);
     }
-    std::cout << "gooood";
-*/
+
 }
 
 void Graphe::BFS(int premier)

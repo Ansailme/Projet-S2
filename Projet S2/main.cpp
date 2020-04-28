@@ -28,9 +28,10 @@ int main()
             monGraphe.BFS(a);
             break;
         case 2:
-            std::cout<<std::endl<<"Premier ? ";
+            monGraphe.c_degre();
+            /*std::cout<<std::endl<<"Premier ? ";
             std::cin>>a;
-            monGraphe.DFS(a);
+            monGraphe.DFS(a);*/
             break;
         case 3 :
             monGraphe.recherchecompoConnexes();
@@ -40,6 +41,7 @@ int main()
                 break;
 
         case 5 :
+                monGraphe.verification();
                 monGraphe.lectureFichierP("ponderation_etoile1.txt");
                 monGraphe.afficherPoids();
                 break;
