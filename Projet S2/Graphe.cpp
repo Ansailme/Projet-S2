@@ -155,11 +155,13 @@ void Graphe::c_degre()
 
     for(i=0;i<m_aretes.size();++i)
     {
-        for(j=0;j<m_sommets.size();++j)
+        //for(j=0;j<m_sommets.size();++j)
         {
             if(((m_aretes[j]->getExtrem1()) == j) || ((m_aretes[j]->getExtrem2()) == j))
             {
+
                 compteur++;
+
             }
 
         }
@@ -182,10 +184,7 @@ void Graphe::c_degre()
 void Graphe::verification()
 {
 
-int i_pred=1,j_pred=1;
-std::cout << std::endl;
-
-for(int j=0;j<m_aretes.size();++j)
+    for(int j=0;j<m_aretes.size();++j)
     {
         std::cout << std::endl;
         std::cout << m_aretes[j]->m_sommet[0]->getX() << " " << m_aretes[j]->m_sommet[0]->getY();

@@ -34,7 +34,7 @@ int main()
             monGraphe.DFS(a);*/
             break;
         case 3 :
-            monGraphe.recherchecompoConnexes();
+                monGraphe.recherchecompoConnexes();
             break;
         case 4 :
                 monGraphe.afficher();
