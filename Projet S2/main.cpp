@@ -7,7 +7,7 @@
 
 int main()
 {
-    Graphe monGraphe{"graphe_etoile1.txt"};
+    Graphe monGraphe{"graphe_etoile2.txt"};
 
     int a,choix;
     do
@@ -16,10 +16,10 @@ int main()
        /* std::cout<<std::endl<<"\t1) BFS " //à voir
                  <<std::endl<<"\t2) DFS " //à boire
                  <<std::endl<<"\t3) Recherche des composantes connexes et cycle/chaine eulerienne"*/
-          std::cout<<"\t4) Afficher Graphe "
-                   <<"\t5) Affcher Ponderation "
-                   <<"\t6) svgtest"
-                   <<"\t7) Quitter"
+          std::cout<<"\t4) Afficher Graphe \n"
+                   <<"\t5) Afficher Ponderation \n"
+                   <<"\t6) svgtest\n"
+                   <<"\t7) Quitter\n"
                  <<std::endl<<"Faites votre choix : ";
         std::cin>>choix;
         switch(choix)
@@ -42,7 +42,7 @@ int main()
                 break;
 
         case 5 :
-                monGraphe.lectureFichierP("ponderation_etoile1.txt");
+                monGraphe.lectureFichierP("ponderation_etoile2.txt");
                 monGraphe.afficherPoids();
                 break;
         case 6 :
