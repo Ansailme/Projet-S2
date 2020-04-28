@@ -6,7 +6,6 @@ Arete::Arete(int indice, int extrem1, int extrem2,Sommet* extremite1, Sommet* ex
 {
     m_sommet[0]=extremite1;
     m_sommet[1]=extremite2;
-    std::cout << m_sommet[0]->getX() << m_sommet[0]->getY() << std::endl;
 
 }
 
