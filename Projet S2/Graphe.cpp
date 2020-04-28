@@ -79,9 +79,7 @@ void Graphe::lectureFichierP(std::string fichier2)
     if ( ifs2.fail() )
         throw std::runtime_error("Probleme lecture donnees du graphe");
 
-
     ifs2.close();
-
 }
 
 
