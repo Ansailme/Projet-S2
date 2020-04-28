@@ -15,7 +15,7 @@ private :
     int m_indice;
     int m_extrem1;
     int m_extrem2;
-    Sommet* m_sommet[2];
+
 
 public :
     Arete (int indice,int m_extrem1, int m_extrem2);
@@ -25,6 +25,7 @@ public :
     void dessinerA(Svgfile& svgout)const;
 
     int poids;
+    Sommet* m_sommet[2];
 
 };
 

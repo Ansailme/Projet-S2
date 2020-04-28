@@ -132,9 +132,72 @@ void Graphe::afficherPoids()const
         std::cout<<s->poids;
         std::cout << std::endl;
     }
+
+/*
+    std::cout << m_sommets[0]->getX();
+    std::cout << std::endl;
+    std::cout << m_aretes[0]->getExtrem1();
+    std::cout << std::endl;
+    std::cout << m_aretes[1]->getExtrem1();
+    std::cout << std::endl;
+    std::cout << m_aretes[2]->getExtrem1();
+    std::cout << std::endl;
+    std::cout << m_aretes[3]->getExtrem1();
+*/
+
+    int i_pred=1,j_pred=1;
+    std::cout << std::endl;
+    for(int i=0;i<m_sommets.size();++i)
+    {
+        for(int j=0;j<m_aretes.size();++j)
+        {
+            if(((m_aretes[j]->getExtrem1()) == (m_sommets[i]->getNum()) || ((m_aretes[j]->getExtrem2()) == (m_sommets[i]->getNum()))) && ((j_pred!=j) && (i_pred!=i)))
+            {
+                /*m_aretes[j]->m_sommet[i];
+                m_aretes[j]->m_sommet[i];
+                std::cout << std::endl;
+                std::cout << m_aretes[j]->m_sommet[i] << " " << m_aretes[j]->m_sommet[i];
+                std::cout << std::endl;*/
+                //std::cout << m_aretes[i]->getIndice() << m_aretes[i]->getExtrem1() << m_aretes[i]->getExtrem2();
+                std::cout << m_sommets[i]->getX() << " "<< m_sommets[i]->getY();
+                std::cout << std::endl;
+                i_pred=i;
+                j_pred=j;
+            }
+        }
+    }
+
+
+
 }
 
+                //m_vect_triangle.push_back(new Triangle);
+                //m_vect_triangle[m_vect_triangle.size()-1]->saisir_indice(m_vect_sommet);
 
+/*
+void Room::init_ref_pos(std::map<std::string,Coords>&m_map,double width,double height)
+{
+    m_map["tl"]={0,0};
+    m_map["tc"]={width/2.0,0};
+    m_map["tr"]={width,0};
+    m_map["ml"]={0,height/2.0};
+    m_map["mc"]={width/2.0,height/2.0};
+    m_map["mr"]={width,height/2.0};
+    m_map["bl"]={0,height};
+    m_map["bc"]={width/2.0,height};
+    m_map["br"]={width,height};
+
+}
+*/
+
+/*
+void Graphe::verification(std::map<int,int,int>&m_map)
+{
+
+
+
+}
+*/
 
 void Graphe::dessinerGraphe() const
 {

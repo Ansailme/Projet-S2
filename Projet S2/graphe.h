@@ -18,6 +18,7 @@ public :
     void afficher()const;
     void afficherPoids()const;
     void dessinerGraphe() const;
+    void verification();
     void BFS(int premier);
     Sommet* recupSommet(int indice);
     void DFS(int premier);
