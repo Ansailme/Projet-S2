@@ -151,21 +151,26 @@ void Graphe::afficherPoids()const
         {
             if(((m_aretes[j]->getExtrem1()) == (m_sommets[i]->getNum()) || ((m_aretes[j]->getExtrem2()) == (m_sommets[i]->getNum()))) && ((j_pred!=j) && (i_pred!=i)))
             {
-                /*m_aretes[j]->m_sommet[i];
-                m_aretes[j]->m_sommet[i];
+                /*m_aretes[j]->m_sommet[0].getX() = m_sommets[i]->getX();
+                m_aretes[j]->m_sommet[0].getY() = m_sommets[i]->getY();
+                m_aretes[j]->m_sommet[1].getX() = m_sommets[i]->getX();
+                m_aretes[j]->m_sommet[1].getY() = m_sommets[i]->getY();*/
+
                 std::cout << std::endl;
-                std::cout << m_aretes[j]->m_sommet[i] << " " << m_aretes[j]->m_sommet[i];
-                std::cout << std::endl;*/
-                //std::cout << m_aretes[i]->getIndice() << m_aretes[i]->getExtrem1() << m_aretes[i]->getExtrem2();
+                std::cout << m_aretes[2]->m_sommet[0].getX() << " " << m_aretes[2]->m_sommet[0].getY();
+                std::cout << std::endl;
+                std::cout << m_aretes[j]->m_sommet[1].getX() << " " << m_aretes[j]->m_sommet[1].getY();
+                std::cout << std::endl;
+/*
                 std::cout << m_sommets[i]->getX() << " "<< m_sommets[i]->getY();
                 std::cout << std::endl;
+*/
                 i_pred=i;
                 j_pred=j;
+
             }
         }
     }
-
-
 
 }
 
