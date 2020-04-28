@@ -2,7 +2,7 @@
 #include "svgfile.h"
 #include "couleur.h"
 
-Sommet::Sommet (int num, char lettre, int x, int y)
+Sommet::Sommet (int num, std::string lettre, int x, int y)
     :m_num{num},m_couleur {0}, m_lettre{lettre},m_x{x},m_y{y}
 {}
 
@@ -16,7 +16,7 @@ int Sommet::getNum ()const
     return m_num;
 }
 
-char Sommet::getLettre() const
+std::string Sommet::getLettre() const
 {
     return m_lettre;
 }
@@ -39,6 +39,16 @@ void Sommet::afficher_num()const
     for (auto it : m_adjacents)
         std::cout<<it->getNum()<<" ";
 }
+
+/*
+void Sommet::dessinerS(int x,int y) const
+{
+    Couleur jaune{255,200,0};
+    Svgfile svgout;
+
+    svgout.addDisk(x*100,y*100,5,jaune );
+}
+*/
 
 void Sommet::reinitialiserCouleur()
 {

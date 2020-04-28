@@ -26,7 +26,7 @@ Graphe::Graphe(std::string fichier)
         throw std::runtime_error("Probleme lecture ordre du graphe");
 
     int num,x,y;
-    char lettre;
+    std::string lettre;
     for(int i=0;i<ordre;++i)
     {
         ifs>>num>>lettre>>x>>y;
@@ -136,17 +136,21 @@ void Graphe::afficherPoids()const
 
 void Graphe::dessinerGraphe () const
 {
+    /*
+    for(auto s : m_sommets)
+    {
+        s->dessinerS(s->getX(),s->getY());
+    }
+    */
+
     Svgfile svgout;
     Couleur jaune{255,200,0};
-     for(auto s : m_sommets)
+    Couleur noir{0,0,0};
+    for(auto s : m_sommets)
     {
         svgout.addDisk(s->getX()*100,s->getY()*100,5, jaune);
+        svgout.addText((s->getX()*100)-5,(s->getY()*100)-5,s->getLettre(),noir);
     }
-    /* for(auto s : m_sommets)
-    {
-        svgout.addLine();
-    }*/
-
 }
 
 void Graphe::BFS(int premier)
