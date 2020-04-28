@@ -119,7 +119,7 @@ void Graphe::afficher()const
 
 void Graphe::afficherPoids()const
 {
-    std::cout << "\n\n\nliste des aretes ponderation_etoile1.txt:\n";
+    std::cout << "\n\n\nliste ponderation_etoile1.txt:\n";
     for(auto s : m_aretes)
     {
         std::cout<<"\t"<<s->getIndice()<<" ";

@@ -11,11 +11,12 @@ int main()
     do
     {
         std::cout<<std::endl;
-        std::cout<<std::endl<<"\t1) BFS " //à voir
+       /* std::cout<<std::endl<<"\t1) BFS " //à voir
                  <<std::endl<<"\t2) DFS " //à boire
-                 <<std::endl<<"\t3) Recherche des composantes connexes et cycle/chaine eulerienne"
-                 <<std::endl<<"\t4) Afficher Graphe et Pondération"
-                 <<std::endl<<"\t5) Quitter"
+                 <<std::endl<<"\t3) Recherche des composantes connexes et cycle/chaine eulerienne"*/
+          std::cout<<"\t4) Afficher Graphe "
+                   <<"\t5) Affcher Ponderation "
+                   <<"\t6) Quitter"
                  <<std::endl<<"Faites votre choix : ";
         std::cin>>choix;
         switch(choix)
@@ -35,11 +36,16 @@ int main()
             break;
         case 4 :
                 monGraphe.afficher();
+                break;
+
+        case 5 :
                 monGraphe.lectureFichierP("ponderation_etoile2.txt");
                 monGraphe.afficherPoids();
+                break;
+
         }
 
-    }while (choix!=5);
+    }while (choix!=6);
 
 
     return 0;
