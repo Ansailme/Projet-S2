@@ -152,6 +152,7 @@ void Graphe::c_degre()
     {
         std::cout << "sommet " << i << " indice de centralite : " << deg[i] << std::endl;
         std::cout << "sommet " << i << " indice de centralite normalise: " << (deg[i]*(1.0/(m_ordre-1))) << std::endl;
+        std::cout<<std::endl;
     }
 }
 
@@ -223,12 +224,15 @@ void Graphe::sauvegarde(std::string fichierS)
         ofs<<" Centralité de degré :\n";
         for (unsigned int i=0; i<m_sommets.size(); ++i)
             ofs<< "sommet " << i << " : " << deg[i]<<std::endl;
+
         ofs<<" Centralité de degré normalisé :\n";
         for (unsigned int i=0; i<m_sommets.size(); ++i)
             ofs<< "sommet " << i << " : " << (deg[i]*(1.0/(m_ordre-1)))<<std::endl;
+
         ofs<< "Centralite de vecteur propre:\n";
         for (unsigned int i=0; i<m_sommets.size(); ++i)
             ofs << "sommet" << i <<" : " << cvp[i]<<std::endl;
+
     }
 
 }
@@ -588,7 +592,7 @@ void Graphe::recherchePlusCourtChemin(int i_debut, int i_fin) //TP3 Rose et Juli
         {
             //std::cout<<sommetsParcourus[i]->getDist(sommetsParcourus[i-1]->getNum())<<"+";
             //std::cout<< m_aretes[i]->poids<<"+";
-            std::cout<<sommetsParcourus[i]->poids(sommetsParcourus[i-1])<<"+";
+          //  std::cout<<sommetsParcourus[i]->poids(sommetsParcourus[i-1])<<"+";
         }
         std::cout<<sommetsParcourus[1]->getDist(sommetsParcourus[0]->getNum())<<"=";
     }
