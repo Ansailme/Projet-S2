@@ -10,10 +10,12 @@ private :
     int m_orient; // 0 si non-oriente // 1 si oriente
     int m_ordre;
     int m_taille;
+
     std::vector <Sommet* > m_sommets;
     std::vector <Arete* > m_aretes;
     std::vector <double> deg;
     std::vector <double> cvp;
+    std::vector <int> cp;
 
 public :
     Graphe (std::string fichier);

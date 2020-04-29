@@ -477,8 +477,7 @@ Graphe::~Graphe()
         delete it;
 }
 
-
-void Graphe::recherchePlusCourtChemin(int i_debut, int i_fin)
+void Graphe::recherchePlusCourtChemin(int i_debut, int i_fin) //TP3 Rose et Juliette
 {
     ///initialisation
     for (auto it : m_sommets)
@@ -523,7 +522,7 @@ void Graphe::recherchePlusCourtChemin(int i_debut, int i_fin)
             }
 
         }
-        //recherche du plus près sommet de s0 qui n'a pas encore était étudié
+        //recherche du plus près sommet de s0 qui n'a pas encore été étudié
         for (size_t i=0; i<m_sommets.size(); ++i) //on parcours la tab de distance
         {
             if (m_sommets[i]->getMarquage()!=1) //pas parcouru
@@ -564,8 +563,7 @@ void Graphe::recherchePlusCourtChemin(int i_debut, int i_fin)
         if (i_debut!=temp)
         {
             do
-            {
-                //on remonte le tableau jusqu'à ce que le predecesseur soit s0
+            {//on remonte le tableau jusqu'à ce que le predecesseur soit s0
                 pred = temp;
                 std::cout<<" <-- "<<pred; //on aficche chaque predecesseur
                 sommetsParcourus.push_back(m_sommets[pred]); //on ajoute à la liste chaque predecesseur
@@ -588,16 +586,15 @@ void Graphe::recherchePlusCourtChemin(int i_debut, int i_fin)
     {
         for (size_t i=taille-1 ; i>1; --i) //sens inverse parce que pour remplir le vecteur on est partie de la fin
         {
-            std::cout<<sommetsParcourus[i]->getDist(sommetsParcourus[i-1]->getNum())<<"+";
+            //std::cout<<sommetsParcourus[i]->getDist(sommetsParcourus[i-1]->getNum())<<"+";
+            //std::cout<< m_aretes[i]->poids<<"+";
+            std::cout<<sommetsParcourus[i]->poids(sommetsParcourus[i-1])<<"+";
         }
         std::cout<<sommetsParcourus[1]->getDist(sommetsParcourus[0]->getNum())<<"=";
     }
     std::cout<<tab_distance[i_fin];
 
-
-
-
-
-
-
 }
+
+
+
