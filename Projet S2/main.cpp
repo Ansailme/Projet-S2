@@ -7,7 +7,7 @@ int main()
 {
     Graphe monGraphe{"graphe_etoile1.txt"};
 
-    int a,choix;
+    int a,choix=0;
     do
     {
         std::cout<<std::endl;
@@ -18,8 +18,15 @@ int main()
                    <<"\t5) Afficher Ponderation \n"
                    <<"\t6) svgtest\n"
                    <<"\t7) Quitter\n"
-                 <<std::endl<<"Faites votre choix : ";
-        std::cin>>choix;
+                   << std::endl;
+
+        do
+        {
+            std::cout<<"Faites votre choix : ";
+            std::cin >> choix;
+        }while(choix<1 || choix>7);
+
+
         switch(choix)
         {
         case 1 :
