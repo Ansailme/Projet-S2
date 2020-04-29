@@ -89,7 +89,7 @@ void Graphe::lectureFichierP(std::string fichier2)
 
 void Graphe::afficher()const
 {
-    std::cout<<"graphe ";
+    std::cout<<"\tfichier topologie\n";
 
     if (m_orient==0)
         std::cout<<"non oriente";
@@ -100,7 +100,7 @@ void Graphe::afficher()const
     std::cout << std::endl;
     std::cout << std::endl;
 
-    std::cout << "liste sommet :\n";
+    std::cout << "affichge sommet :\n";
     for( auto s : m_sommets)
     {
         std::cout << "\t"<<s->getNum()<<" ";
@@ -112,7 +112,7 @@ void Graphe::afficher()const
 
     std::cout << "taille : " << m_aretes.size();
 
-    std::cout << "\nliste des aretes graphe_etoile1.txt :\n";
+    std::cout << "\naffichage arrete :\n";
     for(auto s : m_aretes)
     {
         std::cout<<"\t"<<s->getIndice()<<" ";
@@ -125,7 +125,20 @@ void Graphe::afficher()const
 
 void Graphe::afficherPoids()const
 {
-    std::cout << "\n\n\nliste ponderation_etoile1.txt:\n";
+
+
+
+    std::cout << "\tfichier de ponderation " << std::endl;
+    std::cout << "nombre d'aretes : " << m_aretes.size() << std::endl;
+    for(auto s : m_aretes)
+    {
+        std::cout << "\t" << s->getIndice() << " ";
+        std::cout << "\t" << s->poids << std::endl;
+    }
+
+
+
+    std::cout << "\n\nAsssociation 2 fichiers :\n";
     for(auto s : m_aretes)
     {
         std::cout<<"\t"<<s->getIndice()<<" ";
@@ -148,6 +161,29 @@ void Graphe::c_degre()
 
         std::cout << "le sommet " << i << " a un degre de : " << deg[i] << std::endl;
     }
+}
+
+
+void Graphe::c_propre()
+{
+    double lambda=0,lambda_prec=0;
+    int Cvp=1
+
+    for(int i=0; i<m_sommets.size(); ++i)
+    {
+        if(lambda-lambda_prec > 1)
+        {
+            lambda = sqrt(deg[i]*deg[i]);
+            Cvp[i] = deg[i]/lambda;
+            lambda_prec = lambda;
+        }
+        else
+        {
+            std::cout << "fin";
+        }
+
+    }
+
 }
 
 
