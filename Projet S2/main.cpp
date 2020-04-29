@@ -21,8 +21,10 @@ int main()
                    <<"\t6) svgtest\n"
                    <<"\t7) Quitter\n"
                    << std::endl;
-        std::cout<<"Faites votre choix : ";
-        std::cin >> choix;
+
+                   std::cout<<"Faites votre choix : ";
+                   std::cin >> choix;
+
 
         switch(choix)
         {
