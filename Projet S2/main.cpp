@@ -5,7 +5,7 @@
 
 int main()
 {
-    Graphe monGraphe{"graphe_etoile2.txt"};
+    Graphe monGraphe{"graphe_etoile1.txt"};
 
     int a,choix=0;
 
@@ -40,7 +40,7 @@ int main()
             monGraphe.c_degre();
             break;
         case 3 :
-                //monGraphe.c_propre();
+                monGraphe.c_propre();
             break;
         case 4 :
                 monGraphe.afficher();

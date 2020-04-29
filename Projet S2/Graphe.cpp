@@ -2,7 +2,7 @@
 #include "svgfile.h"
 #include "couleur.h"
 #include "util.h"
-#include "math.h"
+#include <cmath>
 
 #include <queue>
 #include <map>
@@ -156,41 +156,54 @@ void Graphe::c_degre()
     }
 }
 
-/*
+
 void Graphe::c_propre()
 {
-    double lambda=0,lambda_prec=0;
-    std::vector < int > c;
+    double lambda=0,lambda_prec=1;
+    std::vector < double > c;
     std::vector < double > cvp;
-    cvp=deg;
 
-    for(int i=0; i<m_sommets.size(); ++i)
+    for (int j=0; j<m_sommets.size(); ++j)
     {
-        std::cout << "hez";
-        for (int j=0; j<m_sommets[i].m_adjacents[i].size(); ++j)
-        {
-            std::cout << "hez";
-            c[i]=c[i]+cvp[j];
-        }
-        lambda = sqrt(c[i]*c[i]);
-        cvp[i]=(c[i])/lambda;
-
-        //c=c+deg[i];
-       // if(lambda-lambda_prec > 1)
-        // c =c*c;
-
-            //lambda = sqrt(c*c);
-            //deg[i] = c/lambda;
-           //lambda_prec = lambda;
-           std::cout<<lambda<<std::endl;
-
-        else
-        {
-            std::cout << "fin";
-        }
+            cvp.push_back(1);
+            c.push_back(0);
     }
+
+    while(abs(lambda-lambda_prec)>0.01)
+    {
+        lambda_prec=lambda;
+        lambda = 0;
+        for(int i=0;i<m_sommets.size();++i)
+        {
+            c[i]=0;
+            for(int j=0;j<m_sommets.size();++j)
+            {
+                if(m_sommets[i]->estAdjacentA(j) == true)
+                {
+                    c[i] = c[i] + cvp[j];
+                }
+            }
+
+            lambda = lambda + (c[i]*c[i]);
+
+
+        }
+
+        lambda = sqrt(lambda);
+
+        for(int i=0;i<m_sommets.size();++i)
+        {
+            cvp[i] = c[i] / lambda;
+        }
+
+
+    }
+        for(int i=0;i<m_sommets.size();++i)
+        {
+            std::cout << cvp[i] << std::endl;
+        }
 }
-*/
+
 
 void Graphe::verification() /// sp pour afficher coord des extremites d'aretes
 {

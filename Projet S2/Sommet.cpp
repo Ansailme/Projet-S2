@@ -44,10 +44,6 @@ void Sommet::afficher_num()const
 void Sommet::dessinerS(Svgfile& svgout) const
 {
     Couleur noir{0,0,0};
-    Couleur rouge {255,0,0};
-    Couleur vert {0,255,0};
-    Couleur bleu {0,0,255};
-    Couleur jaune{255,200,0};
     Couleur deg{(m_adjacents.size())*50, 255-m_adjacents.size()*50,100-m_adjacents.size()*50};
 
     svgout.addDisk(m_x*100,m_y*100,5,deg);
