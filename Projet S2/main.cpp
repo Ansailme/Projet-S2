@@ -8,7 +8,6 @@ int main()
 
     Graphe monGraphe{"graphe_etoile3.txt"};
     int a,choix=0;
-
     do
     {
         std::cout<<std::endl;
@@ -46,7 +45,6 @@ int main()
         case 4 :
                 monGraphe.afficher();
                 break;
-
         case 5 :
                 //monGraphe.verification();
                 monGraphe.lectureFichierP("ponderation_etoile3.txt");
@@ -60,10 +58,9 @@ int main()
             monGraphe.sauvegarde("sauvegarde.txt");
             std::cout<<"\tsauvegarde operationnelle chef !"<<std::endl;
             break;
-
         }
 
-    }while (choix!=8);
+    } while (choix!=8);
 
 
     return 0;
