@@ -17,6 +17,7 @@ private :
     int m_x,m_y;
     int m_num;
     int m_couleur; //0 -> B //1->G //2->N
+    int m_marquage;
     std::vector<Sommet*> m_adjacents;
 
 public :
@@ -34,6 +35,9 @@ public :
     int getCouleur()const;
     bool estAdjacentA(int i);
     bool estDegreImpair();
+    void setMarquage(int nv);
+    int getDist (int i);
+    int getMarquage()const;
 };
 
 #endif // SOMMET_H_INCLUDED

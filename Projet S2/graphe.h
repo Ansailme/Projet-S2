@@ -31,6 +31,8 @@ public :
     void DFS(int premier);
     void recuDFS(std::map<int, int>& i_preds,Sommet* s);
     void recherchecompoConnexes();
+    void recherchePlusCourtChemin(int i_debut, int i_fin);
+
 };
 
 
