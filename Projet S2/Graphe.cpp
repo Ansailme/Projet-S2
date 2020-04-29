@@ -127,7 +127,7 @@ void Graphe::afficherPoids()const
 
 
 
-    std::cout << "\tfichier de ponderation " << std::endl;
+    std::cout << "\tfichier de ponderation\n " << std::endl;
     std::cout << "nombre d'aretes : " << m_aretes.size() << std::endl;
     for(auto s : m_aretes)
     {
@@ -158,7 +158,7 @@ void Graphe::c_degre()
     }
 }
 
-
+/*
 void Graphe::c_propre()
 {
     double lambda=0,lambda_prec=0;
@@ -180,7 +180,7 @@ void Graphe::c_propre()
     }
 
 }
-
+*/
 
 void Graphe::verification()
 {

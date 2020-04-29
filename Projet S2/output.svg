@@ -41,15 +41,15 @@
 <text x="905" y="15" fill="lightgrey" >900</text>
 <line x1="1000" y1="0" x2="1000" y2="800" stroke="lightgrey" />
 <text x="1005" y="15" fill="lightgrey" >1000</text>
-<circle cx="200" cy="100" r="5" fill="rgb(50,205,0)" />
+<circle cx="200" cy="100" r="5" fill="rgb(50,205,50)" />
 <text x="195" y="95" fill="rgb(0,0,0)" >A</text>
-<circle cx="100" cy="200" r="5" fill="rgb(50,205,0)" />
+<circle cx="100" cy="200" r="5" fill="rgb(50,205,50)" />
 <text x="95" y="195" fill="rgb(0,0,0)" >B</text>
-<circle cx="200" cy="200" r="5" fill="rgb(200,55,0)" />
+<circle cx="200" cy="200" r="5" fill="rgb(200,55,50)" />
 <text x="195" y="195" fill="rgb(0,0,0)" >C</text>
-<circle cx="300" cy="200" r="5" fill="rgb(50,205,0)" />
+<circle cx="300" cy="200" r="5" fill="rgb(50,205,50)" />
 <text x="295" y="195" fill="rgb(0,0,0)" >D</text>
-<circle cx="200" cy="300" r="5" fill="rgb(50,205,0)" />
+<circle cx="200" cy="300" r="5" fill="rgb(50,205,50)" />
 <text x="195" y="295" fill="rgb(0,0,0)" >E</text>
 <line x1="200" y1="100" x2="200" y2="200" stroke="rgb(0,0,0)" />
 <line x1="100" y1="200" x2="200" y2="200" stroke="rgb(0,0,0)" />
