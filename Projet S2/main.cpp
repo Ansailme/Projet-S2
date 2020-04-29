@@ -5,9 +5,10 @@
 
 int main()
 {
-    Graphe monGraphe{"graphe_etoile1.txt"};
+    Graphe monGraphe{"graphe_etoile3.txt"};
 
     int a,choix=0;
+
     do
     {
         std::cout<<std::endl;
@@ -45,7 +46,7 @@ int main()
 
         case 5 :
                 monGraphe.verification();
-                monGraphe.lectureFichierP("ponderation_etoile2.txt");
+                monGraphe.lectureFichierP("ponderation_etoile3.txt");
                 monGraphe.afficherPoids();
                 break;
         case 6 :
