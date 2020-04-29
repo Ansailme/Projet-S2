@@ -513,9 +513,11 @@ void Graphe::recherchePlusCourtChemin(int i_debut, int i_fin) //TP3 Rose et Juli
         //on determine le plus proche de s0 en partant de s
         for (auto it : m_sommets)
         {
+
             if (s->estAdjacentA(it->getNum())) //si on peut aller de s à it
             {
                 distance=s->getDist(it->getNum());
+                //std::cout << distance << std::endl;
 
                 if (tab_distance[it->getNum()]>tab_distance[s->getNum()]+distance)//si c'est plus court d'aller de s0 à it en passant par s
                 {
@@ -590,6 +592,7 @@ void Graphe::recherchePlusCourtChemin(int i_debut, int i_fin) //TP3 Rose et Juli
     {
         for (size_t i=taille-1 ; i>1; --i) //sens inverse parce que pour remplir le vecteur on est partie de la fin
         {
+            //std::cout << s->arete[i]->poids << std::endl;
             //std::cout<<sommetsParcourus[i]->getDist(sommetsParcourus[i-1]->getNum())<<"+";
             //std::cout<< m_aretes[i]->poids<<"+";
           //  std::cout<<sommetsParcourus[i]->poids(sommetsParcourus[i-1])<<"+";

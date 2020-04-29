@@ -1,8 +1,8 @@
 #ifndef GRAPHE_H_INCLUDED
 #define GRAPHE_H_INCLUDED
 
-#include "sommet.h"
 #include "Arete.h"
+
 
 class Graphe
 {

@@ -6,7 +6,7 @@
 int main()
 {
 
-    Graphe monGraphe{"graphe_cube.txt"};
+    Graphe monGraphe{"graphe_etoile1.txt"};
     int a,choix=0;
     int i_debut,i_fin;
 
@@ -41,7 +41,7 @@ int main()
 
         case 2:
             //monGraphe.verification();
-            monGraphe.lectureFichierP("ponderation_cube.txt");
+            monGraphe.lectureFichierP("ponderation_etoile1.txt");
             monGraphe.afficherPoids();
             break;
 
