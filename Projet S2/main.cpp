@@ -6,8 +6,10 @@
 int main()
 {
 
-    Graphe monGraphe{"graphe_etoile3.txt"};
+    Graphe monGraphe{"graphe_etoile1.txt"};
     int a,choix=0;
+    int i_debut,i_fin;
+
     do
     {
         std::cout<<std::endl;
@@ -15,8 +17,9 @@ int main()
                  <<std::endl<<"\t2) DFS " //à boire
                  <<std::endl<<"\t3) Recherche des composantes connexes "*/
           std::cout<<"\t\t MENU PRINCIPAL\n"
+                    <<"\t1) Proximite\n"
                     <<"\t2) Degre sommet \n"
-                    <<"\t3) Decentralite de vecteur propre \n"
+                    <<"\t3) centralite de vecteur propre \n"
                     <<"\t4) Afficher Graphe \n"
                     <<"\t5) Afficher Ponderation \n"
                     <<"\t6) svgtest\n"
@@ -32,9 +35,12 @@ int main()
         switch(choix)
         {
         case 1 :
-            std::cout<<std::endl<<"Premier ? ";
-            std::cin>>a;
-            monGraphe.BFS(a);
+        std::cout<<std::endl<<"Pour la recherche du plus court chemin :"
+                 <<std::endl<<"Choisir le sommet de depart : ";
+        std::cin>>i_debut;
+        std::cout<<std::endl<<"Choisir le sommet d'arrivee : ";
+        std::cin>>i_fin;
+        monGraphe.recherchePlusCourtChemin(i_debut,i_fin);
             break;
         case 2:
             monGraphe.c_degre();
@@ -47,7 +53,7 @@ int main()
                 break;
         case 5 :
                 //monGraphe.verification();
-                monGraphe.lectureFichierP("ponderation_etoile3.txt");
+                monGraphe.lectureFichierP("ponderation_etoile1.txt");
                 monGraphe.afficherPoids();
                 break;
         case 6 :
