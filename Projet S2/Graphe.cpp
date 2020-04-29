@@ -64,6 +64,17 @@ Graphe::Graphe(std::string fichier)
 
 void Graphe::lectureFichierP(std::string fichier2)
 {
+    std::vector <double> cvp;
+
+    cvp=deg;
+
+    for(int i=0;i<m_sommets.size();++i)
+    {
+
+        std::cout << cvp[i] << std::endl;
+    }
+
+
     std::ifstream ifs2{fichier2}; //ouverture en mode lecture
     if (!ifs2)
         throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier2 );
