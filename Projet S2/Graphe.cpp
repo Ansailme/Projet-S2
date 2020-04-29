@@ -101,7 +101,7 @@ void Graphe::afficher()const
     std::cout << std::endl;
     std::cout << std::endl;
 
-    std::cout << "affichge sommet :\n";
+    std::cout << "affichage sommets :\n";
     for( auto s : m_sommets)
     {
         std::cout << "\t"<<s->getNum()<<" ";
@@ -113,7 +113,7 @@ void Graphe::afficher()const
 
     std::cout << "taille : " << m_aretes.size();
 
-    std::cout << "\naffichage arrete :\n";
+    std::cout << "\naffichage aretes :\n";
     for(auto s : m_aretes)
     {
         std::cout<<"\t"<<s->getIndice()<<" ";
@@ -135,8 +135,6 @@ void Graphe::afficherPoids()const
         std::cout << "\t" << s->poids << std::endl;
     }
 
-
-
     std::cout << "\n\nAsssociation 2 fichiers :\n";
     for(auto s : m_aretes)
     {
@@ -146,8 +144,6 @@ void Graphe::afficherPoids()const
         std::cout<<s->poids;
         std::cout << std::endl;
     }
-
-
 }
 
 
@@ -196,7 +192,7 @@ void Graphe::c_propre()
 }
 */
 
-void Graphe::verification()
+void Graphe::verification() /// sp pour afficher coord des extremites d'aretes
 {
     for(int j=0; j<m_aretes.size(); ++j)
     {
@@ -210,7 +206,7 @@ void Graphe::verification()
 
 
 
-void Graphe::dessinerGraphe() const
+void Graphe::dessinerGraphe() const ///sp permet de dessiner le graphe dans svgfile
 {
     Svgfile svgout;
     svgout.addGrid();
