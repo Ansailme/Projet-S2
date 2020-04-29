@@ -74,7 +74,8 @@ void Graphe::lectureFichierP(std::string fichier2)
     if ( ifs2.fail() )
         throw std::runtime_error("Probleme lecture nombre d'arete du graphe");
 
-    int indiceTaille2, poids;
+    int indiceTaille2;
+    double poids;
     for(int k=0; k<nbr_arete; k++)
     {
         ifs2>>indiceTaille2>>poids;
@@ -161,7 +162,7 @@ void Graphe::c_propre()
     double lambda=0,lambda_prec=1;
     std::vector < double > c;
 
-    for (int j=0; j<m_sommets.size(); ++j)
+    for (unsigned int j=0; j<m_sommets.size(); ++j)
     {
         cvp.push_back(1);
         c.push_back(0);
@@ -171,10 +172,10 @@ void Graphe::c_propre()
     {
         lambda_prec=lambda;
         lambda = 0;
-        for(int i=0; i<m_sommets.size(); ++i)
+        for(unsigned int i=0; i<m_sommets.size(); ++i)
         {
             c[i]=0;
-            for(int j=0; j<m_sommets.size(); ++j)
+            for(unsigned int j=0; j<m_sommets.size(); ++j)
             {
                 if(m_sommets[i]->estAdjacentA(j) == true)
                 {
@@ -189,13 +190,13 @@ void Graphe::c_propre()
 
         lambda = sqrt(lambda);
 
-        for(int i=0; i<m_sommets.size(); ++i)
+        for(unsigned int i=0; i<m_sommets.size(); ++i)
         {
             cvp[i] = c[i] / lambda;
         }
 
     }
-    for(int i=0; i<m_sommets.size(); ++i)
+    for(unsigned int i=0; i<m_sommets.size(); ++i)
     {
         std::cout << cvp[i] << std::endl;
     }
@@ -203,7 +204,7 @@ void Graphe::c_propre()
 
 void Graphe::verification() /// sp pour afficher coord des extremites d'aretes
 {
-    for(int j=0; j<m_aretes.size(); ++j)
+    for(unsigned int j=0; j<m_aretes.size(); ++j)
     {
         std::cout << std::endl;
         std::cout << m_aretes[j]->m_sommet[0]->getX() << " " << m_aretes[j]->m_sommet[0]->getY();
@@ -382,10 +383,8 @@ void Graphe::recuDFS(std::map<int, int>& i_preds,Sommet* s)
             {
                 i_preds[it->getNum()]=s->getNum();
                 recuDFS(i_preds,it); //par recurence
-
             }
         }
-
     }
     s->setCouleur(2); //met en noir
 
@@ -408,7 +407,6 @@ void Graphe::recherchecompoConnexes()
         stop=false;
         for (auto it : m_sommets)
         {
-
             if (it->getCouleur()!=2 && !stop)
             {
                 //si on découvre un nouveau sommet qui n'a pas encore été rangé dan sune composante connexe

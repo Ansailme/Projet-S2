@@ -25,7 +25,7 @@ public :
     int getExtrem2 ()const;
     void dessinerA(Svgfile& svgout)const;
 
-    int poids;
+    double poids;
     Sommet* m_sommet[2];
 
 };

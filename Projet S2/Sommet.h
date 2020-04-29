@@ -41,6 +41,7 @@ public :
     int getMarquage()const;
 
     Arete* arete;
+
 };
 
 #endif // SOMMET_H_INCLUDED
