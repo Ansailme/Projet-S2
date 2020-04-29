@@ -13,6 +13,7 @@ private :
     std::vector <Sommet* > m_sommets;
     std::vector <Arete* > m_aretes;
     std::vector <double> deg;
+    std::vector <double> cvp;
 
 public :
     Graphe (std::string fichier);
