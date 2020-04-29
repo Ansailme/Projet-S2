@@ -14,7 +14,8 @@ int main()
        /* std::cout<<std::endl<<"\t1) BFS " //à voir
                  <<std::endl<<"\t2) DFS " //à boire
                  <<std::endl<<"\t3) Recherche des composantes connexes et cycle/chaine eulerienne"*/
-          std::cout<<"\t4) Afficher Graphe \n"
+          std::cout<<"\t2) Degre sommet \n"
+                    <<"\t4) Afficher Graphe \n"
                    <<"\t5) Afficher Ponderation \n"
                    <<"\t6) svgtest\n"
                    <<"\t7) Quitter\n"
