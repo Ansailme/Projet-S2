@@ -6,7 +6,7 @@
 int main()
 {
 
-    Graphe monGraphe{"graphe_etoile1.txt"};
+    Graphe monGraphe{"graphe_cube.txt"};
     int a,choix=0;
     int i_debut,i_fin;
 
@@ -41,7 +41,7 @@ int main()
 
         case 2:
             //monGraphe.verification();
-            monGraphe.lectureFichierP("ponderation_etoile1.txt");
+            monGraphe.lectureFichierP("ponderation_cube.txt");
             monGraphe.afficherPoids();
             break;
 
@@ -70,7 +70,7 @@ int main()
 
         case 7 :
             monGraphe.sauvegarde("sauvegarde.txt");
-            std::cout<<"\tsauvegarde operationnelle chef !"<<std::endl;
+            std::cout<<"\tsauvegarde operationelle chef !"<<std::endl;
             break;
         }
     }

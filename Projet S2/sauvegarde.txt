@@ -1,19 +1,40 @@
 	 INDICES
  Centralité de degré :
-sommet 0 : 1
-sommet 1 : 1
-sommet 2 : 4
-sommet 3 : 1
-sommet 4 : 1
+sommet 0 : 3
+sommet 1 : 3
+sommet 2 : 3
+sommet 3 : 4
+sommet 4 : 4
+sommet 5 : 4
+sommet 6 : 6
+sommet 7 : 3
+sommet 8 : 3
+sommet 9 : 4
+sommet 10 : 3
+sommet 11 : 4
  Centralité de degré normalisé :
-sommet 0 : 0.25
-sommet 1 : 0.25
-sommet 2 : 1
-sommet 3 : 0.25
-sommet 4 : 0.25
+sommet 0 : 0.272727
+sommet 1 : 0.272727
+sommet 2 : 0.272727
+sommet 3 : 0.363636
+sommet 4 : 0.363636
+sommet 5 : 0.363636
+sommet 6 : 0.545455
+sommet 7 : 0.272727
+sommet 8 : 0.272727
+sommet 9 : 0.363636
+sommet 10 : 0.272727
+sommet 11 : 0.363636
 Centralite de vecteur propre:
-sommet0 : 0.223607
-sommet1 : 0.223607
-sommet2 : 0.894427
-sommet3 : 0.223607
-sommet4 : 0.223607
+sommet0 : 0.183795
+sommet1 : 0.183795
+sommet2 : 0.183795
+sommet3 : 0.327851
+sommet4 : 0.332819
+sommet5 : 0.327851
+sommet6 : 0.481842
+sommet7 : 0.178828
+sommet8 : 0.178828
+sommet9 : 0.317917
+sommet10 : 0.27321
+sommet11 : 0.317917

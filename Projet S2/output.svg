@@ -41,20 +41,52 @@
 <text x="905" y="15" fill="lightgrey" >900</text>
 <line x1="1000" y1="0" x2="1000" y2="800" stroke="lightgrey" />
 <text x="1005" y="15" fill="lightgrey" >1000</text>
-<circle cx="200" cy="100" r="5" fill="rgb(50,205,50)" />
-<text x="195" y="95" fill="rgb(0,0,0)" >A</text>
-<circle cx="100" cy="200" r="5" fill="rgb(50,205,50)" />
-<text x="95" y="195" fill="rgb(0,0,0)" >B</text>
-<circle cx="200" cy="200" r="5" fill="rgb(200,55,156)" />
-<text x="195" y="195" fill="rgb(0,0,0)" >C</text>
-<circle cx="300" cy="200" r="5" fill="rgb(50,205,50)" />
-<text x="295" y="195" fill="rgb(0,0,0)" >D</text>
-<circle cx="200" cy="300" r="5" fill="rgb(50,205,50)" />
-<text x="195" y="295" fill="rgb(0,0,0)" >E</text>
-<line x1="200" y1="100" x2="200" y2="200" stroke="rgb(0,0,0)" />
-<line x1="100" y1="200" x2="200" y2="200" stroke="rgb(0,0,0)" />
-<line x1="200" y1="200" x2="300" y2="200" stroke="rgb(0,0,0)" />
-<line x1="200" y1="200" x2="200" y2="300" stroke="rgb(0,0,0)" />
+<circle cx="300" cy="100" r="10" fill="rgb(150,105,206)" />
+<text x="290" y="90" fill="rgb(0,0,0)" >A</text>
+<circle cx="500" cy="100" r="10" fill="rgb(150,105,206)" />
+<text x="490" y="90" fill="rgb(0,0,0)" >B</text>
+<circle cx="700" cy="100" r="10" fill="rgb(150,105,206)" />
+<text x="690" y="90" fill="rgb(0,0,0)" >C</text>
+<circle cx="200" cy="200" r="10" fill="rgb(200,55,156)" />
+<text x="190" y="190" fill="rgb(0,0,0)" >D</text>
+<circle cx="400" cy="200" r="10" fill="rgb(200,55,156)" />
+<text x="390" y="190" fill="rgb(0,0,0)" >E</text>
+<circle cx="600" cy="200" r="10" fill="rgb(200,55,156)" />
+<text x="590" y="190" fill="rgb(0,0,0)" >F</text>
+<circle cx="400" cy="300" r="10" fill="rgb(44,211,56)" />
+<text x="390" y="290" fill="rgb(0,0,0)" >G</text>
+<circle cx="300" cy="300" r="10" fill="rgb(150,105,206)" />
+<text x="290" y="290" fill="rgb(0,0,0)" >H</text>
+<circle cx="700" cy="300" r="10" fill="rgb(150,105,206)" />
+<text x="690" y="290" fill="rgb(0,0,0)" >I</text>
+<circle cx="200" cy="400" r="10" fill="rgb(200,55,156)" />
+<text x="190" y="390" fill="rgb(0,0,0)" >J</text>
+<circle cx="400" cy="400" r="10" fill="rgb(150,105,206)" />
+<text x="390" y="390" fill="rgb(0,0,0)" >K</text>
+<circle cx="600" cy="400" r="10" fill="rgb(200,55,156)" />
+<text x="590" y="390" fill="rgb(0,0,0)" >L</text>
+<line x1="300" y1="100" x2="500" y2="100" stroke="rgb(0,0,0)" />
+<line x1="300" y1="100" x2="200" y2="200" stroke="rgb(0,0,0)" />
+<line x1="300" y1="100" x2="300" y2="300" stroke="rgb(0,0,0)" />
+<line x1="500" y1="100" x2="700" y2="100" stroke="rgb(0,0,0)" />
+<line x1="500" y1="100" x2="400" y2="200" stroke="rgb(0,0,0)" />
+<line x1="700" y1="100" x2="600" y2="200" stroke="rgb(0,0,0)" />
+<line x1="700" y1="100" x2="700" y2="300" stroke="rgb(0,0,0)" />
+<line x1="200" y1="200" x2="200" y2="400" stroke="rgb(0,0,0)" />
+<line x1="200" y1="200" x2="400" y2="200" stroke="rgb(0,0,0)" />
+<line x1="200" y1="200" x2="400" y2="300" stroke="rgb(0,0,0)" />
+<line x1="400" y1="200" x2="400" y2="300" stroke="rgb(0,0,0)" />
+<line x1="400" y1="200" x2="600" y2="200" stroke="rgb(0,0,0)" />
+<line x1="600" y1="200" x2="400" y2="300" stroke="rgb(0,0,0)" />
+<line x1="600" y1="200" x2="600" y2="400" stroke="rgb(0,0,0)" />
+<line x1="400" y1="300" x2="200" y2="400" stroke="rgb(0,0,0)" />
+<line x1="400" y1="300" x2="400" y2="400" stroke="rgb(0,0,0)" />
+<line x1="400" y1="300" x2="600" y2="400" stroke="rgb(0,0,0)" />
+<line x1="200" y1="400" x2="400" y2="400" stroke="rgb(0,0,0)" />
+<line x1="300" y1="300" x2="200" y2="400" stroke="rgb(0,0,0)" />
+<line x1="400" y1="400" x2="600" y2="400" stroke="rgb(0,0,0)" />
+<line x1="700" y1="300" x2="600" y2="400" stroke="rgb(0,0,0)" />
+<line x1="300" y1="300" x2="700" y2="300" stroke="rgb(0,0,0)" />
 
 
 </svg>
