@@ -6,7 +6,6 @@
 int main()
 {
     Graphe monGraphe{"graphe_etoile3.txt"};
-
     int a,choix=0;
 
     do
@@ -21,7 +20,8 @@ int main()
                     <<"\t4) Afficher Graphe \n"
                     <<"\t5) Afficher Ponderation \n"
                     <<"\t6) svgtest\n"
-                    <<"\t7) Quitter\n"
+                    <<"\t7) sauvegarde\n"
+                    <<"\t8) Quitter\n"
                     << std::endl;
 
                    std::cout<<"Faites votre choix : ";
@@ -40,7 +40,7 @@ int main()
             monGraphe.c_degre();
             break;
         case 3 :
-                //monGraphe.c_propre();
+            //monGraphe.c_propre();
             break;
         case 4 :
                 monGraphe.afficher();
@@ -55,10 +55,14 @@ int main()
                 //svgTest();
                 monGraphe.dessinerGraphe ();
                 break;
+        case 7 :
+            monGraphe.sauvegarde("sauvegarde.txt");
+            std::cout<<"\tsauvegarde operationnelle chef !"<<std::endl;
+            break;
 
         }
 
-    }while (choix!=7);
+    }while (choix!=8);
 
 
     return 0;

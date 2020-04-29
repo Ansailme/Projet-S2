@@ -2,7 +2,6 @@
 #include "svgfile.h"
 #include "couleur.h"
 #include "util.h"
-#include "math.h"
 
 #include <queue>
 #include <map>
@@ -156,42 +155,6 @@ void Graphe::c_degre()
     }
 }
 
-/*
-void Graphe::c_propre()
-{
-    double lambda=0,lambda_prec=0;
-    std::vector < int > c;
-    std::vector < double > cvp;
-    cvp=deg;
-
-    for(int i=0; i<m_sommets.size(); ++i)
-    {
-        std::cout << "hez";
-        for (int j=0; j<m_sommets[i].m_adjacents[i].size(); ++j)
-        {
-            std::cout << "hez";
-            c[i]=c[i]+cvp[j];
-        }
-        lambda = sqrt(c[i]*c[i]);
-        cvp[i]=(c[i])/lambda;
-
-        //c=c+deg[i];
-       // if(lambda-lambda_prec > 1)
-        // c =c*c;
-
-            //lambda = sqrt(c*c);
-            //deg[i] = c/lambda;
-           //lambda_prec = lambda;
-           std::cout<<lambda<<std::endl;
-
-        else
-        {
-            std::cout << "fin";
-        }
-    }
-}
-*/
-
 void Graphe::verification() /// sp pour afficher coord des extremites d'aretes
 {
     for(int j=0; j<m_aretes.size(); ++j)
@@ -204,6 +167,23 @@ void Graphe::verification() /// sp pour afficher coord des extremites d'aretes
     }
 }
 
+void Graphe::sauvegarde(std::string fichierS)
+{
+    std::ofstream ofs(fichierS);
+    if (!ofs)
+        throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichierS );
+    else
+    {
+        ofs<<"\t INDICES"<<std::endl;
+        ofs<<" Centralité de degré :\n";
+            for (unsigned int i=0; i<m_sommets.size(); ++i)
+                ofs<< "sommet " << i << " : " << deg[i]<<std::endl;
+        ofs<<" Centralité de degré normalisé :\n";
+            for (unsigned int i=0; i<m_sommets.size(); ++i)
+                ofs<< "sommet " << i << " : " << (deg[i]*(1.0/(m_ordre-1)))<<std::endl;
+    }
+
+}
 
 
 void Graphe::dessinerGraphe() const ///sp permet de dessiner le graphe dans svgfile
@@ -442,7 +422,6 @@ Sommet* Graphe::recupSommet (int indice)
 {
     return m_sommets[indice];
 }
-
 
 Graphe::~Graphe()
 {

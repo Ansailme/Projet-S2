@@ -24,6 +24,8 @@ public :
     void verification();
     void c_degre();
     void c_propre();
+    void sauvegarde(std::string fichierS);
+
     void BFS(int premier);
     Sommet* recupSommet(int indice);
     void DFS(int premier);
