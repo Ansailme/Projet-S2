@@ -5,7 +5,7 @@
 
 int main()
 {
-    Graphe monGraphe{"graphe_etoile3.txt"};
+    Graphe monGraphe{"graphe_etoile1.txt"};
 
     int a,choix=0;
 
@@ -14,8 +14,9 @@ int main()
         std::cout<<std::endl;
        /* std::cout<<std::endl<<"\t1) BFS " //à voir
                  <<std::endl<<"\t2) DFS " //à boire
-                 <<std::endl<<"\t3) Recherche des composantes connexes et cycle/chaine eulerienne"*/
+                 <<std::endl<<"\t3) Recherche des composantes connexes "*/
           std::cout<<"\t2) Degre sommet \n"
+                    <<"\t3) Dcentralite de vecteur propre \n"
                     <<"\t4) Afficher Graphe \n"
                    <<"\t5) Afficher Ponderation \n"
                    <<"\t6) svgtest\n"
@@ -35,12 +36,9 @@ int main()
             break;
         case 2:
             monGraphe.c_degre();
-            /*std::cout<<std::endl<<"Premier ? ";
-            std::cin>>a;
-            monGraphe.DFS(a);*/
             break;
         case 3 :
-                monGraphe.recherchecompoConnexes();
+                monGraphe.c_propre();
             break;
         case 4 :
                 monGraphe.afficher();
@@ -48,7 +46,7 @@ int main()
 
         case 5 :
                 monGraphe.verification();
-                monGraphe.lectureFichierP("ponderation_etoile3.txt");
+                monGraphe.lectureFichierP("ponderation_etoile1.txt");
                 monGraphe.afficherPoids();
                 break;
         case 6 :
