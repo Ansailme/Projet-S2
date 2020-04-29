@@ -5,7 +5,7 @@
 
 int main()
 {
-    Graphe monGraphe{"graphe_etoile2.txt"};
+    Graphe monGraphe{"graphe_etoile3.txt"};
     int a,choix=0;
 
     do
