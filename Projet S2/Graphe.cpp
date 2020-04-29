@@ -2,6 +2,7 @@
 #include "svgfile.h"
 #include "couleur.h"
 #include "util.h"
+#include "math.h"
 
 #include <queue>
 #include <map>
@@ -64,16 +65,6 @@ Graphe::Graphe(std::string fichier)
 
 void Graphe::lectureFichierP(std::string fichier2)
 {
-    std::vector <double> cvp;
-
-    cvp=deg;
-
-    for(int i=0;i<m_sommets.size();++i)
-    {
-
-        std::cout << cvp[i] << std::endl;
-    }
-
 
     std::ifstream ifs2{fichier2}; //ouverture en mode lecture
     if (!ifs2)
@@ -136,8 +127,6 @@ void Graphe::afficher()const
 void Graphe::afficherPoids()const
 {
 
-
-
     std::cout << "\tfichier de ponderation\n " << std::endl;
     std::cout << "nombre d'aretes : " << m_aretes.size() << std::endl;
     for(auto s : m_aretes)
@@ -157,6 +146,8 @@ void Graphe::afficherPoids()const
         std::cout<<s->poids;
         std::cout << std::endl;
     }
+
+
 }
 
 
@@ -173,23 +164,35 @@ void Graphe::c_degre()
 void Graphe::c_propre()
 {
     double lambda=0,lambda_prec=0;
-    int Cvp=1
+    std::vector < int > c;
+    std::vector < double > cvp;
+    cvp=deg;
 
     for(int i=0; i<m_sommets.size(); ++i)
     {
-        if(lambda-lambda_prec > 1)
+        std::cout << "hez";
+        for (int j=0; j<m_sommets[i].m_adjacents[i].size(); ++j)
         {
-            lambda = sqrt(deg[i]*deg[i]);
-            Cvp[i] = deg[i]/lambda;
-            lambda_prec = lambda;
+            std::cout << "hez";
+            c[i]=c[i]+cvp[j];
         }
+        lambda = sqrt(c[i]*c[i]);
+        cvp[i]=(c[i])/lambda;
+
+        //c=c+deg[i];
+       // if(lambda-lambda_prec > 1)
+        // c =c*c;
+
+            //lambda = sqrt(c*c);
+            //deg[i] = c/lambda;
+           //lambda_prec = lambda;
+           std::cout<<lambda<<std::endl;
+
         else
         {
             std::cout << "fin";
         }
-
     }
-
 }
 */
 
