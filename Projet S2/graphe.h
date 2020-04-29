@@ -12,7 +12,7 @@ private :
     int m_taille;
     std::vector <Sommet* > m_sommets;
     std::vector <Arete* > m_aretes;
-    std::vector <int> deg;
+    std::vector <double> deg;
 
 public :
     Graphe (std::string fichier);

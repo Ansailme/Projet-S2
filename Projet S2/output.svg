@@ -1,32 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1000" height="800">
 
-<circle cx="200" cy="100" r="5" fill="rgb(255,200,0)" />
+<line x1="0" y1="0" x2="1000" y2="0" stroke="lightgrey" />
+<text x="5" y="-5" fill="lightgrey" >0</text>
+<line x1="0" y1="100" x2="1000" y2="100" stroke="lightgrey" />
+<text x="5" y="95" fill="lightgrey" >100</text>
+<line x1="0" y1="200" x2="1000" y2="200" stroke="lightgrey" />
+<text x="5" y="195" fill="lightgrey" >200</text>
+<line x1="0" y1="300" x2="1000" y2="300" stroke="lightgrey" />
+<text x="5" y="295" fill="lightgrey" >300</text>
+<line x1="0" y1="400" x2="1000" y2="400" stroke="lightgrey" />
+<text x="5" y="395" fill="lightgrey" >400</text>
+<line x1="0" y1="500" x2="1000" y2="500" stroke="lightgrey" />
+<text x="5" y="495" fill="lightgrey" >500</text>
+<line x1="0" y1="600" x2="1000" y2="600" stroke="lightgrey" />
+<text x="5" y="595" fill="lightgrey" >600</text>
+<line x1="0" y1="700" x2="1000" y2="700" stroke="lightgrey" />
+<text x="5" y="695" fill="lightgrey" >700</text>
+<line x1="0" y1="800" x2="1000" y2="800" stroke="lightgrey" />
+<text x="5" y="795" fill="lightgrey" >800</text>
+<line x1="0" y1="0" x2="0" y2="800" stroke="lightgrey" />
+<text x="5" y="15" fill="lightgrey" >0</text>
+<line x1="100" y1="0" x2="100" y2="800" stroke="lightgrey" />
+<text x="105" y="15" fill="lightgrey" >100</text>
+<line x1="200" y1="0" x2="200" y2="800" stroke="lightgrey" />
+<text x="205" y="15" fill="lightgrey" >200</text>
+<line x1="300" y1="0" x2="300" y2="800" stroke="lightgrey" />
+<text x="305" y="15" fill="lightgrey" >300</text>
+<line x1="400" y1="0" x2="400" y2="800" stroke="lightgrey" />
+<text x="405" y="15" fill="lightgrey" >400</text>
+<line x1="500" y1="0" x2="500" y2="800" stroke="lightgrey" />
+<text x="505" y="15" fill="lightgrey" >500</text>
+<line x1="600" y1="0" x2="600" y2="800" stroke="lightgrey" />
+<text x="605" y="15" fill="lightgrey" >600</text>
+<line x1="700" y1="0" x2="700" y2="800" stroke="lightgrey" />
+<text x="705" y="15" fill="lightgrey" >700</text>
+<line x1="800" y1="0" x2="800" y2="800" stroke="lightgrey" />
+<text x="805" y="15" fill="lightgrey" >800</text>
+<line x1="900" y1="0" x2="900" y2="800" stroke="lightgrey" />
+<text x="905" y="15" fill="lightgrey" >900</text>
+<line x1="1000" y1="0" x2="1000" y2="800" stroke="lightgrey" />
+<text x="1005" y="15" fill="lightgrey" >1000</text>
+<circle cx="200" cy="100" r="5" fill="rgb(50,205,0)" />
 <text x="195" y="95" fill="rgb(0,0,0)" >A</text>
-<circle cx="600" cy="100" r="5" fill="rgb(255,200,0)" />
-<text x="595" y="95" fill="rgb(0,0,0)" >B</text>
-<circle cx="100" cy="200" r="5" fill="rgb(255,200,0)" />
-<text x="95" y="195" fill="rgb(0,0,0)" >C</text>
-<circle cx="300" cy="200" r="5" fill="rgb(255,200,0)" />
+<circle cx="100" cy="200" r="5" fill="rgb(50,205,0)" />
+<text x="95" y="195" fill="rgb(0,0,0)" >B</text>
+<circle cx="200" cy="200" r="5" fill="rgb(200,55,0)" />
+<text x="195" y="195" fill="rgb(0,0,0)" >C</text>
+<circle cx="300" cy="200" r="5" fill="rgb(50,205,0)" />
 <text x="295" y="195" fill="rgb(0,0,0)" >D</text>
-<circle cx="400" cy="200" r="5" fill="rgb(255,200,0)" />
-<text x="395" y="195" fill="rgb(0,0,0)" >E</text>
-<circle cx="500" cy="200" r="5" fill="rgb(255,200,0)" />
-<text x="495" y="195" fill="rgb(0,0,0)" >F</text>
-<circle cx="700" cy="200" r="5" fill="rgb(255,200,0)" />
-<text x="695" y="195" fill="rgb(0,0,0)" >G</text>
-<circle cx="200" cy="300" r="5" fill="rgb(255,200,0)" />
-<text x="195" y="295" fill="rgb(0,0,0)" >H</text>
-<circle cx="600" cy="300" r="5" fill="rgb(255,200,0)" />
-<text x="595" y="295" fill="rgb(0,0,0)" >I</text>
-<line x1="200" y1="100" x2="300" y2="200" stroke="rgb(0,0,0)" />
-<line x1="600" y1="100" x2="500" y2="200" stroke="rgb(0,0,0)" />
-<line x1="100" y1="200" x2="300" y2="200" stroke="rgb(0,0,0)" />
-<line x1="300" y1="200" x2="400" y2="200" stroke="rgb(0,0,0)" />
-<line x1="400" y1="200" x2="500" y2="200" stroke="rgb(0,0,0)" />
-<line x1="500" y1="200" x2="700" y2="200" stroke="rgb(0,0,0)" />
-<line x1="200" y1="300" x2="300" y2="200" stroke="rgb(0,0,0)" />
-<line x1="600" y1="300" x2="500" y2="200" stroke="rgb(0,0,0)" />
+<circle cx="200" cy="300" r="5" fill="rgb(50,205,0)" />
+<text x="195" y="295" fill="rgb(0,0,0)" >E</text>
+<line x1="200" y1="100" x2="200" y2="200" stroke="rgb(0,0,0)" />
+<line x1="100" y1="200" x2="200" y2="200" stroke="rgb(0,0,0)" />
+<line x1="200" y1="200" x2="300" y2="200" stroke="rgb(0,0,0)" />
+<line x1="200" y1="200" x2="200" y2="300" stroke="rgb(0,0,0)" />
 
 
 </svg>

@@ -20,6 +20,7 @@ int main()
                    <<"\t6) svgtest\n"
                    <<"\t7) Quitter\n"
                    << std::endl;
+
                    std::cout<<"Faites votre choix : ";
                    std::cin >> choix;
 
@@ -45,7 +46,7 @@ int main()
                 break;
 
         case 5 :
-                monGraphe.verification();
+                //monGraphe.verification();
                 monGraphe.lectureFichierP("ponderation_etoile1.txt");
                 monGraphe.afficherPoids();
                 break;

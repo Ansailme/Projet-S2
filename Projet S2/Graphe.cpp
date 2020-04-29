@@ -20,7 +20,6 @@ Graphe::Graphe(std::string fichier)
     if ( ifs.fail() )
         throw std::runtime_error("Probleme lecture de l'orientation");
 
-    int m_ordre;
     ifs >> m_ordre;
     if ( ifs.fail() )
         throw std::runtime_error("Probleme lecture ordre du graphe");
@@ -147,19 +146,15 @@ void Graphe::afficherPoids()const
         std::cout<<s->poids;
         std::cout << std::endl;
     }
-
 }
 
 
 void Graphe::c_degre()
 {
-    for (int i=0; i<m_sommets.size(); ++i)
+    for (unsigned int i=0; i<m_sommets.size(); ++i)
     {
-        // int choix;
-        //std::cout << "rentrer le sommet : " ;
-        // std::cin >> choix ;
-
-        std::cout << "le sommet " << i << " a un degre de : " << deg[i] << std::endl;
+        std::cout << "sommet " << i << " indice de centralite : " << deg[i] << std::endl;
+        std::cout << "sommet " << i << " indice de centralite normalise: " << (deg[i]*(1.0/(m_ordre-1))) << std::endl;
     }
 }
 
@@ -204,6 +199,7 @@ void Graphe::verification()
 void Graphe::dessinerGraphe() const
 {
     Svgfile svgout;
+    svgout.addGrid();
 
     for(auto s : m_sommets)
     {
