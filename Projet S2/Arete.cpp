@@ -27,7 +27,6 @@ int Arete::getExtrem2 ()const
 void Arete::dessinerA(Svgfile& svgout)const
 {
     Couleur noir{0,0,0};
-
     svgout.addLine(m_sommet[0]->getX()*100,m_sommet[0]->getY()*100,m_sommet[1]->getX()*100,m_sommet[1]->getY()*100,noir);
 }
 
