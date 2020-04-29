@@ -28,7 +28,7 @@ Graphe::Graphe(std::string fichier)
     int num,x,y;
     std::string lettre;
     deg.resize(m_ordre);
-    for(int i=0;i<m_ordre;++i)
+    for(int i=0; i<m_ordre; ++i)
     {
         ifs>>num>>lettre>>x>>y;
         m_sommets.push_back(new Sommet{i,lettre,x,y});
@@ -140,19 +140,20 @@ void Graphe::afficherPoids()const
 
 void Graphe::c_degre()
 {
-    int choix;
+    for (int i=0; i<m_sommets.size(); ++i)
+    {
+        // int choix;
+        //std::cout << "rentrer le sommet : " ;
+        // std::cin >> choix ;
 
-    std::cout << "rentrer le sommet : " ;
-    std::cin >> choix ;
-
-    std::cout << "le sommet " << choix << " a un degre de : " << deg[choix] << std::endl;
-
+        std::cout << "le sommet " << i << " a un degre de : " << deg[i] << std::endl;
+    }
 }
 
 
 void Graphe::verification()
 {
-    for(int j=0;j<m_aretes.size();++j)
+    for(int j=0; j<m_aretes.size(); ++j)
     {
         std::cout << std::endl;
         std::cout << m_aretes[j]->m_sommet[0]->getX() << " " << m_aretes[j]->m_sommet[0]->getY();
