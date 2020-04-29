@@ -9,6 +9,7 @@
 #include <map>
 #include "svgfile.h"
 
+class Arete;
 
 class Sommet
 {
@@ -38,6 +39,7 @@ public :
     void setMarquage(int nv);
     int getDist (int i);
     int getMarquage()const;
+
 };
 
 #endif // SOMMET_H_INCLUDED

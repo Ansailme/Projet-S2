@@ -7,7 +7,7 @@ int main()
 {
 
     Graphe monGraphe{"graphe_cube.txt"};
-    int a,choix=0;
+    int a=0,choix=0;
     int i_debut,i_fin;
 
     do

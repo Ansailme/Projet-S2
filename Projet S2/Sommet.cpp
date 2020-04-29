@@ -107,7 +107,7 @@ void Sommet::setMarquage(int nv)
 int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet à un autre sommet de numéro i
 {
     int d=99;
-    for (int i=0; i<m_adjacents.size(); ++i)
+    for (unsigned int i=0; i<m_adjacents.size(); ++i)
         if (getNum()==i)
             d=i;
     return d; //s'il ne sont pas adjacent retourne 99
