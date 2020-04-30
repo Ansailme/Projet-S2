@@ -72,6 +72,9 @@ int main()
             std::cin>>i_debut;
             std::cout<<std::endl<<"Choisir le sommet d'arrivee : ";
             std::cin>>i_fin;
+            std::cout<<"okay1\n";
+            monGraphe.lectureFichierAS();
+            std::cout<<"okay2";
             monGraphe.c_prox(i_debut,i_fin);
             monGraphe.affichage(i_fin);
             break;

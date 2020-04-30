@@ -6,6 +6,7 @@ Sommet::Sommet (int num, std::string lettre, int x, int y)
     :m_num{num},m_couleur {0}, m_lettre{lettre},m_x{x},m_y{y}
 {}
 
+
 void Sommet::remplir(Sommet* adjacent)
 {
      m_adjacents.push_back(adjacent);
@@ -153,4 +154,9 @@ size_t Sommet::nb_voisin() const
 void Sommet::marque()
 {
     m_marque=true;
+}
+
+void Sommet::ajouter_voisin(std::pair <Sommet*,int> cote)
+{
+    m_voisin.push_back(cote);
 }

@@ -12,6 +12,7 @@ private :
     int m_taille;
 
     std::vector <Sommet* > m_sommets;
+    std::vector <Sommet* > m_sommetD;
     std::vector <Arete* > m_aretes;
     std::vector <double> deg;
     std::vector <double> cvp;
@@ -27,7 +28,6 @@ public :
     void verification();
     void c_degre();
     void c_propre();
-    void lienAS();
     void sauvegarde();
 
     void BFS(int premier);
@@ -41,6 +41,8 @@ public :
 
     void c_prox(int premier, int arrive);
     void affichage(int arrive) const;
+    void lienAS();
+    void lectureFichierAS();
 
 };
 

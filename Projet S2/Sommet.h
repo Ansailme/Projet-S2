@@ -55,6 +55,7 @@ public :
     bool get_marque_voisin(int i) const;
     size_t nb_voisin() const;
     void marque();
+    void ajouter_voisin(std::pair <Sommet*,int> cote);
 
 };
 
