@@ -6,14 +6,13 @@
 int main()
 {
     ///Affichage Menu Pricipal avec chargement du fichier graphe souhaité par l'user
-
     std::cout<<"\t\t MENU PRINCIPAL\n"
-             <<"Quel graphe souhaitez vous lire? (taper g_...)\n";
-    std::string nomF;
-    std::cin>>nomF;
-    std::cout<<std::endl;
+             <<"Quel graphe souhaitez vous lire? \n";
 
-    Graphe monGraphe{nomF +".txt"};
+        std::string nomF;
+        std::cin>>nomF;
+        std::cout<<std::endl;
+    Graphe monGraphe{"g_" + nomF +".txt"};
     int a,choix=0;
     int i_debut,i_fin;
 
