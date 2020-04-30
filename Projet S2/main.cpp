@@ -8,12 +8,12 @@ int main()
     ///Affichage Menu Pricipal avec chargement du fichier graphe souhaité par l'user
 
     std::cout<<"\t\t MENU PRINCIPAL\n"
-             <<"Quel graphe souhaitez vous lire? (taper g_ .txt)\n";
+             <<"Quel graphe souhaitez vous lire? (taper g_...)\n";
     std::string nomF;
     std::cin>>nomF;
     std::cout<<std::endl;
 
-    Graphe monGraphe{nomF};
+    Graphe monGraphe{nomF +".txt"};
     int a,choix=0;
     int i_debut,i_fin;
 
@@ -50,6 +50,7 @@ int main()
             //monGraphe.verification();
             monGraphe.lectureFichierP(); ///lecture fichier pondération
             monGraphe.afficherPoids(); ///affichage fichier pondération
+            monGraphe.lienAS(); ///ecriture extremités - poids
             break;
 
         case 3 :
@@ -76,7 +77,7 @@ int main()
             break;
 
         case 7 :
-            monGraphe.sauvegarde("sauvegarde.txt"); ///sauvegarde des indices dans fichier txt
+            monGraphe.sauvegarde(); ///sauvegarde des indices dans fichier txt
             std::cout<<"\tsauvegarde operationelle chef !"<<std::endl;
             break;
         }

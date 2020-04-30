@@ -64,10 +64,10 @@ Graphe::Graphe(std::string fichier)
 
 void Graphe::lectureFichierP()
 {
-    std::cout<<"Quel fichier ponderation souhaitez-vous lire?(taper p_ .txt)\n";
+    std::cout<<"Quel fichier ponderation souhaitez-vous lire?(taper p_...)\n";
             std::string fichier2;
             std::cin>>fichier2;
-    std::ifstream ifs2{fichier2}; //ouverture en mode lecture
+    std::ifstream ifs2{fichier2 + ".txt"}; //ouverture en mode lecture
     if (!ifs2)
         throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier2 );
 
@@ -216,11 +216,28 @@ void Graphe::verification() /// sp pour afficher coord des extremites d'aretes
     }
 }
 
-void Graphe::sauvegarde(std::string fichierS)
+void Graphe::lienAS()
 {
-    std::ofstream ofs(fichierS);
+    std::ofstream ofs("lienAS.txt");
     if (!ofs)
-        throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichierS );
+        throw std::runtime_error( "Impossible d'ouvrir en  écriture lienAS.txt "  );
+    else
+    {
+        for(auto s : m_aretes)
+        {
+        ofs<<s->getExtrem1()->getNum()<<" ";
+        ofs<<s->getExtrem2()->getNum()<<" ";
+        ofs<<s->getPoids();
+        ofs<< std::endl;
+        }
+    }
+}
+
+void Graphe::sauvegarde()
+{
+    std::ofstream ofs("sauvegarde.txt");
+    if (!ofs)
+        throw std::runtime_error( "Impossible d'ouvrir en sauvegarde.txt "  );
     else
     {
         ofs<<"\t INDICES"<<std::endl;
