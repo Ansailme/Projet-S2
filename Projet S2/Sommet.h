@@ -20,6 +20,13 @@ private :
     int m_marquage;
     std::vector<Sommet*> m_adjacents;
 
+    /*-------------------------*/
+
+    std::vector <std::pair <Sommet*,int>> m_voisin;
+    Sommet* m_precedent;
+    int m_poids_precedent;
+    bool m_marque;
+
 public :
     Sommet (int num, std::string lettre, int x, int y);
     std::string getLettre() const;
@@ -38,6 +45,16 @@ public :
     void setMarquage(int nv);
     int getDist (int i);
     int getMarquage()const;
+
+    /*----------------------------*/
+
+    void afficher_result() const;
+    int afficher_poids() const;
+    std::pair <Sommet*,int> get_voisin(int i, Sommet* p);
+    bool get_marque() const;
+    bool get_marque_voisin(int i) const;
+    size_t nb_voisin() const;
+    void marque();
 
 };
 

@@ -179,10 +179,11 @@ void Graphe::c_propre()
             c[i]=0;
             for(unsigned int j=0; j<m_sommets.size(); ++j)
             {
-                if(m_sommets[i]->estAdjacentA(j) == true)
+                if(m_sommets[i]->estAdjacentA(j) == true)   //Voisin  i par rapport au sommet j
                 {
                     c[i] = c[i] + cvp[j];
                 }
+
             }
 
             lambda = lambda + (c[i]*c[i]);
@@ -481,129 +482,53 @@ Graphe::~Graphe()
         delete it;
 }
 
-void Graphe::recherchePlusCourtChemin(int i_debut, int i_fin) //TP3 Rose et Juliette
+/*-------------------------------*/
+
+
+void Graphe::c_prox(int premier, int arrive)
 {
-    ///initialisation
-    for (auto it : m_sommets)
-        it->setMarquage(0);
+    auto cmp = [] (std::pair <Sommet*,int> p1, std::pair <Sommet*,int> p2)
+    {return p2.second<p1.second;};
 
-    int tab_distance[m_sommets.size()]; //recupère les plus court chemin de s0 à chaque sommet parcouru
-    //std::vector <Sommet*> sommetsParcourus; //recupère la liste et l'odre dans lequel les sommets sont parcouru
-    int tab_predecesseurs[m_sommets.size()];
+    std::priority_queue <std::pair <Sommet*,int>, std::vector <std::pair <Sommet*,int>>, decltype(cmp) > file(cmp);
 
-    for (size_t i=0; i<m_sommets.size(); ++i)
-        tab_distance[i]=999; //~infini
+    file.push({m_sommets[premier],0});
 
-    for (size_t i=0; i<m_sommets.size(); ++i)
-        tab_predecesseurs[i]=99;
-
-
-    Sommet*s=m_sommets[i_debut]; //s=s0
-    tab_distance[i_debut]=0;
-    m_sommets[i_debut]->setMarquage(1);//1 pour dire qu'on a trouver la plus petite distance
-    //sommetsParcourus.push_back(m_sommets[i_debut]);
-
-    int distance, d_min, id_d_min;
-
-    ///recherche
-
-    double poidsTotal=0;
-
-    do
+    while(!file.empty() && !m_sommets[arrive]->get_marque())
     {
-        d_min=999;
-        //on determine le plus proche de s0 en partant de s
-        for (auto it : m_sommets)
-        {
+       Sommet* p=file.top().first;
 
-            if (s->estAdjacentA(it->getNum())) //si on peut aller de s à it
-            {
-                distance=s->getDist(it->getNum());
-                //std::cout << distance << std::endl;
-
-                if (tab_distance[it->getNum()]>tab_distance[s->getNum()]+distance)//si c'est plus court d'aller de s0 à it en passant par s
-                {
-                    //si on trouve un plus court chemin que celui en mémoire
-                    tab_distance[it->getNum()]=tab_distance[s->getNum()]+distance;
-                    tab_predecesseurs[it->getNum()]=s->getNum();
-                }
-            }
-
-        }
-        //recherche du plus près sommet de s0 qui n'a pas encore été étudié
-        for (size_t i=0; i<m_sommets.size(); ++i) //on parcours la tab de distance
-        {
-            if (m_sommets[i]->getMarquage()!=1) //pas parcouru
-            {
-                if (tab_distance[i]<d_min) //si c'est le plus près
-                {
-                    d_min=tab_distance[i];
-                    id_d_min=i; //on garde en mémoire l'identifiant du plus près
-                }
-            }
-        }
-        s=m_sommets[id_d_min]; //le plus proche sommet pas encore etudier devient le prochain sommet à parcourir
-        s->setMarquage(1);//1 pour dire qu'on a trouver la plus petite distance
-        //sommetsParcourus.push_back(s);
-
+       for(int i=0;i<(int)p->nb_voisin();i++)
+       {
+           if(!p->get_marque_voisin(i))
+           {
+               std::pair <Sommet*,int> tampon = p->get_voisin(i,p);
+               tampon.second+=file.top().second;
+               file.push(tampon);
+           }
+       }
+        file.pop();     //Retire dernier élement de priority_queue
+        p->marque();
     }
-    while (m_sommets[i_fin]->getMarquage()!=1);  //tant qu'on a pas trouver le plus court chemin jusqu'au sommet final
-
-
-    ///affichage
-
-    //on affiche la liste des sommets parcouru pour aller de s0 au sommet d'arrivé
-
-    /*std::cout<<sommetsParcourus[0]->getNum();
-    for (size_t i=1; i<sommetsParcourus.size();++i)
-    {
-        std::cout<<" -> "<<sommetsParcourus[i]->getNum();
-    }*/
-    std::cout<<std::endl;
-
-    std::vector<Sommet*> sommetsParcourus; //liste de sommets en chemin
-    sommetsParcourus.push_back(m_sommets[i_fin]);
-    int pred;
-    int temp=tab_predecesseurs[i_fin];
-    if (temp!=99)
-    {
-        std::cout<<std::endl<<i_fin;
-        if (i_debut!=temp)
-        {
-            do
-            {//on remonte le tableau jusqu'à ce que le predecesseur soit s0
-                pred = temp;
-                std::cout<<" <-- "<<pred; //on aficche chaque predecesseur
-                sommetsParcourus.push_back(m_sommets[pred]); //on ajoute à la liste chaque predecesseur
-                temp=tab_predecesseurs[pred];
-
-            }
-            while (i_debut!=pred);
-
-        }
-
-        else //si pas d'intermédiaire entre s0 et le sommet de fin
-            std::cout<<" <-- "<<i_debut;
-    }
-
-    //on affiche la longeur pour chaque arc parcouru
-    std::cout<<" longeur = ";
-    size_t taille=sommetsParcourus.size();
-
-    if (taille!=1) //si s0 et le sommet final sont adjacents
-    {
-        for (size_t i=taille-1 ; i>1; --i) //sens inverse parce que pour remplir le vecteur on est partie de la fin
-        {
-            //std::cout << s->arete[i]->poids << std::endl;
-            //std::cout<<sommetsParcourus[i]->getDist(sommetsParcourus[i-1]->getNum())<<"+";
-            //std::cout<< m_aretes[i]->poids<<"+";
-            //std::cout<<sommetsParcourus[i]->poids(sommetsParcourus[i-1])<<"+";
-        }
-        std::cout<<sommetsParcourus[1]->getDist(sommetsParcourus[0]->getNum())<<"=";
-    }
-    std::cout<<tab_distance[i_fin];
-
 }
 
+void Graphe::affichage(int arrive) const
+{
+    int somme = 0;
+
+    if(!m_sommets[arrive]->get_marque())
+    {
+        std::cout << "\nle point d'arrive n'est pas atteignable par ce point de depart. \n" << std::endl;
+        return;
+    }
+
+    m_sommets[arrive]->afficher_result();
+
+    std::cout << " : longueur ";
+
+    somme=m_sommets[arrive]->afficher_poids();
+
+    std::cout <<  "= " << somme;
+}
 
 

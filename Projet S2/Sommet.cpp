@@ -61,6 +61,15 @@ void Sommet::setCouleur(int nv)
     m_couleur=nv;
 }
 
+bool Sommet::estAdjacentA(int i)
+{
+    bool adjacent=false;
+    for (auto it : m_adjacents)
+        if (it->getNum()==i)
+            adjacent=true;
+    return adjacent;
+}
+
 void Sommet::setAdjacents(int i)
 {
     for (auto it : m_adjacents)
@@ -77,15 +86,6 @@ int Sommet::getCouleur()const
 }
 
 
-bool Sommet::estAdjacentA(int i)
-{
-    bool adjacent=false;
-    for (auto it : m_adjacents)
-        if (it->getNum()==i)
-            adjacent=true;
-    return adjacent;
-}
-
 bool Sommet::estDegreImpair()
 {
     bool temp;
@@ -99,21 +99,58 @@ bool Sommet::estDegreImpair()
 }
 
 
-void Sommet::setMarquage(int nv)
+/*--------------------------------------------------------*/
+
+void Sommet::afficher_result() const
 {
-    m_marquage=nv;
+    std::cout << m_num ;
+    if(m_precedent!=nullptr)
+    {
+        std::cout << "<--";
+        m_precedent->afficher_result();
+    }
 }
 
-int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet à un autre sommet de numéro i
+int Sommet::afficher_poids() const
 {
-    int d=99;
-    for (unsigned int i=0; i<m_adjacents.size(); ++i)
-        if (getNum()==i)
-            d=i;
-    return d; //s'il ne sont pas adjacent retourne 99
+
+    if(m_precedent!=nullptr)
+    {
+        std::cout << m_poids_precedent ;
+        std::cout << "+";
+        return m_poids_precedent+m_precedent->afficher_poids();
+    }
+    return 0;
 }
 
-int Sommet::getMarquage()const
+
+std::pair <Sommet*,int> Sommet::get_voisin(int i, Sommet* p)
 {
-    return m_marquage;
+    if( m_voisin[i].first->m_poids_precedent<0 ||  m_voisin[i].first->m_poids_precedent>m_voisin[i].second)
+    {
+        m_voisin[i].first->m_precedent=p;
+        m_voisin[i].first->m_poids_precedent=m_voisin[i].second;
+    }
+
+    return m_voisin[i];
+}
+
+bool Sommet::get_marque() const
+{
+    return m_marque;
+}
+
+bool Sommet::get_marque_voisin(int i) const
+{
+    return m_voisin[i].first->m_marque;
+}
+
+size_t Sommet::nb_voisin() const
+{
+    return m_voisin.size();
+}
+
+void Sommet::marque()
+{
+    m_marque=true;
 }

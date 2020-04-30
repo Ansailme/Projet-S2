@@ -36,6 +36,11 @@ public :
     void recherchecompoConnexes();
     void recherchePlusCourtChemin(int i_debut,int i_fin);
 
+    /*-----------------*/
+
+    void c_prox(int premier, int arrive);
+    void affichage(int arrive) const;
+
 };
 
 
