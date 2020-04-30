@@ -16,7 +16,7 @@ private :
     std::vector <Arete* > m_aretes;
     std::vector <double> deg;
     std::vector <double> cvp;
-    std::vector <int> cp;
+    std::vector <double> cp;
 
 public :
     Graphe (std::string fichier);
@@ -41,9 +41,8 @@ public :
 
     double c_prox(int premier, int arrive);
     void affichage(int arrive, double poids) const;
-    void lienAS();
-    void lectureFichierAS();
 
+    void calcul_cp (int i_debut, int i_fin);
 };
 
 

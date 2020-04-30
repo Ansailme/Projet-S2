@@ -249,6 +249,7 @@ void Graphe::sauvegarde()
         ofs<< std::endl;
 
         ofs<<"Centralité de vecteur de proximité :\n";
+       // ofs << "sommet de
 
     }
 
@@ -544,9 +545,22 @@ void Graphe::affichage(int arrive, double poids) const
 
     m_sommets[arrive]->afficher_result();
 
-    std::cout << " : longueur ";
+    std::cout << " : poids total parcouru";
 
     std::cout <<  "= " << poids << std::endl;
 }
 
+
+void Graphe::calcul_cp (int i_debut, int i_fin)
+{
+    double p_poids=0;
+    double cp=0, cpn=0;
+
+    p_poids = c_prox(i_debut, i_fin);
+    cp = 1/p_poids;
+    cpn = (m_ordre-1)/p_poids;
+    std::cout << std::endl;
+    std::cout << "indice de proximite du sommet : " << i_debut << " a " << i_fin << " est " << cp << std::endl<<std::endl;
+    std::cout << "indice de proximite normalise du sommet : " << i_debut << " a " << i_fin << " est " << cpn << std::endl<<std::endl;
+}
 

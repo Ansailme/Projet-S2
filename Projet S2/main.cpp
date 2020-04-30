@@ -73,9 +73,10 @@ int main()
             std::cin>>i_debut;
             std::cout<<std::endl<<"Choisir le sommet d'arrivee : ";
             std::cin>>i_fin;
-           // monGraphe.lectureFichierAS();
             poids = monGraphe.c_prox(i_debut,i_fin);
             monGraphe.affichage(i_fin, poids);
+            monGraphe.calcul_cp(i_debut, i_fin);
+
             break;
 
         case 7 :
