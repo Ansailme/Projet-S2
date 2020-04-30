@@ -62,9 +62,11 @@ Graphe::Graphe(std::string fichier)
 
 }
 
-void Graphe::lectureFichierP(std::string fichier2)
+void Graphe::lectureFichierP()
 {
-
+    std::cout<<"Quel fichier ponderation souhaitez-vous lire?(taper p_ .txt)\n";
+            std::string fichier2;
+            std::cin>>fichier2;
     std::ifstream ifs2{fichier2}; //ouverture en mode lecture
     if (!ifs2)
         throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier2 );

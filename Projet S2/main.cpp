@@ -5,7 +5,12 @@
 
 int main()
 {
-    Graphe monGraphe{"graphe_etoile1.txt"};
+    std::cout<<"\t\t MENU PRINCIPAL\n"
+            <<"Quel graphe souhaitez vous lire? (taper g_ .txt)\n";
+    std::string nomF;
+    std::cin>>nomF;
+    std::cout<<std::endl;
+    Graphe monGraphe{nomF};
     int a,choix=0;
     int i_debut,i_fin;
 
@@ -16,9 +21,9 @@ int main()
                   <<std::endl<<"\t2) DFS " //à boire
                   <<std::endl<<"\t3) Recherche des composantes connexes "*/
 
-        std::cout<<"\t\t MENU PRINCIPAL\n"
+        std::cout<<"Que voulez vous faire ?\n"
                  <<"\t1) Afficher Graphe\n"
-                 <<"\t2) Afficher Ponderation \n"
+                 <<"\t2) Lire & Afficher Ponderation \n"
                  <<"\t3) Svgtest \n"
                  <<"\t4) Centralite de degre \n"
                  <<"\t5) Centralite de vecteur propre \n"
@@ -40,7 +45,7 @@ int main()
 
         case 2:
             //monGraphe.verification();
-            monGraphe.lectureFichierP("ponderation_etoile1.txt");
+            monGraphe.lectureFichierP();
             monGraphe.afficherPoids();
             break;
 
