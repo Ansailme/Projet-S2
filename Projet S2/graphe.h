@@ -39,8 +39,8 @@ public :
 
     /*-----------------*/
 
-    void c_prox(int premier, int arrive);
-    void affichage(int arrive) const;
+    double c_prox(int premier, int arrive);
+    void affichage(int arrive, double poids) const;
     void lienAS();
     void lectureFichierAS();
 

@@ -27,7 +27,7 @@ public :
     double getPoids()const;
     void setPoids(double new_poids);
     void dessinerA(Svgfile& svgout)const;
-
+    bool recup_poids_adj(double &poids,Sommet* prec,Sommet* suivant)const;
 
 
 };

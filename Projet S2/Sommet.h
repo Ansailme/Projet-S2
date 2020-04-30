@@ -9,6 +9,7 @@
 #include <map>
 #include "svgfile.h"
 
+class Arete;
 
 class Sommet
 {
@@ -50,12 +51,13 @@ public :
 
     void afficher_result() const;
     int afficher_poids() const;
-    std::pair <Sommet*,int> get_voisin(int i, Sommet* p);
+    std::pair <Sommet*,double> get_voisin(Sommet* p,double poids_total,std::vector<Arete*> m_arete);
     bool get_marque() const;
     bool get_marque_voisin(int i) const;
     size_t nb_voisin() const;
     void marque();
     void ajouter_voisin(std::pair <Sommet*,int> cote);
+    void init_marque();
 
 };
 

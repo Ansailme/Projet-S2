@@ -42,3 +42,18 @@ void Arete::dessinerA(Svgfile& svgout)const
 
 }
 
+bool Arete::recup_poids_adj(double &poids,Sommet* prec, Sommet* suivant)const
+{
+    if(((m_sommet[0] == prec) && (suivant == m_sommet[1])) || (((prec == m_sommet[1])) && suivant == m_sommet[0]))
+    {
+        poids = m_poids;
+        return true;
+    }
+
+    return false;
+}
+
+
+
+
+

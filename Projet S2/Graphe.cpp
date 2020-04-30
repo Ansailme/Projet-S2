@@ -218,76 +218,6 @@ void Graphe::verification() /// sp pour afficher coord des extremites d'aretes
     }
 }
 
-void Graphe::lienAS()
-{
-    std::ofstream ofs("lienAS.txt");
-    if (!ofs)
-        throw std::runtime_error( "Impossible d'ouvrir en  écriture lienAS.txt "  );
-    else
-    {
-        ofs<< m_sommets.size(); //ordre
-        ofs<<std::endl;
-
-        for(auto s : m_sommets) //
-            {
-                ofs<<s->getNum(); //id
-                ofs<<std::endl;
-            }
-
-        ofs<<m_aretes.size(); //taille
-        ofs<< std::endl;
-        for(auto s : m_aretes)
-        {
-        ofs<<s->getExtrem1()->getNum()<<" ";
-        ofs<<s->getExtrem2()->getNum()<<" ";
-        ofs<<s->getPoids();
-        ofs<< std::endl;
-        }
-    }
-}
-
-/*
-void Graphe::lectureFichierAS()
-{
-    std::ifstream ifs2{"lienAS.txt"}; //ouverture en mode lecture
-    if (!ifs2)
-        throw std::runtime_error( "Impossible d'ouvrir en lecture ");
-
-    int ordre=0, taille=0, s1=0,s2=0;
-    double poids=0;
-
-    ifs2 >> ordre;
-    for(int i=0;i<ordre;i++)
-    {
-        int id;
-        ifs2 >> id;
-        m_sommetD.push_back(new Sommet(id));
-    }
-
-    std::cout<<"lecture du fichier ok\n";
-    ifs2 >> taille;
-    std::cout<<"lecture du taille ok\n";
-
-    for(int i=0; i<taille; ++i)
-    {
-        ifs2>>s1;
-        ifs2>>s2;
-        std::cout<<"lecture sommets ok\n";
-        ifs2>>poids;
-        std::cout<<"lecture poids ok\n";
-        std::cout << s1 << " "<< s2 <<" "<< poids<<std::endl;
-        std::pair <Sommet*,double> nouveau{m_sommetD[s2],poids};
-        std::cout<<"creation pair ok\n";
-        m_sommetD[s1]->ajouter_voisin(nouveau);
-        std::cout<<"ajout voisin ok\n";
-    }
-    if ( ifs2.fail() )
-        throw std::runtime_error("Probleme lecture donnees");
-
-    ifs2.close();
-}*/
-
-
 void Graphe::sauvegarde()
 {
     std::ofstream ofs("sauvegarde.txt");
@@ -317,6 +247,9 @@ void Graphe::sauvegarde()
         for (unsigned int i=0; i<m_sommets.size(); ++i)
         ofs<< "sommet " << i << " : " << (cvp[i]*(1.0/(m_ordre-1)))<<std::endl;
         ofs<< std::endl;
+
+        ofs<<"Centralité de vecteur de proximité :\n";
+
     }
 
 }
@@ -565,50 +498,55 @@ Graphe::~Graphe()
 /*-------------------------------*/
 
 
-void Graphe::c_prox(int premier, int arrive)
+double Graphe::c_prox(int premier, int arrive)
 {
+    double p_poids=0;
+
     auto cmp = [] (std::pair <Sommet*,double> p1, std::pair <Sommet*,double> p2)
     {return p2.second<p1.second;};
 
     std::priority_queue <std::pair <Sommet*,double>, std::vector <std::pair <Sommet*,double>>, decltype(cmp) > file(cmp);
 
-    file.push({m_sommetD[premier],0});
+    file.push({m_sommets[premier],0});
 
-    while(!file.empty() && !m_sommetD[arrive]->get_marque())
+    for(auto m : m_sommets)
+    {
+        m->init_marque();
+    }
+
+
+    while(!file.empty() && !m_sommets[arrive]->get_marque())
     {
        Sommet* p=file.top().first;
 
-       for(int i=0;i<(int)p->nb_voisin();i++)
+       for(int i=0;i<m_sommets.size();i++)
        {
-           if(!p->get_marque_voisin(i))
+           if((p->estAdjacentA(i)) && (!m_sommets[i]->get_marque()))
            {
-               std::pair <Sommet*,double> tampon = p->get_voisin(i,p);
-               tampon.second+=file.top().second;
+               std::pair <Sommet*,double> tampon = m_sommets[i]->get_voisin(p, file.top().second,m_aretes);
                file.push(tampon);
            }
        }
+       p_poids = file.top().second;
         file.pop();     //Retire dernier élement de priority_queue
         p->marque();
     }
+    return p_poids;
 }
 
-void Graphe::affichage(int arrive) const
+void Graphe::affichage(int arrive, double poids) const
 {
-    int somme = 0;
-
-    if(!m_sommetD[arrive]->get_marque())
+    if(!m_sommets[arrive]->get_marque())
     {
         std::cout << "\nle point d'arrive n'est pas atteignable par ce point de depart. \n" << std::endl;
         return;
     }
 
-    m_sommetD[arrive]->afficher_result();
+    m_sommets[arrive]->afficher_result();
 
     std::cout << " : longueur ";
 
-    somme=m_sommetD[arrive]->afficher_poids();
-
-    std::cout <<  "= " << somme;
+    std::cout <<  "= " << poids << std::endl;
 }
 
 

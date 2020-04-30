@@ -15,6 +15,7 @@ int main()
     Graphe monGraphe{"g_" + nomF +".txt"};
     int a,choix=0;
     int i_debut,i_fin;
+    double poids=0;
 
     do
     {
@@ -49,7 +50,7 @@ int main()
             //monGraphe.verification();
             monGraphe.lectureFichierP(); ///lecture fichier pondération
             monGraphe.afficherPoids(); ///affichage fichier pondération
-            monGraphe.lienAS(); ///ecriture extremités - poids
+            //monGraphe.lienAS(); ///ecriture extremités - poids
             break;
 
         case 3 :
@@ -72,11 +73,9 @@ int main()
             std::cin>>i_debut;
             std::cout<<std::endl<<"Choisir le sommet d'arrivee : ";
             std::cin>>i_fin;
-            std::cout<<"okay1\n";
            // monGraphe.lectureFichierAS();
-            std::cout<<"okay2";
-            monGraphe.c_prox(i_debut,i_fin);
-            monGraphe.affichage(i_fin);
+            poids = monGraphe.c_prox(i_debut,i_fin);
+            monGraphe.affichage(i_fin, poids);
             break;
 
         case 7 :

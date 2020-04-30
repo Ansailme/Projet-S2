@@ -1,6 +1,7 @@
 #include "sommet.h"
 #include "svgfile.h"
 #include "couleur.h"
+#include "Arete.h"
 
 Sommet::Sommet (int num, std::string lettre, int x, int y)
     :m_num{num},m_couleur {0}, m_lettre{lettre},m_x{x},m_y{y}
@@ -125,15 +126,29 @@ int Sommet::afficher_poids() const
 }
 
 
-std::pair <Sommet*,int> Sommet::get_voisin(int i, Sommet* p)
+std::pair <Sommet*,double> Sommet::get_voisin(Sommet* p, double poids_total,std::vector<Arete*> m_arete)
 {
+    double poids=0;
+
+    m_precedent = p;
+
+    for(auto a : m_arete)
+    {
+        if(a->recup_poids_adj(poids,p,this))
+        {
+            break;
+        }
+    }
+
+    /*
     if( m_voisin[i].first->m_poids_precedent<0 ||  m_voisin[i].first->m_poids_precedent>m_voisin[i].second)
     {
         m_voisin[i].first->m_precedent=p;
         m_voisin[i].first->m_poids_precedent=m_voisin[i].second;
     }
-
-    return m_voisin[i];
+    */
+    return std::pair <Sommet*,double> {this, poids_total+poids};
+    //return m_voisin[i];
 }
 
 bool Sommet::get_marque() const
@@ -160,3 +175,14 @@ void Sommet::ajouter_voisin(std::pair <Sommet*,int> cote)
 {
     m_voisin.push_back(cote);
 }
+
+void Sommet::init_marque()
+{
+    m_marque = 0;
+    m_precedent = nullptr;
+
+}
+
+
+
+
