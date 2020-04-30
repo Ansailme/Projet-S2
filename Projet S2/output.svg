@@ -56,13 +56,13 @@
 <circle cx="200" cy="300" r="15" fill="rgb(104,188,124)" />
 <text x="170" y="280" fill="rgb(0,0,0)" >E</text>
 <line x1="200" y1="100" x2="200" y2="200" stroke="rgb(0,0,0)" />
-<text x="200" y="150" fill="rgb(0,0,0)" >5</text>
+<text x="200" y="150" fill="rgb(0,0,0)" >0</text>
 <line x1="100" y1="200" x2="200" y2="200" stroke="rgb(0,0,0)" />
-<text x="150" y="200" fill="rgb(0,0,0)" >10</text>
+<text x="150" y="200" fill="rgb(0,0,0)" >0</text>
 <line x1="200" y1="200" x2="300" y2="200" stroke="rgb(0,0,0)" />
-<text x="250" y="200" fill="rgb(0,0,0)" >15</text>
+<text x="250" y="200" fill="rgb(0,0,0)" >0</text>
 <line x1="200" y1="200" x2="200" y2="300" stroke="rgb(0,0,0)" />
-<text x="200" y="250" fill="rgb(0,0,0)" >20</text>
+<text x="200" y="250" fill="rgb(0,0,0)" >0</text>
 
 
 </svg>
