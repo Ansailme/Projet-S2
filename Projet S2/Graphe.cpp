@@ -90,7 +90,7 @@ void Graphe::lectureFichierP()
 }
 
 
-void Graphe::afficher()const
+void Graphe::afficherG()const
 {
     std::cout<<"\tfichier topologie\n";
 

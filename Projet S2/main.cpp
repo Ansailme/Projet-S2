@@ -5,23 +5,26 @@
 
 int main()
 {
+    ///Affichage Menu Pricipal avec chargement du fichier graphe souhaité par l'user
+
     std::cout<<"\t\t MENU PRINCIPAL\n"
-            <<"Quel graphe souhaitez vous lire? (taper g_ .txt)\n";
+             <<"Quel graphe souhaitez vous lire? (taper g_ .txt)\n";
     std::string nomF;
     std::cin>>nomF;
     std::cout<<std::endl;
+
     Graphe monGraphe{nomF};
     int a,choix=0;
     int i_debut,i_fin;
 
     do
     {
-        std::cout<<std::endl;
-        /* std::cout<<std::endl<<"\t1) BFS " //à voir
-                  <<std::endl<<"\t2) DFS " //à boire
+        /* std::cout<<std::endl<<"\t1) BFS "
+                  <<std::endl<<"\t2) DFS "
                   <<std::endl<<"\t3) Recherche des composantes connexes "*/
 
-        std::cout<<"Que voulez vous faire ?\n"
+        ///Affichage menu avec les choix
+        std::cout<<"Que souhaitez-vous faire ?\n"
                  <<"\t1) Afficher Graphe\n"
                  <<"\t2) Lire & Afficher Ponderation \n"
                  <<"\t3) Svgtest \n"
@@ -40,30 +43,30 @@ int main()
         switch(choix)
         {
         case 1 :
-            monGraphe.afficher();
+            monGraphe.afficherG(); ///lecture du graphe
             break;
 
         case 2:
             //monGraphe.verification();
-            monGraphe.lectureFichierP();
-            monGraphe.afficherPoids();
+            monGraphe.lectureFichierP(); ///lecture fichier pondération
+            monGraphe.afficherPoids(); ///affichage fichier pondération
             break;
 
         case 3 :
             //svgTest();
-            monGraphe.dessinerGraphe ();
+            monGraphe.dessinerGraphe (); ///dessiner le graphe en svgout
             break;
 
         case 4 :
-            monGraphe.c_degre();
+            monGraphe.c_degre(); ///calcul centralité de degré
             break;
 
         case 5 :
-            monGraphe.c_propre();
+            monGraphe.c_propre();  ///calcul centralité vecteur propre
             break;
 
         case 6 :
-
+            ///Dijkstra : calcul + court chemin = centralité de proximité
             std::cout<<std::endl<<"Pour la recherche du plus court chemin :"
                      <<std::endl<<"Choisir le sommet de depart : ";
             std::cin>>i_debut;
@@ -73,7 +76,7 @@ int main()
             break;
 
         case 7 :
-            monGraphe.sauvegarde("sauvegarde.txt");
+            monGraphe.sauvegarde("sauvegarde.txt"); ///sauvegarde des indices dans fichier txt
             std::cout<<"\tsauvegarde operationelle chef !"<<std::endl;
             break;
         }
