@@ -183,12 +183,8 @@ void Graphe::c_propre()
                 {
                     c[i] = c[i] + cvp[j];
                 }
-
             }
-
             lambda = lambda + (c[i]*c[i]);
-
-
         }
 
         lambda = sqrt(lambda);
@@ -201,9 +197,14 @@ void Graphe::c_propre()
     }
     for(unsigned int i=0; i<m_sommets.size(); ++i)
     {
-        std::cout << cvp[i] << std::endl;
+        //std::cout << cvp[i] << std::endl;
+
+        std::cout << "sommet " << i << " indice de centralite : " << cvp[i] << std::endl;
+        std::cout << "sommet " << i << " indice de centralite normalise: " << (cvp[i]*(1.0/(m_ordre-1))) << std::endl;
+        std::cout<<std::endl;
     }
 }
+
 
 void Graphe::verification() /// sp pour afficher coord des extremites d'aretes
 {
@@ -245,6 +246,7 @@ void Graphe::lienAS()
     }
 }
 
+/*
 void Graphe::lectureFichierAS()
 {
     std::ifstream ifs2{"lienAS.txt"}; //ouverture en mode lecture
@@ -283,7 +285,7 @@ void Graphe::lectureFichierAS()
         throw std::runtime_error("Probleme lecture donnees");
 
     ifs2.close();
-}
+}*/
 
 
 void Graphe::sauvegarde()
@@ -294,18 +296,27 @@ void Graphe::sauvegarde()
     else
     {
         ofs<<"\t INDICES"<<std::endl;
+        ofs<< std::endl;
+
         ofs<<" Centralité de degré :\n";
         for (unsigned int i=0; i<m_sommets.size(); ++i)
             ofs<< "sommet " << i << " : " << deg[i]<<std::endl;
+            ofs<< std::endl;
 
         ofs<<" Centralité de degré normalisé :\n";
         for (unsigned int i=0; i<m_sommets.size(); ++i)
             ofs<< "sommet " << i << " : " << (deg[i]*(1.0/(m_ordre-1)))<<std::endl;
+            ofs<< std::endl;
 
         ofs<< "Centralite de vecteur propre:\n";
         for (unsigned int i=0; i<m_sommets.size(); ++i)
             ofs << "sommet" << i <<" : " << cvp[i]<<std::endl;
+            ofs<< std::endl;
 
+        ofs<<" Centralité de vecteur propre normalisé :\n";
+        for (unsigned int i=0; i<m_sommets.size(); ++i)
+        ofs<< "sommet " << i << " : " << (cvp[i]*(1.0/(m_ordre-1)))<<std::endl;
+        ofs<< std::endl;
     }
 
 }

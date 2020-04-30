@@ -5,15 +5,25 @@ sommet 1 : 1
 sommet 2 : 4
 sommet 3 : 1
 sommet 4 : 1
+
  Centralité de degré normalisé :
 sommet 0 : 0.25
 sommet 1 : 0.25
 sommet 2 : 1
 sommet 3 : 0.25
 sommet 4 : 0.25
+
 Centralite de vecteur propre:
 sommet0 : 0.223607
 sommet1 : 0.223607
 sommet2 : 0.894427
 sommet3 : 0.223607
 sommet4 : 0.223607
+
+ Centralité de vecteur propre normalisé :
+sommet 0 : 0.0559017
+sommet 1 : 0.0559017
+sommet 2 : 0.223607
+sommet 3 : 0.0559017
+sommet 4 : 0.0559017
+
