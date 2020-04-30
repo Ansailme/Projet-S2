@@ -275,6 +275,9 @@ void Graphe::dessinerGraphe() const ///sp permet de dessiner le graphe dans svgf
     {
         s->dessinerA(svgout);
     }
+
+    if (m_aretes[1]->getPoids()==0)
+        std::cout <<"mais fichier ponderation non lu : poids = 0\n\n"<<std::endl;
 }
 
 double Graphe::c_prox(int premier, int arrive)
