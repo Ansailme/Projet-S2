@@ -23,7 +23,7 @@ public :
     void lectureFichierP(std::string fichier2);
     void afficher()const;
     void afficherPoids()const;
-    void dessinerGraphe() const;
+    void dessinerGraphe()const;
     void verification();
     void c_degre();
     void c_propre();
@@ -34,7 +34,7 @@ public :
     void DFS(int premier);
     void recuDFS(std::map<int, int>& i_preds,Sommet* s);
     void recherchecompoConnexes();
-    void recherchePlusCourtChemin(int i_debut, int i_fin);
+    void recherchePlusCourtChemin(int i_debut,int i_fin);
 
 };
 

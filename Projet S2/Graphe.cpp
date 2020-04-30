@@ -45,7 +45,7 @@ Graphe::Graphe(std::string fichier)
     for (int j=0; j<taille; ++j) //pour chaque arrete/arc on lit les extremités
     {
         ifs>>indiceTaille>>nb1>>nb2;
-        m_aretes.push_back(new Arete {j, nb1, nb2,m_sommets[nb1],m_sommets[nb2]});
+        m_aretes.push_back(new Arete {j,m_sommets[nb1],m_sommets[nb2]});
         deg[nb1]+= 1;
         deg[nb2]+= 1;
 
@@ -79,7 +79,7 @@ void Graphe::lectureFichierP(std::string fichier2)
     for(int k=0; k<nbr_arete; k++)
     {
         ifs2>>indiceTaille2>>poids;
-        m_aretes[indiceTaille2]->poids = poids;
+        m_aretes[indiceTaille2]->setPoids(poids);
     }
     if ( ifs2.fail() )
         throw std::runtime_error("Probleme lecture donnees du graphe");
@@ -132,7 +132,7 @@ void Graphe::afficherPoids()const
     for(auto s : m_aretes)
     {
         std::cout << "\t" << s->getIndice() << " ";
-        std::cout << "\t" << s->poids << std::endl;
+        std::cout << "\t" << s->getPoids() << std::endl;
     }
 
     std::cout << "\n\nAsssociation 2 fichiers :\n";
@@ -141,7 +141,7 @@ void Graphe::afficherPoids()const
         std::cout<<"\t"<<s->getIndice()<<" ";
         std::cout<<s->getExtrem1()<<" ";
         std::cout<<s->getExtrem2()<<" ";
-        std::cout<<s->poids;
+        std::cout<<s->getPoids();
         std::cout << std::endl;
     }
 }
@@ -207,9 +207,9 @@ void Graphe::verification() /// sp pour afficher coord des extremites d'aretes
     for(unsigned int j=0; j<m_aretes.size(); ++j)
     {
         std::cout << std::endl;
-        std::cout << m_aretes[j]->m_sommet[0]->getX() << " " << m_aretes[j]->m_sommet[0]->getY();
+        std::cout << m_aretes[j]->getExtrem1()->getX() << " " << m_aretes[j]->getExtrem1()->getY();
         std::cout << std::endl;
-        std::cout << m_aretes[j]->m_sommet[1]->getX() << " " << m_aretes[j]->m_sommet[1]->getY();
+        std::cout << m_aretes[j]->getExtrem2()->getX() << " " << m_aretes[j]->getExtrem2()->getY();
         std::cout << std::endl;
     }
 }
@@ -505,6 +505,8 @@ void Graphe::recherchePlusCourtChemin(int i_debut, int i_fin) //TP3 Rose et Juli
 
     ///recherche
 
+    double poidsTotal=0;
+
     do
     {
         d_min=999;
@@ -593,7 +595,7 @@ void Graphe::recherchePlusCourtChemin(int i_debut, int i_fin) //TP3 Rose et Juli
             //std::cout << s->arete[i]->poids << std::endl;
             //std::cout<<sommetsParcourus[i]->getDist(sommetsParcourus[i-1]->getNum())<<"+";
             //std::cout<< m_aretes[i]->poids<<"+";
-          //  std::cout<<sommetsParcourus[i]->poids(sommetsParcourus[i-1])<<"+";
+            //std::cout<<sommetsParcourus[i]->poids(sommetsParcourus[i-1])<<"+";
         }
         std::cout<<sommetsParcourus[1]->getDist(sommetsParcourus[0]->getNum())<<"=";
     }

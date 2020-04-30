@@ -14,19 +14,21 @@ class Arete
 {
 private :
     int m_indice;
-    int m_extrem1;
-    int m_extrem2;
+    Sommet* m_sommet[2];
+    double m_poids;
+
 
 
 public :
-    Arete (int indice,int m_extrem1, int m_extrem2,Sommet* extrem1, Sommet* extrem2);
+    Arete (int indice,Sommet* extrem1, Sommet* extrem2);
     int getIndice ()const;
-    int getExtrem1 ()const;
-    int getExtrem2 ()const;
+    Sommet* getExtrem1 ()const;
+    Sommet* getExtrem2 ()const;
+    double getPoids()const;
+    void setPoids(double new_poids);
     void dessinerA(Svgfile& svgout)const;
 
-    double poids;
-    Sommet* m_sommet[2];
+
 
 };
 
