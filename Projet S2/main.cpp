@@ -7,7 +7,7 @@ int main()
 {
     ///Affichage Menu Pricipal avec chargement du fichier graphe souhaité par l'user
     std::cout<<"\t\t MENU PRINCIPAL\n"
-             <<"Quel graphe souhaitez vous lire? \n";
+             <<"Quel graphe souhaitez-vous lire? \n";
 
         std::string nomF;
         std::cin>>nomF;
