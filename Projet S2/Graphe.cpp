@@ -117,8 +117,8 @@ void Graphe::afficher()const
     for(auto s : m_aretes)
     {
         std::cout<<"\t"<<s->getIndice()<<" ";
-        std::cout<<s->getExtrem1()<<" ";
-        std::cout<<s->getExtrem2()<<" ";
+        std::cout<<s->getExtrem1()->getNum()<<" ";
+        std::cout<<s->getExtrem2()->getNum()<<" ";
         std::cout << std::endl;
     }
 }
