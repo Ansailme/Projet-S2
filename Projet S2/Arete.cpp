@@ -36,9 +36,10 @@ void Arete::setPoids(double new_poids)
 
 void Arete::dessinerA(Svgfile& svgout)const
 {
-    Couleur noir{0,0,0};
-    svgout.addLine(m_sommet[0]->getX()*100,m_sommet[0]->getY()*100,m_sommet[1]->getX()*100,m_sommet[1]->getY()*100,noir);
-    svgout.addText(((m_sommet[0]->getX()*100)+m_sommet[1]->getX()*100)/2,((m_sommet[0]->getY()*100)+m_sommet[1]->getY()*100)/2, getPoids(), noir);
+    Couleur noir{0,0,0}; //declaration d'une couleur
+    svgout.addLine(m_sommet[0]->getX()*100,m_sommet[0]->getY()*100,m_sommet[1]->getX()*100,m_sommet[1]->getY()*100,noir); //dessin arete
+    svgout.addText(((m_sommet[0]->getX()*100)+m_sommet[1]->getX()*100)/2,
+                   ((m_sommet[0]->getY()*100)+m_sommet[1]->getY()*100)/2, getPoids(), noir); //dessin poids sur milieu d'arete
 
 }
 

@@ -14,10 +14,8 @@ class Arete
 {
 private :
     int m_indice;
-    Sommet* m_sommet[2];
-    double m_poids;
-
-
+    Sommet* m_sommet[2]; //tableau de 2 sommets extremités d'1 arete
+    double m_poids; //poids arete
 
 public :
     Arete (int indice,Sommet* extrem1, Sommet* extrem2);
@@ -25,9 +23,11 @@ public :
     Sommet* getExtrem1 ()const;
     Sommet* getExtrem2 ()const;
     double getPoids()const;
+
     void setPoids(double new_poids);
-    void dessinerA(Svgfile& svgout)const;
     bool recup_poids_adj(double &poids,Sommet* prec,Sommet* suivant)const;
+
+    void dessinerA(Svgfile& svgout)const;
 
 
 };

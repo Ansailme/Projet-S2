@@ -95,15 +95,14 @@ void Graphe::afficherG()const
     std::cout<<"\tfichier topologie\n";
 
     if (m_orient==0)
-        std::cout<<"non oriente";
+        std::cout<<"\nGrahe non oriente";
     else
-        std::cout<<"oriente";
+        std::cout<<"Graphe oriente";
 
     std::cout<<" d'ordre : "<< m_sommets.size();
     std::cout << std::endl;
-    std::cout << std::endl;
 
-    std::cout << "affichage sommets :\n";
+    std::cout << "\nsommets :\n";
     for( auto s : m_sommets)
     {
         std::cout << "\t"<<s->getNum()<<" ";
@@ -113,14 +112,15 @@ void Graphe::afficherG()const
         std::cout << std::endl;
     }
 
-    std::cout << "taille : " << m_aretes.size();
-
-    std::cout << "\naffichage aretes :\n";
+    std::cout << "\ntaille : " << m_aretes.size();
+    std::cout << std::endl;
+    std::cout << "aretes :\n";
     for(auto s : m_aretes)
     {
         std::cout<<"\t"<<s->getIndice()<<" ";
         std::cout<<s->getExtrem1()->getNum()<<" ";
         std::cout<<s->getExtrem2()->getNum()<<" ";
+        std::cout << std::endl;
         std::cout << std::endl;
     }
 }
@@ -144,6 +144,7 @@ void Graphe::afficherPoids()const
         std::cout<<s->getExtrem1()->getNum()<<" ";
         std::cout<<s->getExtrem2()->getNum()<<" ";
         std::cout<<s->getPoids();
+        std::cout << std::endl;
         std::cout << std::endl;
     }
 }
@@ -206,7 +207,7 @@ void Graphe::c_propre()
 }
 
 
-void Graphe::verification() /// sp pour afficher coord des extremites d'aretes
+void Graphe::verification() ///affiche coord des extremites d'aretes
 {
     for(unsigned int j=0; j<m_aretes.size(); ++j)
     {
@@ -222,7 +223,7 @@ void Graphe::sauvegarde()
 {
     std::ofstream ofs("sauvegarde.txt");
     if (!ofs)
-        throw std::runtime_error( "Impossible d'ouvrir en sauvegarde.txt "  );
+        throw std::runtime_error( "Impossible d'écrire la sauvegarde car fichier inexistant ");
     else
     {
         ofs<<"\t INDICES"<<std::endl;
@@ -274,8 +275,110 @@ void Graphe::dessinerGraphe() const ///sp permet de dessiner le graphe dans svgf
     {
         s->dessinerA(svgout);
     }
-
 }
+
+double Graphe::c_prox(int premier, int arrive)
+{
+    double p_poids=0;
+
+    auto cmp = [] (std::pair <Sommet*,double> p1, std::pair <Sommet*,double> p2)
+    {
+        return p2.second<p1.second;
+    };
+
+    std::priority_queue <std::pair <Sommet*,double>, std::vector <std::pair <Sommet*,double>>, decltype(cmp) > file(cmp);
+
+    file.push({m_sommets[premier],0});
+
+    for(auto m : m_sommets)
+    {
+        m->init_marque();
+    }
+
+
+    while(!file.empty() && !m_sommets[arrive]->get_marque())
+    {
+        Sommet* p=file.top().first;
+
+        for(int i=0; i<m_sommets.size(); i++)
+        {
+            if((p->estAdjacentA(i)) && (!m_sommets[i]->get_marque()))
+            {
+                std::pair <Sommet*,double> tampon = m_sommets[i]->get_voisin(p, file.top().second,m_aretes);
+                file.push(tampon);
+            }
+        }
+        p_poids = file.top().second;
+        file.pop();     //Retire dernier élement de priority_queue
+        p->marque();
+    }
+    return p_poids;
+}
+
+void Graphe::affichage(int arrive, double poids) const
+{
+    if(!m_sommets[arrive]->get_marque())
+    {
+        std::cout << "\nle point d'arrive n'est pas atteignable par ce point de depart. \n" << std::endl;
+        return;
+    }
+
+    m_sommets[arrive]->afficher_result();
+
+    std::cout << " : poids total parcouru";
+
+    std::cout <<  "= " << poids << std::endl;
+}
+
+
+void Graphe::calcul_cp (int i_debut, int i_fin)
+{
+    double p_poids=0;
+    double cp=0, cpn=0;
+
+    p_poids = c_prox(i_debut, i_fin);
+    cp = 1/p_poids;
+    cpn = (m_ordre-1)/p_poids;
+    std::cout << std::endl;
+    std::cout << "indice de proximite du sommet : " << i_debut << " a " << i_fin << " est " << cp << std::endl<<std::endl;
+    std::cout << "indice de proximite normalise du sommet : " << i_debut << " a " << i_fin << " est " << cpn << std::endl<<std::endl;
+}
+
+void Graphe:: calcul_cp_auto()
+{
+
+    double p_poids=0;
+    cp.push_back(m_sommets.size());
+    cpn.push_back(m_sommets.size());
+
+
+    for(unsigned int i=0; i<m_sommets.size(); ++i)
+    {
+        for(unsigned int j=0; j<m_sommets.size(); ++j)
+        {
+            if(i!=j)
+            {
+                p_poids = c_prox(i,j); //on recupere le poids total de c_prox
+                cp[i] = 1/p_poids;
+                cpn[i] = (m_ordre-1)/p_poids;
+                std::cout << std::endl;
+                std::cout <<"indice de proximite :\n";
+                std::cout << i << " a " << j << " : " << cp[i] << std::endl;
+                std::cout << "indice de proximite normalise:\n";
+                std::cout << i << " a " << j << " : " << cpn[i] << std::endl<<std::endl;
+            }
+        }
+    }
+}
+
+Graphe::~Graphe()
+{
+    for (auto it : m_sommets)
+        delete it;
+}
+
+
+/*-------------------------------*/
 
 void Graphe::BFS(int premier)
 {
@@ -309,12 +412,9 @@ void Graphe::BFS(int premier)
                     file.push(it);
                     i_preds[it->getNum()]=i;
                 }
-
             }
-
         }
         m_sommets[i]->setAdjacents(1); //met les adjacents en gris
-
     }
 
     ///affichage
@@ -339,14 +439,10 @@ void Graphe::BFS(int premier)
                 while (premier!=pred);
 
             }
-
             else
                 std::cout<<" <-- "<<premier;
         }
-
     }
-
-
 }
 
 void Graphe::DFS(int premier)
@@ -494,103 +590,3 @@ Sommet* Graphe::recupSommet (int indice)
     return m_sommets[indice];
 }
 
-Graphe::~Graphe()
-{
-    for (auto it : m_sommets)
-        delete it;
-}
-
-/*-------------------------------*/
-
-
-double Graphe::c_prox(int premier, int arrive)
-{
-    double p_poids=0;
-
-    auto cmp = [] (std::pair <Sommet*,double> p1, std::pair <Sommet*,double> p2)
-    {
-        return p2.second<p1.second;
-    };
-
-    std::priority_queue <std::pair <Sommet*,double>, std::vector <std::pair <Sommet*,double>>, decltype(cmp) > file(cmp);
-
-    file.push({m_sommets[premier],0});
-
-    for(auto m : m_sommets)
-    {
-        m->init_marque();
-    }
-
-
-    while(!file.empty() && !m_sommets[arrive]->get_marque())
-    {
-        Sommet* p=file.top().first;
-
-        for(int i=0; i<m_sommets.size(); i++)
-        {
-            if((p->estAdjacentA(i)) && (!m_sommets[i]->get_marque()))
-            {
-                std::pair <Sommet*,double> tampon = m_sommets[i]->get_voisin(p, file.top().second,m_aretes);
-                file.push(tampon);
-            }
-        }
-        p_poids = file.top().second;
-        file.pop();     //Retire dernier élement de priority_queue
-        p->marque();
-    }
-    return p_poids;
-}
-
-void Graphe::affichage(int arrive, double poids) const
-{
-    if(!m_sommets[arrive]->get_marque())
-    {
-        std::cout << "\nle point d'arrive n'est pas atteignable par ce point de depart. \n" << std::endl;
-        return;
-    }
-
-    m_sommets[arrive]->afficher_result();
-
-    std::cout << " : poids total parcouru";
-
-    std::cout <<  "= " << poids << std::endl;
-}
-
-
-void Graphe::calcul_cp (int i_debut, int i_fin)
-{
-    double p_poids=0;
-    double cp=0, cpn=0;
-
-    p_poids = c_prox(i_debut, i_fin);
-    cp = 1/p_poids;
-    cpn = (m_ordre-1)/p_poids;
-    std::cout << std::endl;
-    std::cout << "indice de proximite du sommet : " << i_debut << " a " << i_fin << " est " << cp << std::endl<<std::endl;
-    std::cout << "indice de proximite normalise du sommet : " << i_debut << " a " << i_fin << " est " << cpn << std::endl<<std::endl;
-}
-
-void Graphe:: calcul_cp_auto()
-{
-
-    double p_poids=0;
-    cp.push_back(m_sommets.size());
-    cpn.push_back(m_sommets.size());
-
-
-    for(int i=0; i<m_sommets.size(); ++i)
-    {
-        for(int j=0; j<m_sommets.size(); ++j)
-        {
-            if(i!=j)
-            {
-                p_poids = c_prox(i,j); //on recupere le poids total de c_prox
-                cp[i] = 1/p_poids;
-                cpn[i] = (m_ordre-1)/p_poids;
-                std::cout << std::endl;
-                std::cout << "indice de proximite du sommet : " << i << " a " << j<< " est " << cp[i] << std::endl;
-                std::cout << "indice de proximite normalise du sommet : " << i << " a " << j << " est " << cpn[i] << std::endl<<std::endl;
-            }
-        }
-    }
-}

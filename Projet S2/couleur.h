@@ -4,6 +4,8 @@
 #include <string>
 #include <cstdint>
 
+/// header couleur.h tiré de correction TP 6 maillage de M FERCOQ
+
 class Couleur
 {
     public :

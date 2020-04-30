@@ -6,12 +6,10 @@
 int main()
 {
     ///Affichage Menu Pricipal avec chargement du fichier graphe souhaité par l'user
-    std::cout<<"\t\t MENU PRINCIPAL\n"
-             <<"Quel graphe souhaitez-vous lire? \n";
-
-        std::string nomF;
-        std::cin>>nomF;
-        std::cout<<std::endl;
+    std::cout<<"\t\t MENU PRINCIPAL\n"<<std::endl<<"Quel graphe souhaitez-vous utiliser? \n";
+    std::string nomF;
+    std::cin>>nomF;
+    std::cout<<std::endl;
     Graphe monGraphe{"g_" + nomF +".txt"};
     int a,choix=0;
     int i_debut,i_fin;
@@ -24,14 +22,14 @@ int main()
                   <<std::endl<<"\t3) Recherche des composantes connexes "*/
 
         ///Affichage menu avec les choix
-        std::cout<<"Que souhaitez-vous faire ?\n"
-                 <<"\t1) Afficher Graphe\n"
-                 <<"\t2) Lire & Afficher Ponderation \n"
-                 <<"\t3) Svgtest \n"
-                 <<"\t4) Centralite de degre \n"
-                 <<"\t5) Centralite de vecteur propre \n"
-                 <<"\t6) Centralite de proximite\n"
-                 <<"\t7) Sauvegarde\n"
+        std::cout<<"Que souhaitez-vous faire ?\n"<<std::endl
+                 <<"\t1) Lire & afficher les donnees du graphe\n"
+                 <<"\t2) Lire & afficher les donnees de ponderation \n"
+                 <<"\t3) Dessiner le graphe SVG \n"
+                 <<"\t4) Indice centralite de degre \n"
+                 <<"\t5) Indice centralite de vecteur propre \n"
+                 <<"\t6) Indice centralite de proximite\n"
+                 <<"\t7) Sauvegarder les indices dans un fichier\n"
                  <<"\t8) Quitter\n"
                  << std::endl;
 
@@ -68,7 +66,7 @@ int main()
 
         case 6 :
             ///Dijkstra : calcul + court chemin = centralité de proximité
-            std::cout<<std::endl<<"Pour la recherche du plus court chemin :"
+            /*std::cout<<std::endl<<"Plus court chemin entre:"
                      <<std::endl<<"Choisir le sommet de depart : ";
             std::cin>>i_debut;
             std::cout<<std::endl<<"Choisir le sommet d'arrivee : ";
@@ -76,14 +74,14 @@ int main()
             poids = monGraphe.c_prox(i_debut,i_fin);
             monGraphe.affichage(i_fin, poids);
             monGraphe.calcul_cp(i_debut, i_fin);
-            std::cout<< std::endl;
+            std::cout<< std::endl;*/
             monGraphe.calcul_cp_auto();
 
             break;
 
         case 7 :
             monGraphe.sauvegarde(); ///sauvegarde des indices dans fichier txt
-            std::cout<<"\tsauvegarde operationelle chef !"<<std::endl;
+            std::cout<<"\tsauvegarde operationelle chef !\n"<<std::endl;
             break;
         }
     }

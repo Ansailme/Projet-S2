@@ -3,6 +3,8 @@
 
 #include <string>
 
+/// header util.h tiré de correction TP 6 maillage de M FERCOQ
+
 namespace util
 {
 

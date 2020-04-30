@@ -10,7 +10,7 @@ Sommet::Sommet (int num, std::string lettre, int x, int y)
 
 void Sommet::remplir(Sommet* adjacent)
 {
-     m_adjacents.push_back(adjacent);
+    m_adjacents.push_back(adjacent);
 }
 
 int Sommet::getNum ()const
@@ -37,7 +37,7 @@ int Sommet::getY() const
 void Sommet::afficher_num()const
 {
     std::cout<<std::endl<<"\t sommet "
-                        <<m_num<<" : ";
+             <<m_num<<" : ";
     for (auto it : m_adjacents)
         std::cout<<it->getNum()<<" ";
 }

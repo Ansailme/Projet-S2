@@ -14,7 +14,7 @@ class Arete;
 class Sommet
 {
 private :
-    std::string m_lettre;
+    std::string m_lettre; //denomination sommet
     int m_x,m_y;
     int m_num;
     int m_couleur; //0 -> B //1->G //2->N
@@ -31,9 +31,11 @@ private :
 public :
     Sommet (int num, std::string lettre, int x, int y);
     std::string getLettre() const;
+
     int getX() const;
     int getY() const;
     int getNum ()const;
+
     void afficher_num()const;
     void dessinerS(Svgfile& svgout) const;
     void remplir(Sommet* adjacent);
@@ -41,6 +43,7 @@ public :
     void setCouleur(int nv);
     void setAdjacents(int i);
     int getCouleur()const;
+
     bool estAdjacentA(int i);
     bool estDegreImpair();
     void setMarquage(int nv);
