@@ -76,6 +76,8 @@ int main()
             poids = monGraphe.c_prox(i_debut,i_fin);
             monGraphe.affichage(i_fin, poids);
             monGraphe.calcul_cp(i_debut, i_fin);
+            std::cout<< std::endl;
+            monGraphe.calcul_cp_auto();
 
             break;
 

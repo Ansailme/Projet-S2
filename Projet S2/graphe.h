@@ -12,11 +12,12 @@ private :
     int m_taille;
 
     std::vector <Sommet* > m_sommets;
-    std::vector <Sommet* > m_sommetD;
+    //std::vector <Sommet* > m_sommetD;
     std::vector <Arete* > m_aretes;
     std::vector <double> deg;
     std::vector <double> cvp;
-    std::vector <double> cp;
+    std::vector< double > cp;
+    std::vector< double > cpn;
 
 public :
     Graphe (std::string fichier);
@@ -43,6 +44,7 @@ public :
     void affichage(int arrive, double poids) const;
 
     void calcul_cp (int i_debut, int i_fin);
+    void calcul_cp_auto();
 };
 
 

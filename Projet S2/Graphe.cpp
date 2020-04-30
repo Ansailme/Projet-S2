@@ -65,8 +65,8 @@ Graphe::Graphe(std::string fichier)
 void Graphe::lectureFichierP()
 {
     std::cout<<"Quel fichier ponderation souhaitez-vous lire?\n";
-            std::string fichier2;
-            std::cin>>fichier2;
+    std::string fichier2;
+    std::cin>>fichier2;
     std::ifstream ifs2{"p_" + fichier2 + ".txt"}; //ouverture en mode lecture
     if (!ifs2)
         throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier2 );
@@ -231,26 +231,30 @@ void Graphe::sauvegarde()
         ofs<<" Centralité de degré :\n";
         for (unsigned int i=0; i<m_sommets.size(); ++i)
             ofs<< "sommet " << i << " : " << deg[i]<<std::endl;
-            ofs<< std::endl;
+        ofs<< std::endl;
 
         ofs<<" Centralité de degré normalisé :\n";
         for (unsigned int i=0; i<m_sommets.size(); ++i)
             ofs<< "sommet " << i << " : " << (deg[i]*(1.0/(m_ordre-1)))<<std::endl;
-            ofs<< std::endl;
+        ofs<< std::endl;
 
         ofs<< "Centralite de vecteur propre:\n";
         for (unsigned int i=0; i<m_sommets.size(); ++i)
             ofs << "sommet" << i <<" : " << cvp[i]<<std::endl;
-            ofs<< std::endl;
+        ofs<< std::endl;
 
         ofs<<" Centralité de vecteur propre normalisé :\n";
         for (unsigned int i=0; i<m_sommets.size(); ++i)
-        ofs<< "sommet " << i << " : " << (cvp[i]*(1.0/(m_ordre-1)))<<std::endl;
+            ofs<< "sommet " << i << " : " << (cvp[i]*(1.0/(m_ordre-1)))<<std::endl;
         ofs<< std::endl;
 
         ofs<<"Centralité de vecteur de proximité :\n";
-       // ofs << "sommet de
+        for (unsigned int i=0; i<m_sommets.size(); ++i)
+            ofs << " sommet : " << i << " : " << cp[i] << std::endl<< std::endl;
 
+        ofs<<"Centralité de vecteur de proximité normalisé:\n";
+        for (unsigned int i=0; i<m_sommets.size(); ++i)
+            ofs << "sommet : " << i << " : " << cpn[i] << std::endl;
     }
 
 }
@@ -504,7 +508,9 @@ double Graphe::c_prox(int premier, int arrive)
     double p_poids=0;
 
     auto cmp = [] (std::pair <Sommet*,double> p1, std::pair <Sommet*,double> p2)
-    {return p2.second<p1.second;};
+    {
+        return p2.second<p1.second;
+    };
 
     std::priority_queue <std::pair <Sommet*,double>, std::vector <std::pair <Sommet*,double>>, decltype(cmp) > file(cmp);
 
@@ -518,17 +524,17 @@ double Graphe::c_prox(int premier, int arrive)
 
     while(!file.empty() && !m_sommets[arrive]->get_marque())
     {
-       Sommet* p=file.top().first;
+        Sommet* p=file.top().first;
 
-       for(int i=0;i<m_sommets.size();i++)
-       {
-           if((p->estAdjacentA(i)) && (!m_sommets[i]->get_marque()))
-           {
-               std::pair <Sommet*,double> tampon = m_sommets[i]->get_voisin(p, file.top().second,m_aretes);
-               file.push(tampon);
-           }
-       }
-       p_poids = file.top().second;
+        for(int i=0; i<m_sommets.size(); i++)
+        {
+            if((p->estAdjacentA(i)) && (!m_sommets[i]->get_marque()))
+            {
+                std::pair <Sommet*,double> tampon = m_sommets[i]->get_voisin(p, file.top().second,m_aretes);
+                file.push(tampon);
+            }
+        }
+        p_poids = file.top().second;
         file.pop();     //Retire dernier élement de priority_queue
         p->marque();
     }
@@ -564,3 +570,27 @@ void Graphe::calcul_cp (int i_debut, int i_fin)
     std::cout << "indice de proximite normalise du sommet : " << i_debut << " a " << i_fin << " est " << cpn << std::endl<<std::endl;
 }
 
+void Graphe:: calcul_cp_auto()
+{
+
+    double p_poids=0;
+    cp.push_back(m_sommets.size());
+    cpn.push_back(m_sommets.size());
+
+
+    for(int i=0; i<m_sommets.size(); ++i)
+    {
+        for(int j=0; j<m_sommets.size(); ++j)
+        {
+            if(i!=j)
+            {
+                p_poids = c_prox(i,j); //on recupere le poids total de c_prox
+                cp[i] = 1/p_poids;
+                cpn[i] = (m_ordre-1)/p_poids;
+                std::cout << std::endl;
+                std::cout << "indice de proximite du sommet : " << i << " a " << j<< " est " << cp[i] << std::endl;
+                std::cout << "indice de proximite normalise du sommet : " << i << " a " << j << " est " << cpn[i] << std::endl<<std::endl;
+            }
+        }
+    }
+}
