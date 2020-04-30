@@ -32,7 +32,7 @@ Svgfile::Svgfile(std::string _filename, int _width, int _height) :
         throw std::runtime_error("Could not open file " + m_filename );
     }
 
-    std::cout << "OK" << std::endl;
+    std::cout << "\n affichage SVG operationel\n" << std::endl;
 
     // Writing the header into the SVG file
     m_ostrm << svgHeader;

@@ -1,4 +1,5 @@
 	 INDICES
+
  Centralité de degré :
 sommet 0 : 1
 sommet 1 : 1

@@ -45,10 +45,10 @@ void Sommet::afficher_num()const
 void Sommet::dessinerS(Svgfile& svgout) const
 {
     Couleur noir{0,0,0};
-    Couleur deg{(m_adjacents.size())*50, 255-m_adjacents.size()*50,100-m_adjacents.size()*50};
+    Couleur deg{(85-m_adjacents.size())*50, (200-m_adjacents.size())*100,(50-m_adjacents.size())*60};
 
-    svgout.addDisk(m_x*100,m_y*100,10,deg);
-    svgout.addText(m_x*100-10,m_y*100-10,m_lettre,noir);
+    svgout.addDisk(m_x*100,m_y*100,15,deg);
+    svgout.addText(m_x*100-30,m_y*100-20,m_lettre,noir);
 }
 
 
