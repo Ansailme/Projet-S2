@@ -61,202 +61,50 @@
 <text x="1705" y="15" fill="lightgrey" >1700</text>
 <line x1="1800" y1="0" x2="1800" y2="1000" stroke="lightgrey" />
 <text x="1805" y="15" fill="lightgrey" >1800</text>
-<circle cx="100" cy="0" r="15" fill="rgb(54,88,64)" />
-<text x="70" y="-20" fill="rgb(0,0,0)" >A</text>
-<circle cx="200" cy="0" r="15" fill="rgb(54,88,64)" />
-<text x="170" y="-20" fill="rgb(0,0,0)" >B</text>
-<circle cx="400" cy="100" r="15" fill="rgb(54,88,64)" />
-<text x="370" y="80" fill="rgb(0,0,0)" >C</text>
-<circle cx="300" cy="200" r="15" fill="rgb(54,88,64)" />
-<text x="270" y="180" fill="rgb(0,0,0)" >D</text>
-<circle cx="500" cy="100" r="15" fill="rgb(54,88,64)" />
-<text x="470" y="80" fill="rgb(0,0,0)" >E</text>
-<circle cx="500" cy="200" r="15" fill="rgb(54,88,64)" />
-<text x="470" y="180" fill="rgb(0,0,0)" >F</text>
+<circle cx="300" cy="100" r="15" fill="rgb(54,88,64)" />
+<text x="270" y="80" fill="rgb(0,0,0)" >A</text>
+<circle cx="200" cy="200" r="15" fill="rgb(4,244,4)" />
+<text x="170" y="180" fill="rgb(0,0,0)" >B</text>
+<circle cx="400" cy="200" r="15" fill="rgb(4,244,4)" />
+<text x="370" y="180" fill="rgb(0,0,0)" >C</text>
+<circle cx="300" cy="300" r="15" fill="rgb(210,144,200)" />
+<text x="270" y="280" fill="rgb(0,0,0)" >D</text>
+<circle cx="200" cy="400" r="15" fill="rgb(4,244,4)" />
+<text x="170" y="380" fill="rgb(0,0,0)" >E</text>
 <circle cx="300" cy="400" r="15" fill="rgb(54,88,64)" />
-<text x="270" y="380" fill="rgb(0,0,0)" >G</text>
-<circle cx="600" cy="600" r="15" fill="rgb(54,88,64)" />
-<text x="570" y="580" fill="rgb(0,0,0)" >H</text>
-<circle cx="400" cy="1000" r="15" fill="rgb(54,88,64)" />
-<text x="370" y="980" fill="rgb(0,0,0)" >I</text>
-<circle cx="300" cy="600" r="15" fill="rgb(54,88,64)" />
-<text x="270" y="580" fill="rgb(0,0,0)" >J</text>
-<circle cx="300" cy="500" r="15" fill="rgb(54,88,64)" />
-<text x="270" y="480" fill="rgb(0,0,0)" >K</text>
-<circle cx="100" cy="400" r="15" fill="rgb(54,88,64)" />
-<text x="70" y="380" fill="rgb(0,0,0)" >L</text>
-<circle cx="0" cy="200" r="15" fill="rgb(54,88,64)" />
-<text x="-30" y="180" fill="rgb(0,0,0)" >M</text>
-<circle cx="700" cy="200" r="15" fill="rgb(54,88,64)" />
-<text x="670" y="180" fill="rgb(0,0,0)" >N</text>
-<circle cx="700" cy="300" r="15" fill="rgb(54,88,64)" />
-<text x="670" y="280" fill="rgb(0,0,0)" >O</text>
-<circle cx="800" cy="400" r="15" fill="rgb(54,88,64)" />
-<text x="770" y="380" fill="rgb(0,0,0)" >P</text>
-<circle cx="900" cy="300" r="15" fill="rgb(54,88,64)" />
-<text x="870" y="280" fill="rgb(0,0,0)" >Q</text>
-<circle cx="1000" cy="400" r="15" fill="rgb(54,88,64)" />
-<text x="970" y="380" fill="rgb(0,0,0)" >R</text>
-<circle cx="700" cy="600" r="15" fill="rgb(54,88,64)" />
-<text x="670" y="580" fill="rgb(0,0,0)" >S</text>
-<circle cx="900" cy="600" r="15" fill="rgb(54,88,64)" />
-<text x="870" y="580" fill="rgb(0,0,0)" >T</text>
-<circle cx="900" cy="900" r="15" fill="rgb(54,88,64)" />
-<text x="870" y="880" fill="rgb(0,0,0)" >U</text>
-<circle cx="1000" cy="900" r="15" fill="rgb(54,88,64)" />
-<text x="970" y="880" fill="rgb(0,0,0)" >V</text>
-<circle cx="1200" cy="600" r="15" fill="rgb(54,88,64)" />
-<text x="1170" y="580" fill="rgb(0,0,0)" >W</text>
-<circle cx="1100" cy="500" r="15" fill="rgb(54,88,64)" />
-<text x="1070" y="480" fill="rgb(0,0,0)" >X</text>
-<circle cx="1200" cy="400" r="15" fill="rgb(54,88,64)" />
-<text x="1170" y="380" fill="rgb(0,0,0)" >Y</text>
-<circle cx="1300" cy="600" r="15" fill="rgb(54,88,64)" />
-<text x="1270" y="580" fill="rgb(0,0,0)" >Z</text>
-<circle cx="1400" cy="400" r="15" fill="rgb(54,88,64)" />
-<text x="1370" y="380" fill="rgb(0,0,0)" >AA</text>
-<circle cx="1600" cy="600" r="15" fill="rgb(54,88,64)" />
-<text x="1570" y="580" fill="rgb(0,0,0)" >AB</text>
-<circle cx="1700" cy="400" r="15" fill="rgb(54,88,64)" />
-<text x="1670" y="380" fill="rgb(0,0,0)" >AC</text>
-<circle cx="1600" cy="300" r="15" fill="rgb(54,88,64)" />
-<text x="1570" y="280" fill="rgb(0,0,0)" >AD</text>
-<circle cx="1800" cy="0" r="15" fill="rgb(54,88,64)" />
-<text x="1770" y="-20" fill="rgb(0,0,0)" >AE</text>
-<circle cx="1000" cy="0" r="15" fill="rgb(54,88,64)" />
-<text x="970" y="-20" fill="rgb(0,0,0)" >AF</text>
-<circle cx="900" cy="100" r="15" fill="rgb(54,88,64)" />
-<text x="870" y="80" fill="rgb(0,0,0)" >AG</text>
-<circle cx="1000" cy="100" r="15" fill="rgb(54,88,64)" />
-<text x="970" y="80" fill="rgb(0,0,0)" >AH</text>
-<circle cx="1500" cy="600" r="15" fill="rgb(54,88,64)" />
-<text x="1470" y="580" fill="rgb(0,0,0)" >AI</text>
-<circle cx="1600" cy="700" r="15" fill="rgb(54,88,64)" />
-<text x="1570" y="680" fill="rgb(0,0,0)" >AJ</text>
-<circle cx="1500" cy="700" r="15" fill="rgb(54,88,64)" />
-<text x="1470" y="680" fill="rgb(0,0,0)" >AK</text>
-<circle cx="1700" cy="700" r="15" fill="rgb(54,88,64)" />
-<text x="1670" y="680" fill="rgb(0,0,0)" >AL</text>
-<circle cx="1800" cy="800" r="15" fill="rgb(54,88,64)" />
-<text x="1770" y="780" fill="rgb(0,0,0)" >AM</text>
-<circle cx="1700" cy="1000" r="15" fill="rgb(54,88,64)" />
-<text x="1670" y="980" fill="rgb(0,0,0)" >AN</text>
-<circle cx="1600" cy="1000" r="15" fill="rgb(54,88,64)" />
-<text x="1570" y="980" fill="rgb(0,0,0)" >AO</text>
-<circle cx="1400" cy="900" r="15" fill="rgb(54,88,64)" />
-<text x="1370" y="880" fill="rgb(0,0,0)" >AP</text>
-<circle cx="1400" cy="800" r="15" fill="rgb(54,88,64)" />
-<text x="1370" y="780" fill="rgb(0,0,0)" >AQ</text>
-<circle cx="400" cy="200" r="15" fill="rgb(54,88,64)" />
-<text x="370" y="180" fill="rgb(0,0,0)" >AR</text>
-<circle cx="1800" cy="200" r="15" fill="rgb(54,88,64)" />
-<text x="1770" y="180" fill="rgb(0,0,0)" >AS</text>
-<circle cx="1700" cy="300" r="15" fill="rgb(54,88,64)" />
-<text x="1670" y="280" fill="rgb(0,0,0)" >AT</text>
-<circle cx="1800" cy="300" r="15" fill="rgb(54,88,64)" />
-<text x="1770" y="280" fill="rgb(0,0,0)" >AU</text>
-<circle cx="400" cy="700" r="15" fill="rgb(54,88,64)" />
-<text x="370" y="680" fill="rgb(0,0,0)" >AV</text>
-<circle cx="100" cy="300" r="15" fill="rgb(54,88,64)" />
-<text x="70" y="280" fill="rgb(0,0,0)" >AW</text>
-<line x1="100" y1="0" x2="200" y2="0" stroke="rgb(0,0,0)" />
-<text x="150" y="0" fill="rgb(0,0,0)" >1</text>
-<line x1="200" y1="0" x2="400" y2="100" stroke="rgb(0,0,0)" />
-<text x="300" y="50" fill="rgb(0,0,0)" >2</text>
-<line x1="400" y1="100" x2="300" y2="200" stroke="rgb(0,0,0)" />
-<text x="350" y="150" fill="rgb(0,0,0)" >3</text>
-<line x1="300" y1="200" x2="400" y2="200" stroke="rgb(0,0,0)" />
-<text x="350" y="200" fill="rgb(0,0,0)" >4</text>
-<line x1="400" y1="200" x2="500" y2="100" stroke="rgb(0,0,0)" />
-<text x="450" y="150" fill="rgb(0,0,0)" >5</text>
-<line x1="500" y1="100" x2="500" y2="200" stroke="rgb(0,0,0)" />
-<text x="500" y="150" fill="rgb(0,0,0)" >1</text>
-<line x1="500" y1="200" x2="300" y2="400" stroke="rgb(0,0,0)" />
-<text x="400" y="300" fill="rgb(0,0,0)" >2</text>
-<line x1="300" y1="400" x2="600" y2="600" stroke="rgb(0,0,0)" />
-<text x="450" y="500" fill="rgb(0,0,0)" >3</text>
-<line x1="600" y1="600" x2="400" y2="1000" stroke="rgb(0,0,0)" />
-<text x="500" y="800" fill="rgb(0,0,0)" >4</text>
-<line x1="400" y1="1000" x2="400" y2="700" stroke="rgb(0,0,0)" />
-<text x="400" y="850" fill="rgb(0,0,0)" >5</text>
-<line x1="400" y1="700" x2="300" y2="600" stroke="rgb(0,0,0)" />
-<text x="350" y="650" fill="rgb(0,0,0)" >1</text>
-<line x1="300" y1="600" x2="300" y2="500" stroke="rgb(0,0,0)" />
-<text x="300" y="550" fill="rgb(0,0,0)" >2</text>
-<line x1="300" y1="500" x2="100" y2="400" stroke="rgb(0,0,0)" />
-<text x="200" y="450" fill="rgb(0,0,0)" >3</text>
-<line x1="100" y1="400" x2="100" y2="300" stroke="rgb(0,0,0)" />
-<text x="100" y="350" fill="rgb(0,0,0)" >4</text>
-<line x1="100" y1="300" x2="0" y2="200" stroke="rgb(0,0,0)" />
-<text x="50" y="250" fill="rgb(0,0,0)" >5</text>
-<line x1="0" y1="200" x2="100" y2="0" stroke="rgb(0,0,0)" />
-<text x="50" y="100" fill="rgb(0,0,0)" >1</text>
-<line x1="1500" y1="600" x2="1600" y2="700" stroke="rgb(0,0,0)" />
-<text x="1550" y="650" fill="rgb(0,0,0)" >2</text>
-<line x1="1600" y1="700" x2="1500" y2="700" stroke="rgb(0,0,0)" />
-<text x="1550" y="700" fill="rgb(0,0,0)" >3</text>
-<line x1="1500" y1="600" x2="1500" y2="700" stroke="rgb(0,0,0)" />
-<text x="1500" y="650" fill="rgb(0,0,0)" >4</text>
-<line x1="1800" y1="200" x2="1700" y2="300" stroke="rgb(0,0,0)" />
-<text x="1750" y="250" fill="rgb(0,0,0)" >5</text>
-<line x1="1700" y1="300" x2="1800" y2="300" stroke="rgb(0,0,0)" />
-<text x="1750" y="300" fill="rgb(0,0,0)" >1</text>
-<line x1="1800" y1="200" x2="1800" y2="300" stroke="rgb(0,0,0)" />
-<text x="1800" y="250" fill="rgb(0,0,0)" >2</text>
-<line x1="1700" y1="700" x2="1800" y2="800" stroke="rgb(0,0,0)" />
-<text x="1750" y="750" fill="rgb(0,0,0)" >3</text>
-<line x1="1800" y1="800" x2="1700" y2="1000" stroke="rgb(0,0,0)" />
-<text x="1750" y="900" fill="rgb(0,0,0)" >4</text>
-<line x1="1700" y1="1000" x2="1600" y2="1000" stroke="rgb(0,0,0)" />
-<text x="1650" y="1000" fill="rgb(0,0,0)" >5</text>
-<line x1="1600" y1="1000" x2="1400" y2="900" stroke="rgb(0,0,0)" />
-<text x="1500" y="950" fill="rgb(0,0,0)" >1</text>
-<line x1="1400" y1="900" x2="1400" y2="800" stroke="rgb(0,0,0)" />
-<text x="1400" y="850" fill="rgb(0,0,0)" >2</text>
-<line x1="1400" y1="800" x2="1700" y2="700" stroke="rgb(0,0,0)" />
-<text x="1550" y="750" fill="rgb(0,0,0)" >3</text>
-<line x1="700" y1="200" x2="700" y2="300" stroke="rgb(0,0,0)" />
-<text x="700" y="250" fill="rgb(0,0,0)" >4</text>
-<line x1="700" y1="300" x2="800" y2="400" stroke="rgb(0,0,0)" />
-<text x="750" y="350" fill="rgb(0,0,0)" >5</text>
-<line x1="800" y1="400" x2="900" y2="300" stroke="rgb(0,0,0)" />
-<text x="850" y="350" fill="rgb(0,0,0)" >1</text>
-<line x1="900" y1="300" x2="1000" y2="400" stroke="rgb(0,0,0)" />
-<text x="950" y="350" fill="rgb(0,0,0)" >2</text>
-<line x1="1000" y1="400" x2="700" y2="600" stroke="rgb(0,0,0)" />
-<text x="850" y="500" fill="rgb(0,0,0)" >3</text>
-<line x1="700" y1="600" x2="900" y2="600" stroke="rgb(0,0,0)" />
-<text x="800" y="600" fill="rgb(0,0,0)" >4</text>
-<line x1="900" y1="600" x2="900" y2="900" stroke="rgb(0,0,0)" />
-<text x="900" y="750" fill="rgb(0,0,0)" >5</text>
-<line x1="900" y1="900" x2="1000" y2="900" stroke="rgb(0,0,0)" />
-<text x="950" y="900" fill="rgb(0,0,0)" >1</text>
-<line x1="1000" y1="900" x2="1200" y2="600" stroke="rgb(0,0,0)" />
-<text x="1100" y="750" fill="rgb(0,0,0)" >2</text>
-<line x1="1200" y1="600" x2="1100" y2="500" stroke="rgb(0,0,0)" />
-<text x="1150" y="550" fill="rgb(0,0,0)" >3</text>
-<line x1="1100" y1="500" x2="1200" y2="400" stroke="rgb(0,0,0)" />
-<text x="1150" y="450" fill="rgb(0,0,0)" >4</text>
-<line x1="1200" y1="400" x2="1300" y2="600" stroke="rgb(0,0,0)" />
-<text x="1250" y="500" fill="rgb(0,0,0)" >5</text>
-<line x1="1300" y1="600" x2="1400" y2="400" stroke="rgb(0,0,0)" />
-<text x="1350" y="500" fill="rgb(0,0,0)" >1</text>
-<line x1="1400" y1="400" x2="1600" y2="600" stroke="rgb(0,0,0)" />
-<text x="1500" y="500" fill="rgb(0,0,0)" >2</text>
-<line x1="1600" y1="600" x2="1700" y2="400" stroke="rgb(0,0,0)" />
-<text x="1650" y="500" fill="rgb(0,0,0)" >3</text>
-<line x1="1700" y1="400" x2="1600" y2="300" stroke="rgb(0,0,0)" />
-<text x="1650" y="350" fill="rgb(0,0,0)" >4</text>
-<line x1="1600" y1="300" x2="1800" y2="0" stroke="rgb(0,0,0)" />
-<text x="1700" y="150" fill="rgb(0,0,0)" >5</text>
-<line x1="1800" y1="0" x2="1000" y2="0" stroke="rgb(0,0,0)" />
-<text x="1400" y="0" fill="rgb(0,0,0)" >1</text>
-<line x1="1000" y1="0" x2="900" y2="100" stroke="rgb(0,0,0)" />
-<text x="950" y="50" fill="rgb(0,0,0)" >2</text>
-<line x1="900" y1="100" x2="1000" y2="100" stroke="rgb(0,0,0)" />
-<text x="950" y="100" fill="rgb(0,0,0)" >3</text>
-<line x1="1000" y1="100" x2="700" y2="200" stroke="rgb(0,0,0)" />
-<text x="850" y="150" fill="rgb(0,0,0)" >4</text>
+<text x="270" y="380" fill="rgb(0,0,0)" >F</text>
+<circle cx="400" cy="400" r="15" fill="rgb(4,244,4)" />
+<text x="370" y="380" fill="rgb(0,0,0)" >G</text>
+<circle cx="100" cy="500" r="15" fill="rgb(4,244,4)" />
+<text x="70" y="480" fill="rgb(0,0,0)" >H</text>
+<circle cx="500" cy="500" r="15" fill="rgb(4,244,4)" />
+<text x="470" y="480" fill="rgb(0,0,0)" >I</text>
+<line x1="300" y1="100" x2="200" y2="200" stroke="rgb(0,0,0)" />
+<text x="250" y="150" fill="rgb(0,0,0)" >5</text>
+<line x1="300" y1="100" x2="400" y2="200" stroke="rgb(0,0,0)" />
+<text x="350" y="150" fill="rgb(0,0,0)" >10</text>
+<line x1="200" y1="200" x2="300" y2="300" stroke="rgb(0,0,0)" />
+<text x="250" y="250" fill="rgb(0,0,0)" >15</text>
+<line x1="400" y1="200" x2="300" y2="300" stroke="rgb(0,0,0)" />
+<text x="350" y="250" fill="rgb(0,0,0)" >20</text>
+<line x1="300" y1="300" x2="200" y2="400" stroke="rgb(0,0,0)" />
+<text x="250" y="350" fill="rgb(0,0,0)" >25</text>
+<line x1="300" y1="300" x2="400" y2="400" stroke="rgb(0,0,0)" />
+<text x="350" y="350" fill="rgb(0,0,0)" >30</text>
+<line x1="200" y1="200" x2="100" y2="500" stroke="rgb(0,0,0)" />
+<text x="150" y="350" fill="rgb(0,0,0)" >35</text>
+<line x1="400" y1="200" x2="500" y2="500" stroke="rgb(0,0,0)" />
+<text x="450" y="350" fill="rgb(0,0,0)" >40</text>
+<line x1="200" y1="400" x2="300" y2="400" stroke="rgb(0,0,0)" />
+<text x="250" y="400" fill="rgb(0,0,0)" >45</text>
+<line x1="300" y1="400" x2="400" y2="400" stroke="rgb(0,0,0)" />
+<text x="350" y="400" fill="rgb(0,0,0)" >50</text>
+<line x1="400" y1="400" x2="500" y2="500" stroke="rgb(0,0,0)" />
+<text x="450" y="450" fill="rgb(0,0,0)" >55</text>
+<line x1="200" y1="400" x2="100" y2="500" stroke="rgb(0,0,0)" />
+<text x="150" y="450" fill="rgb(0,0,0)" >60</text>
+<line x1="100" y1="500" x2="500" y2="500" stroke="rgb(0,0,0)" />
+<text x="300" y="500" fill="rgb(0,0,0)" >65</text>
 
 
 </svg>
