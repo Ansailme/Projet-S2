@@ -95,10 +95,6 @@ int main()
                 std::cout<<"\tsauvegarde operationelle chef !\n"<<std::endl;
                 break;
 
-            case 12 :
-                return fermeture;
-                break;
-
             case 10:
                 monGraphe.recherchecompoConnexes();
                 break;
@@ -106,6 +102,11 @@ int main()
             case 11:
                 monGraphe.supp_arete();
                 break;
+
+            case 12 :
+                return fermeture;
+                break;
+
             }
         } while (choix!=9);
     } while (choice==0);
