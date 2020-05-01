@@ -19,6 +19,7 @@ private :
 
 public :
     Arete (int indice,Sommet* extrem1, Sommet* extrem2);
+    ~Arete();
     int getIndice ()const;
     Sommet* getExtrem1 ()const;
     Sommet* getExtrem2 ()const;
@@ -29,6 +30,8 @@ public :
 
     void dessinerA(Svgfile& svgout)const;
 
+    Sommet* recupExtrem1(int indice);
+    Sommet* recupExtrem2(int indice);
 
 };
 

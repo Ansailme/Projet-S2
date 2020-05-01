@@ -75,6 +75,8 @@
 <text x="200" y="150" fill="rgb(0,0,0)" >5</text>
 <line x1="100" y1="200" x2="200" y2="200" stroke="rgb(0,0,0)" />
 <text x="150" y="200" fill="rgb(0,0,0)" >10</text>
+<line x1="200" y1="200" x2="300" y2="200" stroke="rgb(0,0,0)" />
+<text x="250" y="200" fill="rgb(0,0,0)" >15</text>
 <line x1="200" y1="200" x2="200" y2="300" stroke="rgb(0,0,0)" />
 <text x="200" y="250" fill="rgb(0,0,0)" >20</text>
 

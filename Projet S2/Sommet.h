@@ -37,6 +37,8 @@ public :
     int getY() const;
     int getNum ()const;
 
+    size_t getNbAdj ()const;
+
     void afficher_num()const;
     void dessinerS(Svgfile& svgout) const;
     void remplir(Sommet* adjacent);
@@ -50,6 +52,8 @@ public :
     void setMarquage(int nv);
     int getDist (int i);
     int getMarquage()const;
+
+    void effacer_Adj(Sommet* a);
 
     /*----------------------------*/
 

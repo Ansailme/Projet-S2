@@ -100,6 +100,24 @@ bool Sommet::estDegreImpair()
     return temp;
 }
 
+size_t Sommet::getNbAdj () const
+{
+    return m_adjacents.size();
+}
+
+
+void Sommet::effacer_Adj(Sommet* a)
+{
+    for (int i=0; i<m_adjacents.size();++i)
+    {
+        if ((m_adjacents[i])== a)
+        {
+            m_adjacents.erase(m_adjacents.begin()+i);
+        }
+    }
+}
+
+
 
 /*--------------------------------------------------------*/
 

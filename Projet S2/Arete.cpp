@@ -54,6 +54,24 @@ bool Arete::recup_poids_adj(double &poids,Sommet* prec, Sommet* suivant)const
     return false;
 }
 
+Sommet* Arete::recupExtrem1(int indice)
+{
+        if ((getIndice())==indice)
+        {
+            return m_sommet[0];
+        }
+}
 
+Sommet* Arete::recupExtrem2(int indice)
+{
+        if ((getIndice())==indice)
+        {
+            return m_sommet[1];
+        }
+}
 
-
+Arete:: ~Arete()
+{
+    m_sommet[0]->effacer_Adj(m_sommet[1]);
+    m_sommet[1]->effacer_Adj(m_sommet[0]);
+}

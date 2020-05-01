@@ -33,6 +33,8 @@ Graphe::Graphe(std::string fichier)
         m_sommets.push_back(new Sommet{i,lettre,x,y});
         deg[i]=0;
     }
+    cp.reserve(m_sommets.size());
+    cpn.reserve(m_sommets.size());
     if ( ifs.fail() )
         throw std::runtime_error("Probleme lecture donnees du graphe");
 
@@ -152,10 +154,10 @@ void Graphe::afficherPoids()const
 
 void Graphe::c_degre()
 {
+    std::cout<<"Indice de centralite et centralite normalise\n";
     for (unsigned int i=0; i<m_sommets.size(); ++i)
     {
-        std::cout << "sommet " << i << " indice de centralite : " << deg[i] << std::endl;
-        std::cout << "sommet " << i << " indice de centralite normalise: " << (deg[i]*(1.0/(m_ordre-1))) << std::endl;
+        std::cout << "\n\tsommet " << i <<" : "<< m_sommets[i]->getNbAdj() <<" et "<< (m_sommets[i]->getNbAdj())*(1.0/(m_ordre-1)) << std::endl;
         std::cout<<std::endl;
     }
 }
@@ -196,15 +198,15 @@ void Graphe::c_propre()
         }
 
     }
+    std::cout<<"Indice de vecteur propre et vecteur propre normalise :\n";
     for(unsigned int i=0; i<m_sommets.size(); ++i)
     {
         //std::cout << cvp[i] << std::endl;
-
-        std::cout << "sommet " << i << " indice de vecteur propre : " << std::setprecision(3) << std::fixed
-                    << cvp[i] << std::endl;
-        std::cout << "sommet " << i << " indice de vecteur propre normalise: " <<(cvp[i]*(1.0/(m_ordre-1))) << std::endl;
+        std::cout << "\n\tsommet " << i << " : " << std::setprecision(3) << std::fixed
+                    << cvp[i] <<" et " <<(cvp[i]*(1.0/(m_ordre-1)))<<std::endl;
         std::cout<<std::endl;
     }
+    std::cout<<std::endl;
 }
 
 
@@ -222,7 +224,9 @@ void Graphe::verification() ///affiche coord des extremites d'aretes
 
 void Graphe::sauvegarde()
 {
-    std::ofstream ofs("sauvegarde.txt");
+    std::string fichier;
+    fichier = "sauvegarde" + std::to_string(1)+".txt";
+    std::ofstream ofs(fichier);
     if (!ofs)
         throw std::runtime_error( "Impossible d'écrire la sauvegarde car fichier inexistant ");
     else
@@ -350,10 +354,9 @@ void Graphe::calcul_cp (int i_debut, int i_fin)
 
 void Graphe:: calcul_cp_auto()
 {
-
     double p_poids=0;
-    cp.push_back(m_sommets.size());
-    cpn.push_back(m_sommets.size());
+    //cp.push_back(m_sommets.size()); //remplacer dans le constructeur
+    //cpn.push_back(m_sommets.size());
 
 
     for(unsigned int i=0; i<m_sommets.size(); ++i)
@@ -376,13 +379,6 @@ void Graphe:: calcul_cp_auto()
     }
 }
 
-Graphe::~Graphe()
-{
-    for (auto it : m_sommets)
-        delete it;
-}
-
-
 
 void Graphe::supp_arete()
 {
@@ -390,14 +386,25 @@ void Graphe::supp_arete()
     int nombre=0;
     std::cout<< "Combien d'aretes voulez-vous supprimer ?" <<std::endl;
     std::cin >> nombre;
-    for (int i=0; i<nombre; ++i)
-    {
+        ///creer methode dans arrete pour supprimer les adjacences en pointant sur sommets
+        ///faire une boucle
+ for (int i=0; i<nombre; ++i)
+ {
     std::cout << "Arete a supprimer : ";
     std::cin >> indice;
-    //m_aretes[indice]=nullptr;
-    m_aretes.erase(m_aretes.begin()+indice);
+
+     for (int j=0; j<m_aretes.size(); ++j)
+    {
+        if (indice == m_aretes[j]->getIndice())
+        {
+            delete m_aretes[indice];
+            m_aretes.erase(m_aretes.begin()+indice);
+        }
     }
 
+ }
+
+/*
     for (int i=0; i< m_sommets.size(); ++i)
     {
         for (int j=0; j< m_aretes.size(); ++j)
@@ -411,7 +418,7 @@ void Graphe::supp_arete()
         delete m_sommets[i]->estAdjacentA(indice);
         m_sommets.erase(m_sommets.begin()+indice);
     }
-
+*/
      for(auto s : m_aretes)
     {
         std::cout<<"\t"<<s->getIndice()<<" ";
@@ -419,11 +426,9 @@ void Graphe::supp_arete()
         std::cout<<s->getExtrem2()->getNum()<<" ";
         std::cout<<s->getPoids();
         std::cout << std::endl;
-        std::cout << std::endl;
-        std::cout << "ok"<< std::endl;
     }
+        std::cout << std::endl;
 
-std::cout << "ok"<< std::endl;
 }
 
 
@@ -537,12 +542,8 @@ void Graphe::DFS(int premier)
             {
                 std::cout<<" <-- "<<premier;
             }
-
         }
-
     }
-
-
 }
 
 void Graphe::recuDFS(std::map<int, int>& i_preds,Sommet* s)
@@ -651,5 +652,11 @@ void Graphe::recherchecompoConnexes()
 Sommet* Graphe::recupSommet (int indice)
 {
     return m_sommets[indice];
+}
+
+Graphe::~Graphe()
+{
+    for (auto it : m_sommets)
+        delete it;
 }
 
