@@ -32,11 +32,14 @@ int main()
                      <<"\t4) Indice centralite de degre \n"
                      <<"\t5) Indice centralite de vecteur propre \n"
                      <<"\t6) Indice centralite de proximite\n"
-                     <<"\t7) Sauvegarder les indices dans un fichier\n"
-                     <<"\t8) Fermer ce graphe et en charger un autre\n"
-                     <<"\t9) Quitter le programme\n"
+                     <<"\t7) Calcul plus court chemin\n"
+                     <<"\t8) Sauvegarder les indices dans un fichier\n"
+                     <<"\t9) Fermer ce graphe et en charger un autre\n"
                      <<"\t10) Connexite\n"
                      <<"\t11) Supprimer une arete\n"
+                     <<"\t12) Quitter le programme\n"
+
+
                      << std::endl;
 
             std::cout<<"Faites votre choix : ";
@@ -71,25 +74,28 @@ int main()
 
             case 6 :
                 ///Dijkstra : calcul + court chemin = centralité de proximité
-                /*std::cout<<std::endl<<"Plus court chemin entre:"
-                         <<std::endl<<"Choisir le sommet de depart : ";
-                std::cin>>i_debut;
-                std::cout<<std::endl<<"Choisir le sommet d'arrivee : ";
-                std::cin>>i_fin;
-                poids = monGraphe.c_prox(i_debut,i_fin);
-                monGraphe.affichage(i_fin, poids);
-                monGraphe.calcul_cp(i_debut, i_fin);
-                std::cout<< std::endl;*/
                 monGraphe.calcul_cp_auto();
 
                 break;
 
             case 7 :
+                std::cout<<std::endl<<"Plus court chemin entre:"
+                         <<std::endl<<"Choisir le sommet de depart : ";
+                std::cin>>i_debut;
+                std::cout<<std::endl<<"Choisir le sommet d'arrivee : ";
+                std::cin>>i_fin;
+                poids = monGraphe.c_prox(i_debut,i_fin);
+                std::cout<< std::endl;
+                monGraphe.affichage(i_fin, poids);
+                std::cout<< std::endl;
+                break;
+
+            case 8 :
                 monGraphe.sauvegarde(); ///sauvegarde des indices dans fichier txt
                 std::cout<<"\tsauvegarde operationelle chef !\n"<<std::endl;
                 break;
 
-            case 9 :
+            case 12 :
                 return fermeture;
                 break;
 
@@ -101,7 +107,7 @@ int main()
                 monGraphe.supp_arete();
                 break;
             }
-        } while (choix!=8);
+        } while (choix!=9);
     } while (choice==0);
 
     return 0;

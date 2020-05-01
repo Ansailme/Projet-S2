@@ -15,7 +15,7 @@ class Arete
 private :
     int m_indice;
     Sommet* m_sommet[2]; //tableau de 2 sommets extremités d'1 arete
-    double m_poids; //poids arete
+    double m_poids=0; //poids arete
 
 public :
     Arete (int indice,Sommet* extrem1, Sommet* extrem2);

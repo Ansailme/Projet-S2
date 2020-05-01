@@ -1,47 +1,12 @@
 	 INDICES
 
  Centralité de degré :
-sommet 0 : 1
-sommet 1 : 1
-sommet 2 : 4
-sommet 3 : 1
-sommet 4 : 1
+sommet 0 : 2
+sommet 1 : 2
+sommet 2 : 2
 
  Centralité de degré normalisé :
-sommet 0 : 0.25
-sommet 1 : 0.25
+sommet 0 : 1
+sommet 1 : 1
 sommet 2 : 1
-sommet 3 : 0.25
-sommet 4 : 0.25
 
-Centralite de vecteur propre:
-sommet0 : 0.223607
-sommet1 : 0.223607
-sommet2 : 0.894427
-sommet3 : 0.223607
-sommet4 : 0.223607
-
- Centralité de vecteur propre normalisé :
-sommet 0 : 0.0559017
-sommet 1 : 0.0559017
-sommet 2 : 0.223607
-sommet 3 : 0.0559017
-sommet 4 : 0.0559017
-
-Centralité de vecteur de proximité :
- sommet : 0 : 0.04
-
- sommet : 1 : 0.0333333
-
- sommet : 2 : 0.05
-
- sommet : 3 : 0.0285714
-
- sommet : 4 : 0.0285714
-
-Centralité de vecteur de proximité normalisé:
-sommet : 0 : 0.16
-sommet : 1 : 0.133333
-sommet : 2 : 0.2
-sommet : 3 : 0.114286
-sommet : 4 : 0.114286
