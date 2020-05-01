@@ -547,13 +547,18 @@ void Graphe::recherchecompoConnexes()
     }
     while (stop); //tant qu'il a des sommets qui n'ont pas été parcouru
 
+    int k=0;
+
     ///affichage
     for (auto it : compoConnexes)
     {
         std::cout<<std::endl<<"Composante connexe "<<it.first<<" : ";
         for (auto et : it.second)
             std::cout<<et<<" ";
+        k++;
     }
+    std::cout << std::endl << std::endl << "Le graphe a " << k << " composante(s) connexe(s)." << std::endl;
+    std::cout << std::endl;
 
 
     if (m_orient==0) //si le graphe est non orienté
@@ -562,7 +567,7 @@ void Graphe::recherchecompoConnexes()
         ///recherche de chaine ou cycle eulérien
         for (auto it : compoConnexes)
             i=it.first;
-        if (i!=1) //graphe non connexe car plusiseurs composantes connexes
+/*        if (i!=1) //graphe non connexe car plusiseurs composantes connexes
             std::cout<<std::endl<<"Le graphe n'admet ni une chaine ni un cycle eulerien car il n'est pas connexe";
         else
         {
@@ -585,12 +590,12 @@ void Graphe::recherchecompoConnexes()
     }
     else
         std::cout<<std::endl<<"Le graphe n'admet ni une chaine ni un cycle eulerien car il est oriente";
-
+*/
+}
 }
 
 Sommet* Graphe::recupSommet (int indice)
 {
     return m_sommets[indice];
-    std::cout << "changement";
 }
 
