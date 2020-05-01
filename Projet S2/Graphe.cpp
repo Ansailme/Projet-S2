@@ -556,7 +556,7 @@ void Graphe::recherchecompoConnexes()
     }
 
 
-    if (m_orient==0) //si le graphe est non oriente
+    if (m_orient==0) //si le graphe est non orienté
     {
         int i;
         ///recherche de chaine ou cycle eulérien
@@ -591,5 +591,6 @@ void Graphe::recherchecompoConnexes()
 Sommet* Graphe::recupSommet (int indice)
 {
     return m_sommets[indice];
+    std::cout << "changement";
 }
 
