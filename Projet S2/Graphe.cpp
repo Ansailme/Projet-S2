@@ -383,6 +383,33 @@ Graphe::~Graphe()
 }
 
 
+
+void Graphe::supp_arete()
+{
+    int indice;
+    std::cout << "Arete a supprimer ";
+    std::cin >> indice;
+    m_aretes.erase(m_aretes.begin()+indice);
+     for(auto s : m_aretes)
+    {
+        std::cout<<"\t"<<s->getIndice()<<" ";
+        std::cout<<s->getExtrem1()->getNum()<<" ";
+        std::cout<<s->getExtrem2()->getNum()<<" ";
+        std::cout<<s->getPoids();
+        std::cout << std::endl;
+        std::cout << std::endl;
+    }
+}
+
+
+
+
+
+
+
+
+
+
 /*-------------------------------*/
 
 void Graphe::BFS(int premier)

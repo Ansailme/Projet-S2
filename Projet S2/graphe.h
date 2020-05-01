@@ -35,6 +35,8 @@ public :
 
     void sauvegarde(); //sauvegarde de tous les indices dans fichier
 
+    void supp_arete();
+
     /*-----------------*/
     void BFS(int premier);
     Sommet* recupSommet(int indice);

@@ -36,6 +36,7 @@ int main()
                      <<"\t8) Fermer ce graphe et en charger un autre\n"
                      <<"\t9) Quitter le programme\n"
                      <<"\t10) Connexite\n"
+                     <<"\t11) Supprimer une arete\n"
                      << std::endl;
 
             std::cout<<"Faites votre choix : ";
@@ -91,6 +92,8 @@ int main()
                 return fermeture;
             case 10:
                 monGraphe.recherchecompoConnexes();
+            case 11:
+                monGraphe.supp_arete();
             }
         } while (choix!=8);
     } while (choice==0);
