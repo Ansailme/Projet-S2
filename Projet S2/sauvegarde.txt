@@ -40,8 +40,8 @@ Centralité de vecteur de proximité :
  sommet : 4 : 0.0285714
 
 Centralité de vecteur de proximité normalisé:
-sommet : 0 : 0.05
-sommet : 1 : 0.0285714
-sommet : 2 : 0.0285714
+sommet : 0 : 0.16
+sommet : 1 : 0.133333
+sommet : 2 : 0.2
 sommet : 3 : 0.114286
 sommet : 4 : 0.114286

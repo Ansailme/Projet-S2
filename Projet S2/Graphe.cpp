@@ -200,8 +200,8 @@ void Graphe::c_propre()
     {
         //std::cout << cvp[i] << std::endl;
 
-        std::cout << "sommet " << i << " indice de centralite : " << cvp[i] << std::endl;
-        std::cout << "sommet " << i << " indice de centralite normalise: " << (cvp[i]*(1.0/(m_ordre-1))) << std::endl;
+        std::cout << "sommet " << i << " indice de vecteur propre : " << cvp[i] << std::endl;
+        std::cout << "sommet " << i << " indice de vecteur propre normalise: " << (cvp[i]*(1.0/(m_ordre-1))) << std::endl;
         std::cout<<std::endl;
     }
 }
