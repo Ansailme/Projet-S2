@@ -57,4 +57,3 @@ bool Arete::recup_poids_adj(double &poids,Sommet* prec, Sommet* suivant)const
 
 
 
-

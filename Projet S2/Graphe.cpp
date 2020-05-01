@@ -390,6 +390,18 @@ void Graphe::supp_arete()
     std::cout << "Arete a supprimer ";
     std::cin >> indice;
     m_aretes.erase(m_aretes.begin()+indice);
+    for (int i=0; i< m_sommets.size(); ++i)
+    {
+        for (int j=0; j< m_sommets.size(); ++j)
+        {
+            (m_sommets[i] -> estAdjacentA(j));
+            {
+                //m_aretes.erase(m_aretes.begin()+indice);
+            }
+        }
+
+    }
+
      for(auto s : m_aretes)
     {
         std::cout<<"\t"<<s->getIndice()<<" ";
@@ -399,6 +411,8 @@ void Graphe::supp_arete()
         std::cout << std::endl;
         std::cout << std::endl;
     }
+
+
 }
 
 

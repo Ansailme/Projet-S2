@@ -88,12 +88,18 @@ int main()
                 monGraphe.sauvegarde(); ///sauvegarde des indices dans fichier txt
                 std::cout<<"\tsauvegarde operationelle chef !\n"<<std::endl;
                 break;
+
             case 9 :
                 return fermeture;
+                break;
+
             case 10:
                 monGraphe.recherchecompoConnexes();
+                break;
+
             case 11:
                 monGraphe.supp_arete();
+                break;
             }
         } while (choix!=8);
     } while (choice==0);
