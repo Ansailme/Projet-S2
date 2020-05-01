@@ -386,20 +386,30 @@ Graphe::~Graphe()
 
 void Graphe::supp_arete()
 {
-    int indice;
-    std::cout << "Arete a supprimer ";
+    int indice=0;
+    int nombre=0;
+    std::cout<< "Combien d'aretes voulez-vous supprimer ?" <<std::endl;
+    std::cin >> nombre;
+    for (int i=0; i<nombre; ++i)
+    {
+    std::cout << "Arete a supprimer : ";
     std::cin >> indice;
+    //m_aretes[indice]=nullptr;
     m_aretes.erase(m_aretes.begin()+indice);
+    }
+
     for (int i=0; i< m_sommets.size(); ++i)
     {
-        for (int j=0; j< m_sommets.size(); ++j)
+        for (int j=0; j< m_aretes.size(); ++j)
         {
-            (m_sommets[i] -> estAdjacentA(j));
+            if (indice==j)
             {
-                //m_aretes.erase(m_aretes.begin()+indice);
+            delete m_aretes[indice];
+            m_aretes.erase(m_aretes.begin()+indice);
             }
         }
-
+        delete m_sommets[i]->estAdjacentA(indice);
+        m_sommets.erase(m_sommets.begin()+indice);
     }
 
      for(auto s : m_aretes)
@@ -410,9 +420,10 @@ void Graphe::supp_arete()
         std::cout<<s->getPoids();
         std::cout << std::endl;
         std::cout << std::endl;
+        std::cout << "ok"<< std::endl;
     }
 
-
+std::cout << "ok"<< std::endl;
 }
 
 
