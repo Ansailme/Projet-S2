@@ -35,6 +35,7 @@ int main()
                      <<"\t7) Sauvegarder les indices dans un fichier\n"
                      <<"\t8) Fermer ce graphe et en charger un autre\n"
                      <<"\t9) Quitter le programme\n"
+                     <<"\t10) Connexite\n"
                      << std::endl;
 
             std::cout<<"Faites votre choix : ";
@@ -52,7 +53,6 @@ int main()
                 //monGraphe.verification();
                 monGraphe.lectureFichierP(); ///lecture fichier pondération
                 monGraphe.afficherPoids(); ///affichage fichier pondération
-                //monGraphe.lienAS(); ///ecriture extremités - poids
                 break;
 
             case 3 :
@@ -89,6 +89,8 @@ int main()
                 break;
             case 9 :
                 return fermeture;
+            case 10:
+                monGraphe.recherchecompoConnexes();
             }
         } while (choix!=8);
     } while (choice==0);
