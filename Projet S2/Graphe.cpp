@@ -200,8 +200,9 @@ void Graphe::c_propre()
     {
         //std::cout << cvp[i] << std::endl;
 
-        std::cout << "sommet " << i << " indice de vecteur propre : " << cvp[i] << std::endl;
-        std::cout << "sommet " << i << " indice de vecteur propre normalise: " << (cvp[i]*(1.0/(m_ordre-1))) << std::endl;
+        std::cout << "sommet " << i << " indice de vecteur propre : " << std::setprecision(3) << std::fixed
+                    << cvp[i] << std::endl;
+        std::cout << "sommet " << i << " indice de vecteur propre normalise: " <<(cvp[i]*(1.0/(m_ordre-1))) << std::endl;
         std::cout<<std::endl;
     }
 }
@@ -366,7 +367,8 @@ void Graphe:: calcul_cp_auto()
                 cpn[i] = (m_ordre-1)/p_poids;
                 std::cout << std::endl;
                 std::cout <<"indice de proximite :\n";
-                std::cout << i << " a " << j << " : " << cp[i] << std::endl;
+                std::cout << i << " a " << j << " : " << std::setprecision(3) << std::fixed
+                            << cp[i] << std::endl;
                 std::cout << "indice de proximite normalise:\n";
                 std::cout << i << " a " << j << " : " << cpn[i] << std::endl<<std::endl;
             }

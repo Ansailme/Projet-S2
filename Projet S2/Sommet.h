@@ -8,6 +8,7 @@
 #include <string>
 #include <map>
 #include "svgfile.h"
+#include <iomanip>
 
 class Arete;
 
