@@ -62,6 +62,15 @@ Graphe::Graphe(std::string fichier)
 
     ifs.close();
 
+    remove("sauvegarde0.txt");
+    remove("sauvegarde_brut0.txt");
+    remove("sauvegarde1.txt");
+    remove("sauvegarde_brut1.txt");
+    remove("sauvegarde2.txt");
+    remove("sauvegarde_brut2.txt");
+    remove("sauvegarde3.txt");
+    remove("sauvegarde_brut3.txt");
+
 }
 
 void Graphe::lectureFichierP()
@@ -242,6 +251,21 @@ void Graphe::sauvegarde(int s)
                <<"\t"<< cvp[i]<<"   "<< (cvp[i]*(1.0/(m_ordre-1)))
                <<"\t\t\t"<< cp[i] <<"   "<< cpn[i]<< std::endl;
         ofs << std::endl;
+    }
+    std::string fichier_brut;
+    fichier_brut = "sauvegarde_brut" + std::to_string(s) +".txt";
+    std::ofstream ofs2(fichier_brut);
+    if (!ofs2)
+        throw std::runtime_error( "Impossible d'écrire la sauvegarde car fichier inexistant ");
+
+    else
+    {
+        for (unsigned int i=0; i<m_sommets.size(); ++i)
+            ofs2 << std::setprecision(3) << std::fixed
+               << deg[i]<< " " << (deg[i]*(1.0/(m_ordre-1)))
+               << " " << cvp[i]<< " " << (cvp[i]*(1.0/(m_ordre-1)))
+               << " " << cp[i] <<" "<< cpn[i]<< std::endl;
+        ofs2 << std::endl;
     }
 }
 
