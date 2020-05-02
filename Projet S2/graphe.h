@@ -37,6 +37,8 @@ public :
 
     void supp_arete();
 
+    void calculDiff_indice (int f1, int f2);
+
 
     /*-----------------*/
     void BFS(int premier);

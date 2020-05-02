@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+	<!--Author : Leo tigers
+		Version : 1
+		Date : 30/10/2019
+		-->
+		<meta charset="UTF-8"><style type="text/css">
+		/*img
+		{
+			display:none;
+		}
+		.current
+		{
+			display:block;
+		}*/
+		img
+		{
+			z-index:-999;
+			position:absolute;
+		}
+		.current
+		{
+			z-index:1;
+		}
+		div
+		{
+			display:inline;
+		}
+		</style>
+		
+	</head>
+    <body>
+        <button onclick="previous()">⬅️</button> Image : <div id="count">1</div><button onclick="next()">➡️</button> <br/><br/>
+		Autorefresh : <button id="pauseButton" onclick="pause()"> Pause </button><br/>
+		Choix image : <input style="width:40px;" type="text" id="newId" value="0">
+		<button onclick="setCurrent()"><div>Aller à</div></button>
+		<div id="maxImages">(min : 0, max : 0)</div> <br/>
+		<button onclick="reset()">Reset</button> <br/><br/>
+		<div style='z-index:0;width:1000px;height:800px;background-color:white;position:absolute;x:25%;'></div>
+		
+        <img id="0" src="./output.svg?0">
+		
+		<script>
+		var autorefresh = true;
+		var intervalControl;
+		var imagesCount=1;
+		
+		function reset()
+		{
+			imagesCount=0;
+			autorefresh = true;
+			clearInterval(intervalControl);
+			
+			var images = document.getElementsByTagName("img");
+			for(var i=images.length;i>=0;i++)
+			{
+				document.body.removeChild(images[i]);
+			}
+			
+			start();
+		}
+		
+		function next()
+		{
+			if(autorefresh)
+				pause();
+			var current = document.getElementsByClassName("current")[0];
+			var id = current.id;
+			document.getElementById((parseInt(id)+1).toString()).classList.add("current");
+			current.classList.remove("current");
+			document.getElementById("count").innerHTML = (parseInt(id)+1).toString();
+		}
+		function previous()
+		{
+			if(autorefresh)
+				pause();
+			var current = document.getElementsByClassName("current")[0];
+			var id = current.id;
+			document.getElementById((parseInt(id)-1).toString()).classList.add("current");
+			current.classList.remove("current");
+			document.getElementById("count").innerHTML = (parseInt(id)-1).toString();
+		}
+		
+		function start(first)
+		{
+			var c=first;
+			
+			intervalControl = setInterval(function(){ 
+			
+			var images = document.body.getElementsByTagName("img");
+			if(images.length==120)
+			{
+				document.body.removeChild(images[0]);
+			}
+			var im = document.createElement("img");
+			im.id = imagesCount;
+			im.src = "./output.svg?"+imagesCount.toString();
+			document.body.appendChild(im);
+			
+			
+			var previous = document.getElementById((imagesCount-1).toString());
+			if(previous)
+				previous.classList.add("current");
+				
+			var before = document.getElementById((imagesCount-2).toString());
+			if(before)
+				before.classList.remove("current");
+			
+			//c++;
+			imagesCount++;
+			document.getElementById("count").innerHTML = (imagesCount-2).toString();
+			document.getElementById("maxImages").innerHTML = "(min : "+Math.max(imagesCount-122, 0).toString()+", max : "+(imagesCount-2).toString()+")";
+			
+			}, 1000);
+		}
+		function setCurrent()
+		{
+			if(autorefresh)
+				pause();
+			id = document.getElementById("newId").value;
+			
+			var currents = document.getElementsByClassName("current");
+			for(var i=0; i<currents.length;i++)
+			{
+				currents[i].classList.remove("current");
+			}
+			var newCurrent = document.getElementById(id.toString());
+			if(newCurrent)
+			{
+				newCurrent.classList.add("current");
+				document.getElementById("count").innerHTML = id;
+			}
+			else
+			{
+				var images = document.getElementsByTagName("img");
+				images[images.length-1].classList.add("current");
+				document.getElementById("count").innerHTML = (imagesCount-2).toString();
+			}
+			
+		}
+		function pause()
+		{
+			autorefresh = !autorefresh;
+			if(autorefresh)
+			{
+				var currents = document.getElementsByClassName("current");
+				for(var i=0; i<currents.length;i++)
+				{
+					currents[i].classList.remove("current");
+				}
+				start(imagesCount);
+				document.getElementById("pauseButton").innerHTML = "Pause";
+			}
+			else
+			{
+				clearInterval(intervalControl);
+				document.getElementById("pauseButton").innerHTML = "Marche";
+			}
+		}
+		
+		start();
+        </script>
+    </body>
+</html>

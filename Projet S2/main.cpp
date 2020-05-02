@@ -19,6 +19,7 @@ int main()
         int a,choix=0, s=0, modif=-1;
         int i_debut,i_fin;
         double poids=0;
+        int f1=0, f2=0;
         do
         {
             /* std::cout<<std::endl<<"\t1) BFS "
@@ -38,7 +39,8 @@ int main()
                      <<"\t9) Fermer ce graphe et en charger un autre\n"
                      <<"\t10) Connexite\n"
                      <<"\t11) Supprimer une arete\n"
-                     <<"\t12) Quitter le programme\n"
+                     <<"\t12) Calcul des differences\n"
+                     <<"\t13) Quitter le programme\n"
 
 
                      << std::endl;
@@ -100,12 +102,18 @@ int main()
                 monGraphe.recherchecompoConnexes();
                 break;
 
-            case 11:
+            case 11 :
                 monGraphe.supp_arete();
                 s=s+1;
                 break;
 
             case 12 :
+                std::cout<<"Quels fichiers comptez-vous comparer ?\n"<< std::endl;
+                std::cin >> f1 >> f2;
+                monGraphe.calculDiff_indice(f1,f2);
+                break;
+
+            case 13 :
                 return fermeture;
                 break;
 

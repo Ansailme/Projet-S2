@@ -7,7 +7,7 @@
 #include <map>
 #include <iostream>
 
-///Source : code TP1 M.Fercoq
+///Source constructeur graphe : code TP1 M.Fercoq
 
 ///Un constructeur qui charge un graphe en mémoire à partir d’un fichier texte
 Graphe::Graphe(std::string fichier)
@@ -267,6 +267,9 @@ void Graphe::sauvegarde(int s)
                <<"\t\t\t"<< cp[i] <<"   "<< cpn[i]<< std::endl;
         ofs << std::endl;
     }
+
+    ///---------------------------------------------------------------///
+
     std::string fichier_brut;
     fichier_brut = "sauvegarde_brut" + std::to_string(s) +".txt";
     std::ofstream ofs2(fichier_brut);
@@ -277,7 +280,7 @@ void Graphe::sauvegarde(int s)
     {
         for (unsigned int i=0; i<m_sommets.size(); ++i)
             ofs2 << std::setprecision(3) << std::fixed
-               << deg[i]<< " " << (deg[i]*(1.0/(m_ordre-1)))
+               << i << " " << deg[i]<< " " << (deg[i]*(1.0/(m_ordre-1)))
                << " " << cvp[i]<< " " << (cvp[i]*(1.0/(m_ordre-1)))
                << " " << cp[i] <<" "<< cpn[i]<< std::endl;
         ofs2 << std::endl;
@@ -446,18 +449,69 @@ void Graphe::supp_arete()
     c_propre();
     calcul_cp_auto();
 
-    std::cout << std::endl;
+    std::cout << "Veuillez enregistrer la modif en tapant 8 !!! "<< std::endl;
 
 }
 
-/*
-void calculIndice ()
+
+
+void Graphe::calculDiff_indice (int f1, int f2) //recoit en parametre les numeros de fichiers à comparer
 {
-    ///
-    ///charger un autre fichier en brut sans texte
-    ///ifs>> val 1 >> val 1
+///Ciblage des fichiers textes
+
+    std::string fichier1, fichier2;
+    fichier1 = "sauvegarde_brut" + std::to_string(f1) + ".txt";
+    fichier2 = "sauvegarde_brut" + std::to_string(f2) + ".txt";
+
+///lecture du 2eme fichier brut et stockage des valeurs
+
+    std::ifstream ifs1{fichier1}; //ouverture en mode lecture
+    if (!ifs1)
+        throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier1 );
+
+    double num1, ideg1, idegn1, ivp1, ivpn1, icp1, icpn1;
+    ifs1>> num1 >> ideg1 >> idegn1 >> ivp1 >> ivpn1 >> icpn1;
+
+    if ( ifs1.fail() )
+        throw std::runtime_error("Probleme lecture données");
+
+///lecture du 2eme fichier brut et stockage des valeurs
+
+    std::ifstream ifs2{fichier2}; //ouverture en mode lecture
+    if (!ifs2)
+        throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier1 );
+
+    double num2, ideg2, idegn2, ivp2, ivpn2, icp2, icpn2;
+    ifs2 >> num2 >> ideg2 >> idegn2 >> ivp2 >> ivpn2 >> icpn2;
+
+    if ( ifs1.fail() )
+        throw std::runtime_error("Probleme lecture données");
+
+///Calcul de différence des indices
+
+    double dif_num, dif_ideg, dif_idegn, dif_ivp, dif_ivpn, dif_icp, dif_icpn;
+
+    dif_num = num2-num1;
+    dif_ideg = ideg2-ideg1;
+    dif_idegn = idegn2-idegn1;
+    dif_ivp = ivp2-ivp1;
+    dif_ivpn = ivpn2-ivpn1;
+    dif_icp = icp2-icp1;
+    dif_icpn = icpn2-icpn1;
+
+///Affichage des résultats de calculs de différence pour 1er sommet
+
+    std::cout << " dif num / deg / degn / vp / vpn / cp / cpn :\n"
+              << dif_num
+              << "  " << dif_ideg
+              << "  "<< dif_idegn
+              << "  "<< dif_ivp
+              << "  "<< dif_ivpn
+              << "  "<< dif_icp
+              << "  "<< dif_icpn<<std::endl
+              <<std::endl;
+///
 }
-*/
 
 
 
