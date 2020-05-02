@@ -235,15 +235,14 @@ void Graphe::sauvegarde(int s)
     {
         ofs<<"\t INDICES"<<std::endl;
         ofs<< std::endl;
-        ofs<<"Ordre des indices bruts et normalisés : centralité de degré /centralité de vecteur propre / centralité de proximité"<<std::endl;
+        ofs<<"Ordre des indices bruts et normalisés : \n\tcentralité de degré /centralité de vecteur propre / centralité de proximité"<<std::endl<<std::endl;
         for (unsigned int i=0; i<m_sommets.size(); ++i)
             ofs<< "sommet " << i << " : " << std::setprecision(3) << std::fixed
-               << deg[i]<<" "<< (deg[i]*(1.0/(m_ordre-1)))
-               <<" "<< cvp[i]<<" "<< (cvp[i]*(1.0/(m_ordre-1)))
-               <<" "<< cp[i] <<" "<< cpn[i]<< std::endl;
+               << deg[i]<<"   "<< (deg[i]*(1.0/(m_ordre-1)))
+               <<"\t"<< cvp[i]<<"   "<< (cvp[i]*(1.0/(m_ordre-1)))
+               <<"\t\t\t"<< cp[i] <<"   "<< cpn[i]<< std::endl;
         ofs << std::endl;
     }
-
 }
 
 
@@ -358,6 +357,7 @@ void Graphe:: calcul_cp_auto()
             }
         }
     }
+    std::cout <<std::endl;
 }
 
 

@@ -1,9 +1,9 @@
 	 INDICES
 
 Ordre des indices bruts et normalisés : centralité de degré /centralité de vecteur propre / centralité de proximité
-sommet 0 : 1.000 0.250 0.289 0.072 0.040 0.160
-sommet 1 : 1.000 0.250 0.289 0.072 0.033 0.133
-sommet 2 : 4.000 1.000 0.866 0.217 0.050 0.200
+sommet 0 : 1.000 0.250 0.229 0.057 0.040 0.160
+sommet 1 : 1.000 0.250 0.229 0.057 0.033 0.133
+sommet 2 : 4.000 1.000 0.918 0.229 0.050 0.200
 sommet 3 : 1.000 0.250 0.000 0.000 inf inf
-sommet 4 : 1.000 0.250 0.289 0.072 0.033 0.133
+sommet 4 : 1.000 0.250 0.229 0.057 0.033 0.133
 
