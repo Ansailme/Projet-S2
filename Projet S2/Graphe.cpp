@@ -258,7 +258,7 @@ void Graphe::sauvegarde(int s)
     std::string fichier;
     //fichier = "sauvegarde" + std::to_string(1)+".txt";
     fichier = "sauvegarde" + std::to_string(s) +".txt";
-    std::cout<<"sauvegarde des indices ok\n";
+    std::cout<<"\tsauvegarde des indices ok\n";
     std::ofstream ofs(fichier);
     if (!ofs)
         throw std::runtime_error( "Impossible d'écrire la sauvegarde car fichier inexistant ");
@@ -287,9 +287,9 @@ void Graphe::sauvegarde(int s)
     {
         for (unsigned int i=0; i<m_sommets.size(); ++i)
             ofs2
-                 << i << " " << deg[i]<< " " << (deg[i]*(1.0/(m_ordre-1)))
-                 << " " << cvp[i]<< " " << (cvp[i]*(1.0/(m_ordre-1)))
-                 << " " << cp[i] <<" "<< cpn[i]<< std::endl;
+                    << i << " " << deg[i]<< " " << (deg[i]*(1.0/(m_ordre-1)))
+                    << " " << cvp[i]<< " " << (cvp[i]*(1.0/(m_ordre-1)))
+                    << " " << cp[i] <<" "<< cpn[i]<< std::endl;
         ofs2 << std::endl;
     }
 }
@@ -352,6 +352,7 @@ double Graphe::c_prox(int premier, int arrive)
     return p_poids;
 }
 
+
 void Graphe::affichage(int arrive, double poids) const
 {
     if(!m_sommets[arrive]->get_marque())
@@ -391,13 +392,22 @@ void Graphe:: calcul_cp_auto()
         {
             if(i!=j)
             {
-                p_poids = c_prox(i,j); //on recupere le poids total de c_prox
-                cp[i] = 1/p_poids;
-                cpn[i] = (m_ordre-1)/p_poids;
+                if ((m_sommets[i]->getNbAdj())==0)
+                {
+                    cp[i] = 0;
+                    cpn[i] =0;
+                }
+                else
+                {
+                    p_poids = c_prox(i,j); //on recupere le poids total de c_prox
+                    cp[i] = 1/p_poids;
+                    cpn[i] = (m_ordre-1)/p_poids;
+                }
+
                 std::cout << std::endl;
                 std::cout <<"indice de proximite :\n";
                 std::cout << i << " a " << j << " : "
-                          << cp[i] << std::endl;
+                          << std::setprecision(3)<<std::fixed << cp[i] << std::endl;
                 std::cout << "indice de proximite normalise:\n";
                 std::cout << i << " a " << j << " : " << cpn[i] << std::endl;
             }
@@ -568,10 +578,10 @@ void Graphe::calculDiff_indice (int f1, int f2) //recoit en parametre les numero
 
 ///Affichage des résultats de calculs de différence pour 1er sommet
 
-    std::cout << " dif num / deg / degn / vp / vpn / cp / cpn :\n";
+    std::cout << " sommet / nom sommet / deg / degn / vp / vpn / cp / cpn :\n";
     for (unsigned int i=0; i<m_sommets.size(); ++i)
     {
-        std::cout << dif_indice[i]
+        std::cout << "sommet : "<< i <<" dit "<< m_sommets[i]->getLettre()<< " -> "
                   << "  " << dif_ideg[i]
                   << "  "<< dif_idegn[i]
                   << "  "<< dif_ivp[i]
