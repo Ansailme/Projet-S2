@@ -730,7 +730,7 @@ void Graphe::recherchecompoConnexes()
     */
 }
 
-int Graphe::connexite()
+void Graphe::connexite()
 {
     int k,tot_chemin;
     k=99999;
@@ -748,7 +748,6 @@ int Graphe::connexite()
 
                 tot_chemin = 0;
                 m_sommets[i]->connexite(j,tot_chemin);
-                std::cout << i << ":" << j << ":" << tot_chemin << std::endl;
 
                 if(tot_chemin<k)
                 {
@@ -760,7 +759,8 @@ int Graphe::connexite()
         }
     }
 
-    return k;
+    std::cout << "Il faut enlever " << k << " arete(s) pour former au moins 2 composantes connexes.";
+    std::cout << std::endl << std::endl;
 
 }
 

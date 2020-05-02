@@ -130,7 +130,7 @@ int main()
 
 
             case 14:
-                std::cout << monGraphe.connexite() << std::endl;
+                monGraphe.connexite();
                 break;
 
             }

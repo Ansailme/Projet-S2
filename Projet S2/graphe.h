@@ -42,7 +42,7 @@ public :
     void DFS(int premier);
     void recuDFS(std::map<int, int>& i_preds,Sommet* s);
     void recherchecompoConnexes();
-    int connexite();
+    void connexite();
     Sommet* recupSommet(int indice);
 
     void sauvegarde(int s); //sauvegarde de tous les indices dans fichier
