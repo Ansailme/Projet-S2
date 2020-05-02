@@ -66,7 +66,7 @@ Graphe::Graphe(std::string fichier)
 
 void Graphe::lectureFichierP()
 {
-    std::cout<<"Quel fichier ponderation souhaitez-vous lire?\n";
+    std::cout<< std::endl <<"Quel fichier ponderation souhaitez-vous lire?\n";
     std::string fichier2;
     std::cin>>fichier2;
     std::ifstream ifs2{"p_" + fichier2 + ".txt"}; //ouverture en mode lecture
@@ -154,7 +154,7 @@ void Graphe::afficherPoids()const
 
 void Graphe::c_degre()
 {
-    std::cout<<"Indice de centralite et centralite normalise\n";
+    std::cout<< std::endl <<"Indice de centralite et centralite normalise\n";
     for (unsigned int i=0; i<m_sommets.size(); ++i)
     {
         std::cout << "\n\tsommet " << i <<" : "<< m_sommets[i]->getNbAdj() <<" et "<< (m_sommets[i]->getNbAdj())*(1.0/(m_ordre-1)) << std::endl;
@@ -354,7 +354,7 @@ void Graphe:: calcul_cp_auto()
                 std::cout << i << " a " << j << " : " << std::setprecision(3) << std::fixed
                           << cp[i] << std::endl;
                 std::cout << "indice de proximite normalise:\n";
-                std::cout << i << " a " << j << " : " << cpn[i] << std::endl<<std::endl;
+                std::cout << i << " a " << j << " : " << cpn[i] << std::endl;
             }
         }
     }
@@ -366,7 +366,7 @@ void Graphe::supp_arete()
     int indice=0;
     int nombre=0;
     int s=0;
-    std::cout << "\nles aretes sont :\n";
+    std::cout<< "\nles aretes sont :\n";
     for(auto s : m_aretes)
     {
         std::cout<<"\t"<<s->getIndice()<<" ";
@@ -377,12 +377,12 @@ void Graphe::supp_arete()
     }
 
 
-    std::cout<< "Combien d'aretes voulez-vous supprimer ?" <<std::endl;
+    std::cout<<std::endl << "Combien d'aretes voulez-vous supprimer ?" <<std::endl;
     std::cin >> nombre;
 
     for (int i=0; i<nombre; ++i)
     {
-        std::cout << "Arete a supprimer : ";
+        std::cout << std::endl << "Arete a supprimer : ";
         std::cin >> indice;
 
         for (unsigned int j=0; j<m_aretes.size(); ++j)

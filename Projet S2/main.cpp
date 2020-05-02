@@ -9,7 +9,7 @@ int main()
     int choice =0;
     do
     {
-        std::cout <<"graphes disponibles : \n\t-etoile1-2-3-4 \n\t-cube \n\t-france \n\t-monde\n";
+        std::cout <<"Graphes disponibles : \n\t-etoile1-2-3-4 \n\t-cube \n\t-france \n\t-monde\n";
         std::cout<<"\n\nQuel graphe souhaitez-vous utiliser? \n";
         std::string nomF;
         std::cin>>nomF;
