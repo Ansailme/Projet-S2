@@ -21,7 +21,7 @@ private :
 public :
     Graphe (std::string fichier);
     ~Graphe();
-    void lectureFichierP();
+    int lectureFichierP();
     void afficherG()const;
     void afficherPoids()const;
     void dessinerGraphe()const;

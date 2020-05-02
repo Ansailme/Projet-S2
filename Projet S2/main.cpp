@@ -5,41 +5,38 @@
 
 int main()
 {
-    std::cout<<"\n\t\t MENU PRINCIPAL\n"<<std::endl;
     int choice =0;
     do
     {
-        std::cout <<"Graphes disponibles : \n\t-etoile1-2-3-4 \n\t-cube \n\t-france \n\t-monde\n";
-        std::cout<<"\n\nQuel graphe souhaitez-vous utiliser? \n";
+        std::cout<<"\n\n\tACCESSIBILITE & VULNERABILITE DES RESEAUX \n";
+        std::cout<<"\n\t\t    MENU PRINCIPAL\n";
+        std::cout<<"\n\tQuel graphe souhaitez-vous charger? \n";
         std::string nomF;
         std::cin>>nomF;
         std::cout<<std::endl;
-        Graphe monGraphe{"g_" + nomF +".txt"};
+        Graphe monGraphe{"g_"+nomF +".txt"};
         bool fermeture = 1;
         int a,choix=0, s=0, modif=-1;
         int i_debut,i_fin;
         double poids=0;
         int f1=0, f2=0;
         int verif=0;
+        int lectureF2=0;
         do
         {
             ///Affichage menu avec les choix
-            std::cout<<"Que souhaitez-vous faire ?\n"<<std::endl
-                     <<"\t1) Lire & afficher les donnees du graphe\n"
-                     <<"\t2) Lire & afficher les donnees de ponderation \n"
-                     <<"\t3) Dessiner le graphe SVG \n"
-                     <<"\t4) Indice centralite de degre \n"
-                     <<"\t5) Indice centralite de vecteur propre \n"
-                     <<"\t6) Indice centralite de proximite\n"
-                     <<"\t7) Calcul plus court chemin\n"
-                     <<"\t8) Sauvegarder les indices dans un fichier\n"
-                     <<"\t9) Fermer ce graphe et en charger un autre\n"
-                     <<"\t10) Connexite\n"
-                     <<"\t11) Supprimer une arete\n"
-                     <<"\t12) Calcul des differences\n"
-                     <<"\t13) Quitter le programme\n"
-
-
+            std::cout<<"\tQue souhaitez-vous faire ?\n"<<std::endl
+                     <<"\t1) Donnees du graphe\n"
+                     <<"\t2) Charger un fichier de ponderation \n"
+                     <<"\t3) Dessiner le graphe \n"
+                     <<"\t4) Calculer - afficher les indices\n"
+                     <<"\t5) Sauvegarder les indices dans un fichier\n"
+                     <<"\t6) Calculer le plus court chemin\n"
+                     <<"\t7) Connexite du graphe\n"
+                     <<"\t8) Fermer ce graphe et en charger un autre\n"
+                     <<"\t9) Supprimer une arete\n"
+                     <<"\t10) Calcul des differences d'indice\n"
+                     <<"\t11) Quitter le programme\n"
                      << std::endl;
 
             std::cout<<"Faites votre choix : ";
@@ -55,58 +52,54 @@ int main()
 
             case 2:
                 //monGraphe.verification();
-                monGraphe.lectureFichierP(); ///lecture fichier pondération
+                do
+                {
+                    lectureF2=monGraphe.lectureFichierP(); ///lecture fichier pondération
+                } while (lectureF2==1);
                 monGraphe.afficherPoids(); ///affichage fichier pondération
                 break;
 
             case 3 :
-                //svgTest();
                 monGraphe.dessinerGraphe (); ///dessiner le graphe en svgout
                 break;
 
             case 4 :
                 monGraphe.c_degre(); ///calcul centralité de degré
+                monGraphe.c_propre(); ///calcul centralité vecteur propre
+                monGraphe.calcul_cp_auto(); ///calcul centralité proximité
                 break;
 
             case 5 :
-                monGraphe.c_propre();  ///calcul centralité vecteur propre
+                monGraphe.sauvegarde(s); ///sauvegarde des indices dans fichier txt
+                std::cout<<"\tsauvegarde du fichier operationelle chef !\n"<<std::endl;
                 break;
 
             case 6 :
-                ///Dijkstra : calcul + court chemin = centralité de proximité
-                monGraphe.calcul_cp_auto();
-                break;
-
-            case 7 :
                 std::cout << "Etes-vous sur ? 1:oui 0:non" <<std::endl;
                 std::cin>>verif;
                 std::cout << std::endl;
                 if(verif ==1)
                 {
                     std::cout<<std::endl<<"Plus court chemin entre:"
-                         <<std::endl<<"Choisir le sommet de depart : ";
-                std::cin>>i_debut;
-                std::cout<<std::endl<<"Choisir le sommet d'arrivee : ";
-                std::cin>>i_fin;
-                poids = monGraphe.c_prox(i_debut,i_fin);
-                std::cout<< std::endl;
-                monGraphe.affichage(i_fin, poids);
-                std::cout<< std::endl;
+                             <<std::endl<<"Choisir le sommet de depart : ";
+                    std::cin>>i_debut;
+                    std::cout<<std::endl<<"Choisir le sommet d'arrivee : ";
+                    std::cin>>i_fin;
+                    poids = monGraphe.c_prox(i_debut,i_fin);
+                    std::cout<< std::endl;
+                    monGraphe.affichage(i_fin, poids);
+                    std::cout<< std::endl;
                 }
-                else
                 break;
 
-
-            case 8 :
-                monGraphe.sauvegarde(s); ///sauvegarde des indices dans fichier txt
-                std::cout<<"\tsauvegarde du fichier operationelle chef !\n"<<std::endl;
-                break;
-
-            case 10:
+            case 7 :
                 monGraphe.recherchecompoConnexes();
                 break;
 
-            case 11 :
+            case 8 :
+                break;
+
+            case 9:
                 std::cout << "Etes-vous sur ? 1:oui 0:non" <<std::endl;
                 std::cin>>verif;
                 std::cout << std::endl;
@@ -115,25 +108,23 @@ int main()
                     monGraphe.supp_arete();
                     s=s+1;
                 }
-
                 break;
 
-            case 12 :
+            case 10 :
                 std::cout<<"Quels fichiers comptez-vous comparer ?\n"<< std::endl;
                 std::cin >> f1 >> f2;
                 monGraphe.calculDiff_indice(f1,f2);
                 break;
 
-            case 13 :
+            case 11 :
                 return fermeture;
                 break;
-                }
+            }
 
-
-        } while (choix!=9);
-    } while (choice==0);
+        }
+        while (choix!=8);
+    }
+    while (choice==0);
 
     return 0;
 }
-
-
