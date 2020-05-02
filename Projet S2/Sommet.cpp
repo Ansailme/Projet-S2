@@ -7,10 +7,20 @@ Sommet::Sommet (int num, std::string lettre, int x, int y)
     :m_num{num},m_couleur {0}, m_lettre{lettre},m_x{x},m_y{y}
 {}
 
+Sommet::~Sommet()
+{}
 
-void Sommet::remplir(Sommet* adjacent)
+
+
+
+int Sommet::getX() const
 {
-    m_adjacents.push_back(adjacent);
+    return m_x;
+}
+
+int Sommet::getY() const
+{
+    return m_y;
 }
 
 int Sommet::getNum ()const
@@ -23,63 +33,9 @@ std::string Sommet::getLettre() const
     return m_lettre;
 }
 
-int Sommet::getX() const
+size_t Sommet::getNbAdj () const
 {
-    return m_x;
-}
-
-int Sommet::getY() const
-{
-    return m_y;
-}
-
-
-void Sommet::afficher_num()const
-{
-    std::cout<<std::endl<<"\t sommet "
-             <<m_num<<" : ";
-    for (auto it : m_adjacents)
-        std::cout<<it->getNum()<<" ";
-}
-
-
-void Sommet::dessinerS(Svgfile& svgout) const
-{
-    Couleur noir{0,0,0};
-    Couleur deg{(85-m_adjacents.size())*50, (200-m_adjacents.size())*100,(50-m_adjacents.size())*60};
-
-    svgout.addDisk(m_x*100,m_y*100,15,deg);
-    svgout.addText(m_x*100-30,m_y*100-20,m_lettre,noir);
-}
-
-
-void Sommet::reinitialiserCouleur()
-{
-    m_couleur=0;
-}
-
-void Sommet::setCouleur(int nv)
-{
-    m_couleur=nv;
-}
-
-bool Sommet::estAdjacentA(int i)
-{
-    bool adjacent=false;
-    for (auto it : m_adjacents)
-        if (it->getNum()==i)
-            adjacent=true;
-    return adjacent;
-}
-
-void Sommet::setAdjacents(int i)
-{
-    for (auto it : m_adjacents)
-    {
-        if (i==1)//si gris
-            if (it->getCouleur()!=2)//verifie que le sommet a pas déjà été étudier
-                it->setCouleur(i); //met en gris
-    }
+    return m_adjacents.size();
 }
 
 int Sommet::getCouleur()const
@@ -87,62 +43,15 @@ int Sommet::getCouleur()const
     return m_couleur;
 }
 
-
-bool Sommet::estDegreImpair()
+bool Sommet::get_marque() const
 {
-    bool temp;
-
-    if(m_adjacents.size()%2==0)
-        temp=false;
-    else
-        temp=true;
-
-    return temp;
+    return m_marque;
 }
 
-size_t Sommet::getNbAdj () const
+bool Sommet::get_marque_voisin(int i) const
 {
-    return m_adjacents.size();
+    return m_voisin[i].first->m_marque;
 }
-
-
-void Sommet::effacer_Adj(Sommet* a)
-{
-    for (int i=0; i<m_adjacents.size();++i)
-    {
-        if ((m_adjacents[i])== a)
-        {
-            m_adjacents.erase(m_adjacents.begin()+i);
-        }
-    }
-}
-
-
-
-/*--------------------------------------------------------*/
-
-void Sommet::afficher_result() const
-{
-    std::cout << m_lettre ;
-    if(m_precedent!=nullptr)
-    {
-        std::cout << "<--";
-        m_precedent->afficher_result();
-    }
-}
-
-int Sommet::afficher_poids() const
-{
-
-    if(m_precedent!=nullptr)
-    {
-        std::cout << m_poids_precedent ;
-        std::cout << "+";
-        return m_poids_precedent+m_precedent->afficher_poids();
-    }
-    return 0;
-}
-
 
 std::pair <Sommet*,double> Sommet::get_voisin(Sommet* p, double poids_total,std::vector<Arete*> m_arete)
 {
@@ -169,30 +78,74 @@ std::pair <Sommet*,double> Sommet::get_voisin(Sommet* p, double poids_total,std:
     //return m_voisin[i];
 }
 
-bool Sommet::get_marque() const
+
+
+
+
+
+void Sommet::setCouleur(int nv)
 {
-    return m_marque;
+    m_couleur=nv;
 }
 
-bool Sommet::get_marque_voisin(int i) const
+void Sommet::setAdjacents(int i)
 {
-    return m_voisin[i].first->m_marque;
+    for (auto it : m_adjacents)
+    {
+        if (i==1)//si gris
+            if (it->getCouleur()!=2)//verifie que le sommet a pas déjà été étudier
+                it->setCouleur(i); //met en gris
+    }
 }
 
-size_t Sommet::nb_voisin() const
+
+
+
+
+
+void Sommet::dessinerS(Svgfile& svgout) const
 {
-    return m_voisin.size();
+    Couleur noir{0,0,0};
+    Couleur deg{(85-m_adjacents.size())*50, (200-m_adjacents.size())*100,(50-m_adjacents.size())*60};
+
+    svgout.addDisk(m_x*100,m_y*100,15,deg);
+    svgout.addText(m_x*100-30,m_y*100-20,m_lettre,noir);
 }
 
-void Sommet::marque()
+void Sommet::afficher_num()const
 {
-    m_marque=true;
+    std::cout<<std::endl<<"\t sommet "
+             <<m_num<<" : ";
+    for (auto it : m_adjacents)
+        std::cout<<it->getNum()<<" ";
 }
 
-void Sommet::ajouter_voisin(std::pair <Sommet*,int> cote)
+void Sommet::afficher_result() const
 {
-    m_voisin.push_back(cote);
+    std::cout << m_lettre ;
+    if(m_precedent!=nullptr)
+    {
+        std::cout << "<--";
+        m_precedent->afficher_result();
+    }
 }
+
+int Sommet::afficher_poids() const
+{
+
+    if(m_precedent!=nullptr)
+    {
+        std::cout << m_poids_precedent ;
+        std::cout << "+";
+        return m_poids_precedent+m_precedent->afficher_poids();
+    }
+    return 0;
+}
+
+
+
+
+
 
 void Sommet::init_marque()
 {
@@ -201,5 +154,81 @@ void Sommet::init_marque()
 
 }
 
+void Sommet::marque()
+{
+    m_marque=true;
+}
 
+bool Sommet::estAdjacentA(int i)
+{
+    bool adjacent=false;
+    for (auto it : m_adjacents)
+        if (it->getNum()==i)
+            adjacent=true;
+    return adjacent;
+}
+
+bool Sommet::estDegreImpair()
+{
+    bool temp;
+
+    if(m_adjacents.size()%2==0)
+        temp=false;
+    else
+        temp=true;
+
+    return temp;
+}
+
+size_t Sommet::nb_voisin() const
+{
+    return m_voisin.size();
+}
+
+void Sommet::ajouter_voisin(std::pair <Sommet*,int> cote)
+{
+    m_voisin.push_back(cote);
+}
+
+void Sommet::remplir(Sommet* adjacent)
+{
+    m_adjacents.push_back(adjacent);
+}
+
+void Sommet::connexite(int arriver, int& k)
+{
+    if(getCouleur() == 2)
+    {
+        return;
+    }
+
+    if(arriver == getNum())
+    {
+        k++;
+        return;
+    }
+
+    m_couleur = 2;
+
+    for(int i=0;i<m_adjacents.size();++i)
+    {
+        m_adjacents[i]->connexite(arriver,k);
+    }
+}
+
+void Sommet::effacer_Adj(Sommet* a)
+{
+    for (int i=0; i<m_adjacents.size();++i)
+    {
+        if ((m_adjacents[i])== a)
+        {
+            m_adjacents.erase(m_adjacents.begin()+i);
+        }
+    }
+}
+
+void Sommet::reinitialiserCouleur()
+{
+    m_couleur=0;
+}
 

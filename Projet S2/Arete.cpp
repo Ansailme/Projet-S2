@@ -9,9 +9,24 @@ Arete::Arete(int indice,Sommet* extremite1, Sommet* extremite2)
 
 }
 
+Arete:: ~Arete()
+{
+    m_sommet[0]->effacer_Adj(m_sommet[1]);
+    m_sommet[1]->effacer_Adj(m_sommet[0]);
+}
+
+
+
+
+
 int Arete::getIndice ()const
 {
     return m_indice;
+}
+
+double Arete::getPoids()const
+{
+    return m_poids;
 }
 
 Sommet* Arete::getExtrem1 ()const
@@ -24,10 +39,9 @@ Sommet* Arete::getExtrem2 ()const
     return m_sommet[1];
 }
 
-double Arete::getPoids()const
-{
-    return m_poids;
-}
+
+
+
 
 void Arete::setPoids(double new_poids)
 {
@@ -43,16 +57,8 @@ void Arete::dessinerA(Svgfile& svgout)const
 
 }
 
-bool Arete::recup_poids_adj(double &poids,Sommet* prec, Sommet* suivant)const
-{
-    if(((m_sommet[0] == prec) && (suivant == m_sommet[1])) || (((prec == m_sommet[1])) && suivant == m_sommet[0]))
-    {
-        poids = m_poids;
-        return true;
-    }
 
-    return false;
-}
+
 
 Sommet* Arete::recupExtrem1(int indice)
 {
@@ -70,8 +76,14 @@ Sommet* Arete::recupExtrem2(int indice)
         }
 }
 
-Arete:: ~Arete()
+bool Arete::recup_poids_adj(double &poids,Sommet* prec, Sommet* suivant)const
 {
-    m_sommet[0]->effacer_Adj(m_sommet[1]);
-    m_sommet[1]->effacer_Adj(m_sommet[0]);
+    if(((m_sommet[0] == prec) && (suivant == m_sommet[1])) || (((prec == m_sommet[1])) && suivant == m_sommet[0]))
+    {
+        poids = m_poids;
+        return true;
+    }
+
+    return false;
 }
+

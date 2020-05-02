@@ -82,6 +82,16 @@ Graphe::Graphe(std::string fichier)
     }
 }
 
+Graphe::~Graphe()
+{
+    for (auto it : m_sommets)
+        delete it;
+}
+
+
+
+
+
 
 void Graphe::lectureFichierP()
 {
@@ -109,7 +119,6 @@ void Graphe::lectureFichierP()
 
     ifs2.close();
 }
-
 
 void Graphe::afficherG()const
 {
@@ -146,7 +155,6 @@ void Graphe::afficherG()const
     }
 }
 
-
 void Graphe::afficherPoids()const
 {
 
@@ -169,6 +177,44 @@ void Graphe::afficherPoids()const
         std::cout << std::endl;
     }
 }
+
+void Graphe::affichage(int arrive, double poids) const
+{
+    if(!m_sommets[arrive]->get_marque())
+    {
+        std::cout << "\nle point d'arrive n'est pas atteignable par ce point de depart. \n" << std::endl;
+        return;
+    }
+
+    m_sommets[arrive]->afficher_result();
+
+    std::cout << " : poids total parcouru";
+
+    std::cout <<  "= " << poids << std::endl;
+}
+
+void Graphe::dessinerGraphe() const ///sp permet de dessiner le graphe dans svgfile
+{
+    Svgfile svgout;
+    svgout.addGrid();
+
+    for(auto s : m_sommets)
+    {
+        s->dessinerS(svgout);
+    }
+
+    for(auto s : m_aretes)
+    {
+        s->dessinerA(svgout);
+    }
+
+    if (m_aretes[1]->getPoids()==0)
+        std::cout <<"mais fichier ponderation non lu : poids = 0\n\n"<<std::endl;
+}
+
+
+
+
 
 
 void Graphe::c_degre()
@@ -240,80 +286,6 @@ void Graphe::c_propre()
     std::cout<<std::endl;
 }
 
-
-void Graphe::verification() ///affiche coord des extremites d'aretes
-{
-    for(unsigned int j=0; j<m_aretes.size(); ++j)
-    {
-        std::cout << std::endl;
-        std::cout << m_aretes[j]->getExtrem1()->getX() << " " << m_aretes[j]->getExtrem1()->getY();
-        std::cout << std::endl;
-        std::cout << m_aretes[j]->getExtrem2()->getX() << " " << m_aretes[j]->getExtrem2()->getY();
-        std::cout << std::endl;
-    }
-}
-
-void Graphe::sauvegarde(int s)
-{
-    std::string fichier;
-    //fichier = "sauvegarde" + std::to_string(1)+".txt";
-    fichier = "sauvegarde" + std::to_string(s) +".txt";
-    std::cout<<"\tsauvegarde des indices ok\n";
-    std::ofstream ofs(fichier);
-    if (!ofs)
-        throw std::runtime_error( "Impossible d'écrire la sauvegarde car fichier inexistant ");
-    else
-    {
-        ofs<<"\t INDICES"<<std::endl;
-        ofs<< std::endl;
-        ofs<<"Ordre des indices bruts et normalisés : \n\tcentralité de degré /centralité de vecteur propre / centralité de proximité"<<std::endl<<std::endl;
-        for (unsigned int i=0; i<m_sommets.size(); ++i)
-            ofs<< "sommet " << i << " : "
-               << deg[i]<<"   "<< (deg[i]*(1.0/(m_ordre-1)))
-               <<"\t"<< cvp[i]<<"   "<< (cvp[i]*(1.0/(m_ordre-1)))
-               <<"\t\t\t"<< cp[i] <<"   "<< cpn[i]<< std::endl;
-        ofs << std::endl;
-    }
-
-    ///---------------------------------------------------------------///
-
-    std::string fichier_brut;
-    fichier_brut = "sauvegarde_brut" + std::to_string(s) +".txt";
-    std::ofstream ofs2(fichier_brut);
-    if (!ofs2)
-        throw std::runtime_error( "Impossible d'écrire la sauvegarde car fichier inexistant ");
-
-    else
-    {
-        for (unsigned int i=0; i<m_sommets.size(); ++i)
-            ofs2
-                    << i << " " << deg[i]<< " " << (deg[i]*(1.0/(m_ordre-1)))
-                    << " " << cvp[i]<< " " << (cvp[i]*(1.0/(m_ordre-1)))
-                    << " " << cp[i] <<" "<< cpn[i]<< std::endl;
-        ofs2 << std::endl;
-    }
-}
-
-
-void Graphe::dessinerGraphe() const ///sp permet de dessiner le graphe dans svgfile
-{
-    Svgfile svgout;
-    svgout.addGrid();
-
-    for(auto s : m_sommets)
-    {
-        s->dessinerS(svgout);
-    }
-
-    for(auto s : m_aretes)
-    {
-        s->dessinerA(svgout);
-    }
-
-    if (m_aretes[1]->getPoids()==0)
-        std::cout <<"mais fichier ponderation non lu : poids = 0\n\n"<<std::endl;
-}
-
 double Graphe::c_prox(int premier, int arrive)
 {
     double p_poids=0;
@@ -352,22 +324,17 @@ double Graphe::c_prox(int premier, int arrive)
     return p_poids;
 }
 
-
-void Graphe::affichage(int arrive, double poids) const
+void Graphe::verification() ///affiche coord des extremites d'aretes
 {
-    if(!m_sommets[arrive]->get_marque())
+    for(unsigned int j=0; j<m_aretes.size(); ++j)
     {
-        std::cout << "\nle point d'arrive n'est pas atteignable par ce point de depart. \n" << std::endl;
-        return;
+        std::cout << std::endl;
+        std::cout << m_aretes[j]->getExtrem1()->getX() << " " << m_aretes[j]->getExtrem1()->getY();
+        std::cout << std::endl;
+        std::cout << m_aretes[j]->getExtrem2()->getX() << " " << m_aretes[j]->getExtrem2()->getY();
+        std::cout << std::endl;
     }
-
-    m_sommets[arrive]->afficher_result();
-
-    std::cout << " : poids total parcouru";
-
-    std::cout <<  "= " << poids << std::endl;
 }
-
 
 void Graphe::calcul_cp (int i_debut, int i_fin)
 {
@@ -415,62 +382,6 @@ void Graphe:: calcul_cp_auto()
     }
     std::cout <<std::endl;
 }
-
-
-void Graphe::supp_arete()
-{
-    int indice=0;
-    int nombre=0;
-    std::cout<< "\nles aretes sont :\n";
-    for(auto s : m_aretes)
-    {
-        std::cout<<"\t"<<s->getIndice()<<" ";
-        std::cout<<s->getExtrem1()->getLettre()<<"  ";
-        std::cout<<s->getExtrem2()->getLettre()<<"  ";
-        std::cout<<s->getPoids();
-        std::cout << std::endl;
-    }
-
-
-    std::cout<<std::endl << "Combien d'aretes voulez-vous supprimer ?" <<std::endl;
-    std::cin >> nombre;
-
-    for (int i=0; i<nombre; ++i)
-    {
-        std::cout << std::endl << "Arete a supprimer : ";
-        std::cin >> indice;
-
-        for (unsigned int j=0; j<m_aretes.size(); ++j)
-        {
-            if (indice == m_aretes[j]->getIndice())
-            {
-                delete m_aretes[indice];
-                m_aretes.erase(m_aretes.begin()+indice);
-            }
-        }
-
-    }
-    std::cout << "\nles aretes sont donc :\n";
-    for(auto s : m_aretes)
-    {
-        std::cout<<"\t"<<s->getIndice()<<" ";
-        std::cout<<s->getExtrem1()->getLettre()<<" ";
-        std::cout<<s->getExtrem2()->getLettre()<<" ";
-        std::cout<<s->getPoids();
-        std::cout << std::endl;
-    }
-
-
-    ///lorsqu'on retire 1 ou plusieurs aretes les calculs d'indices et la sauvegarde sont automatiques
-    c_degre();
-    c_propre();
-    calcul_cp_auto();
-
-    std::cout << "Veuillez enregistrer la modif en tapant 8 !!! \n"<< std::endl;
-
-}
-
-
 
 void Graphe::calculDiff_indice (int f1, int f2) //recoit en parametre les numeros de fichiers à comparer
 {
@@ -608,10 +519,6 @@ void Graphe::calculDiff_indice (int f1, int f2) //recoit en parametre les numero
 
 
 
-
-
-/*-------------------------------*/
-
 void Graphe::BFS(int premier)
 {
     std::vector<int> i_preds(m_sommets.size());
@@ -677,7 +584,6 @@ void Graphe::BFS(int premier)
     }
 }
 
-/*
 void Graphe::DFS(int premier)
 {
     std::map<int, int> i_preds;
@@ -688,6 +594,7 @@ void Graphe::DFS(int premier)
 
     ///parcours
     recuDFS(i_preds,m_sommets[premier]);
+
 
     ///affichage
     int pred;
@@ -715,12 +622,16 @@ void Graphe::DFS(int premier)
             }
         }
     }
+
+std::cout << std::endl << std::endl;
+
 }
 
 void Graphe::recuDFS(std::map<int, int>& i_preds,Sommet* s)
 {
     //algorithme recurence de Mme Palasi
     s->setCouleur(1);//gris
+
     for (auto it : m_sommets)
     {
         if (it->estAdjacentA(s->getNum()))
@@ -732,10 +643,9 @@ void Graphe::recuDFS(std::map<int, int>& i_preds,Sommet* s)
             }
         }
     }
-    s->setCouleur(2); //met en noir
 
+    s->setCouleur(2); //met en noir
 }
-*/
 
 void Graphe::recherchecompoConnexes()
 {
@@ -820,124 +730,140 @@ void Graphe::recherchecompoConnexes()
     */
 }
 
+int Graphe::connexite()
+{
+    int k,tot_chemin;
+    k=99999;
+
+    for(int i=0;i<m_sommets.size();++i)
+    {
+        for(int j=0;j<m_sommets.size();++j)
+        {
+            if(i!=j)
+            {
+                for(int m=0;m<m_sommets.size();++m)
+                {
+                    m_sommets[m]->setCouleur(0);
+                }
+
+                tot_chemin = 0;
+                m_sommets[i]->connexite(j,tot_chemin);
+                std::cout << i << ":" << j << ":" << tot_chemin << std::endl;
+
+                if(tot_chemin<k)
+                {
+                    k=tot_chemin;
+                }
+            }
+
+
+        }
+    }
+
+    return k;
+
+}
 
 Sommet* Graphe::recupSommet (int indice)
 {
     return m_sommets[indice];
 }
 
-Graphe::~Graphe()
+
+
+
+
+
+void Graphe::sauvegarde(int s)
 {
-    for (auto it : m_sommets)
-        delete it;
+    std::string fichier;
+    //fichier = "sauvegarde" + std::to_string(1)+".txt";
+    fichier = "sauvegarde" + std::to_string(s) +".txt";
+    std::cout<<"\tsauvegarde des indices ok\n";
+    std::ofstream ofs(fichier);
+    if (!ofs)
+        throw std::runtime_error( "Impossible d'écrire la sauvegarde car fichier inexistant ");
+    else
+    {
+        ofs<<"\t INDICES"<<std::endl;
+        ofs<< std::endl;
+        ofs<<"Ordre des indices bruts et normalisés : \n\tcentralité de degré /centralité de vecteur propre / centralité de proximité"<<std::endl<<std::endl;
+        for (unsigned int i=0; i<m_sommets.size(); ++i)
+            ofs<< "sommet " << i << " : "
+               << deg[i]<<"   "<< (deg[i]*(1.0/(m_ordre-1)))
+               <<"\t"<< cvp[i]<<"   "<< (cvp[i]*(1.0/(m_ordre-1)))
+               <<"\t\t\t"<< cp[i] <<"   "<< cpn[i]<< std::endl;
+        ofs << std::endl;
+    }
+
+    ///---------------------------------------------------------------///
+
+    std::string fichier_brut;
+    fichier_brut = "sauvegarde_brut" + std::to_string(s) +".txt";
+    std::ofstream ofs2(fichier_brut);
+    if (!ofs2)
+        throw std::runtime_error( "Impossible d'écrire la sauvegarde car fichier inexistant ");
+
+    else
+    {
+        for (unsigned int i=0; i<m_sommets.size(); ++i)
+            ofs2
+                    << i << " " << deg[i]<< " " << (deg[i]*(1.0/(m_ordre-1)))
+                    << " " << cvp[i]<< " " << (cvp[i]*(1.0/(m_ordre-1)))
+                    << " " << cp[i] <<" "<< cpn[i]<< std::endl;
+        ofs2 << std::endl;
+    }
 }
 
-
-
-void Graphe::DFS(int premier)
+void Graphe::supp_arete()
 {
-    std::map<int, int> i_preds;
-
-    ///mets les sommets en blancs
-    for (auto it : m_sommets)
-        it->reinitialiserCouleur();
-
-    ///parcours
-    recuDFS(i_preds,m_sommets[premier]);
-
-
-    ///affichage
-    int pred;
-    for (auto it : i_preds)
+    int indice=0;
+    int nombre=0;
+    std::cout<< "\nles aretes sont :\n";
+    for(auto s : m_aretes)
     {
-        if (it.first!=premier)
-        {
-            int temp=it.second; //valeur tempon
-            std::cout<<std::endl<<it.first;
-            if (temp!=premier) //si le sommet i n'est pas un adjacent au premier
-            {
-                do
-                {
-                    //on remonte le tableau de predecesseur en predesseur jusqu'à ce qu'on remonte au premier
-                    pred=temp;
-                    std::cout<<" <-- "<<pred;
-                    temp=i_preds[pred];
-
-                }
-                while (pred!=premier);
-            }
-            else
-            {
-                std::cout<<" <-- "<<premier;
-            }
-
-        }
-
+        std::cout<<"\t"<<s->getIndice()<<" ";
+        std::cout<<s->getExtrem1()->getLettre()<<"  ";
+        std::cout<<s->getExtrem2()->getLettre()<<"  ";
+        std::cout<<s->getPoids();
+        std::cout << std::endl;
     }
 
 
-std::cout << std::endl << std::endl;
+    std::cout<<std::endl << "Combien d'aretes voulez-vous supprimer ?" <<std::endl;
+    std::cin >> nombre;
 
-}
-
-void Graphe::recuDFS(std::map<int, int>& i_preds,Sommet* s)
-{
-    //algorithme recurence de Mme Palasi
-    s->setCouleur(1);//gris
-
-
-    int k=99999;
-    int tot_chemin=0;
-
-    for(int i=0; i<m_sommets.size(); ++i)
+    for (int i=0; i<nombre; ++i)
     {
+        std::cout << std::endl << "Arete a supprimer : ";
+        std::cin >> indice;
 
-        tot_chemin=0;
-
-        for (auto it : m_sommets)
+        for (unsigned int j=0; j<m_aretes.size(); ++j)
         {
-
-
-            if (it->estAdjacentA(s->getNum()))
+            if (indice == m_aretes[j]->getIndice())
             {
-                if(k > tot_chemin && tot_chemin > 1)
-                {
-                    k = tot_chemin;
-                    std::cout << std::endl << "le k est de : " << k << std::endl << std::endl;
-                }
-
-                if (it->getCouleur()==0) //si ne fait pas déjà partie de la pile
-                {
-                    i_preds[it->getNum()]=s->getNum();
-                    recuDFS(i_preds,it); //par recurence
-                    tot_chemin++;
-                }
+                delete m_aretes[indice];
+                m_aretes.erase(m_aretes.begin()+indice);
             }
-
-
         }
 
-        s->setCouleur(2); //met en noir
-
+    }
+    std::cout << "\nles aretes sont donc :\n";
+    for(auto s : m_aretes)
+    {
+        std::cout<<"\t"<<s->getIndice()<<" ";
+        std::cout<<s->getExtrem1()->getLettre()<<" ";
+        std::cout<<s->getExtrem2()->getLettre()<<" ";
+        std::cout<<s->getPoids();
+        std::cout << std::endl;
     }
 
 
-/*
-    for (auto it : m_sommets)
-    {
-        if (it->estAdjacentA(s->getNum()))
-        {
-            if (it->getCouleur()==0) //si ne fait pas déjà partie de la pile
-            {
-                i_preds[it->getNum()]=s->getNum();
-                recuDFS(i_preds,it); //par recurence
-            }
-        }
-    }
+    ///lorsqu'on retire 1 ou plusieurs aretes les calculs d'indices et la sauvegarde sont automatiques
+    c_degre();
+    c_propre();
+    calcul_cp_auto();
 
-    s->setCouleur(2); //met en noir
-
-*/
-
+    std::cout << "Veuillez enregistrer la modif en tapant 8 !!! \n"<< std::endl;
 
 }

@@ -65,11 +65,7 @@ int main()
                 break;
 
             case 4 :
-                std::cout
-                         <<std::endl<<"Choisir le sommet de depart : ";
-                std::cin>>i_debut;
-                monGraphe.DFS(i_debut);
-                //monGraphe.c_degre(); ///calcul centralité de degré
+                monGraphe.c_degre(); ///calcul centralité de degré
                 break;
 
             case 5 :
@@ -131,8 +127,13 @@ int main()
             case 13 :
                 return fermeture;
                 break;
-                }
 
+
+            case 14:
+                std::cout << monGraphe.connexite() << std::endl;
+                break;
+
+            }
 
         } while (choix!=9);
     } while (choice==0);
