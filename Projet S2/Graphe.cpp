@@ -335,9 +335,6 @@ void Graphe::calcul_cp (int i_debut, int i_fin)
 void Graphe:: calcul_cp_auto()
 {
     double p_poids=0;
-    //cp.push_back(m_sommets.size()); //remplacer dans le constructeur
-    //cpn.push_back(m_sommets.size());
-
 
     for(unsigned int i=0; i<m_sommets.size(); ++i)
     {
@@ -361,11 +358,10 @@ void Graphe:: calcul_cp_auto()
 }
 
 
-void Graphe::supp_arete(int modif)
+void Graphe::supp_arete()
 {
     int indice=0;
     int nombre=0;
-    int s=0;
     std::cout<< "\nles aretes sont :\n";
     for(auto s : m_aretes)
     {
@@ -405,20 +401,24 @@ void Graphe::supp_arete(int modif)
         std::cout << std::endl;
     }
 
-    s = modif;
 
     ///lorsqu'on retire 1 ou plusieurs aretes les calculs d'indices et la sauvegarde sont automatiques
     c_degre();
     c_propre();
     calcul_cp_auto();
-    //sauvegarde(s+1); //rappel de sauvegarde à améliorer en incrémentant le s...
 
     std::cout << std::endl;
 
 }
 
-
-
+/*
+void calculIndice ()
+{
+    ///
+    ///charger un autre fichier en brut sans texte
+    ///ifs>> val 1 >> val 1
+}
+*/
 
 
 

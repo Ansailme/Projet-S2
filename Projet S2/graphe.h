@@ -35,7 +35,7 @@ public :
 
     void sauvegarde(int s); //sauvegarde de tous les indices dans fichier
 
-    void supp_arete(int modif);
+    void supp_arete();
 
     /*-----------------*/
     void BFS(int premier);
