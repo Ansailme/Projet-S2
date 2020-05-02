@@ -203,7 +203,7 @@ void Graphe::c_propre()
     {
         //std::cout << cvp[i] << std::endl;
         std::cout << "\n\tsommet " << i << " : " << std::setprecision(3) << std::fixed
-                    << cvp[i] <<" et " <<(cvp[i]*(1.0/(m_ordre-1)))<<std::endl;
+                  << cvp[i] <<" et " <<(cvp[i]*(1.0/(m_ordre-1)))<<std::endl;
         std::cout<<std::endl;
     }
     std::cout<<std::endl;
@@ -222,10 +222,12 @@ void Graphe::verification() ///affiche coord des extremites d'aretes
     }
 }
 
-void Graphe::sauvegarde()
+void Graphe::sauvegarde(int s)
 {
     std::string fichier;
-    fichier = "sauvegarde" + std::to_string(1)+".txt";
+    //fichier = "sauvegarde" + std::to_string(1)+".txt";
+    fichier = "sauvegarde" + std::to_string(s) +".txt";
+    std::cout<<"sauvegarde des indices ok\n";
     std::ofstream ofs(fichier);
     if (!ofs)
         throw std::runtime_error( "Impossible d'écrire la sauvegarde car fichier inexistant ");
@@ -233,34 +235,13 @@ void Graphe::sauvegarde()
     {
         ofs<<"\t INDICES"<<std::endl;
         ofs<< std::endl;
-
-        ofs<<" Centralité de degré :\n";
+        ofs<<"Ordre des indices bruts et normalisés : centralité de degré /centralité de vecteur propre / centralité de proximité"<<std::endl;
         for (unsigned int i=0; i<m_sommets.size(); ++i)
-            ofs<< "sommet " << i << " : " << deg[i]<<std::endl;
-        ofs<< std::endl;
-
-        ofs<<" Centralité de degré normalisé :\n";
-        for (unsigned int i=0; i<m_sommets.size(); ++i)
-            ofs<< "sommet " << i << " : " << (deg[i]*(1.0/(m_ordre-1)))<<std::endl;
-        ofs<< std::endl;
-
-        ofs<< "Centralite de vecteur propre:\n";
-        for (unsigned int i=0; i<m_sommets.size(); ++i)
-            ofs << "sommet" << i <<" : " << cvp[i]<<std::endl;
-        ofs<< std::endl;
-
-        ofs<<" Centralité de vecteur propre normalisé :\n";
-        for (unsigned int i=0; i<m_sommets.size(); ++i)
-            ofs<< "sommet " << i << " : " << (cvp[i]*(1.0/(m_ordre-1)))<<std::endl;
-        ofs<< std::endl;
-
-        ofs<<"Centralité de vecteur de proximité :\n";
-        for (unsigned int i=0; i<m_sommets.size(); ++i)
-            ofs << " sommet : " << i << " : " << cp[i] << std::endl<< std::endl;
-
-        ofs<<"Centralité de vecteur de proximité normalisé:\n";
-        for (unsigned int i=0; i<m_sommets.size(); ++i)
-            ofs << "sommet : " << i << " : " << cpn[i] << std::endl;
+            ofs<< "sommet " << i << " : " << std::setprecision(3) << std::fixed
+               << deg[i]<<" "<< (deg[i]*(1.0/(m_ordre-1)))
+               <<" "<< cvp[i]<<" "<< (cvp[i]*(1.0/(m_ordre-1)))
+               <<" "<< cp[i] <<" "<< cpn[i]<< std::endl;
+        ofs << std::endl;
     }
 
 }
@@ -308,7 +289,7 @@ double Graphe::c_prox(int premier, int arrive)
     {
         Sommet* p=file.top().first;
 
-        for(int i=0; i<m_sommets.size(); i++)
+        for(unsigned int i=0; i<m_sommets.size(); i++)
         {
             if((p->estAdjacentA(i)) && (!m_sommets[i]->get_marque()))
             {
@@ -371,7 +352,7 @@ void Graphe:: calcul_cp_auto()
                 std::cout << std::endl;
                 std::cout <<"indice de proximite :\n";
                 std::cout << i << " a " << j << " : " << std::setprecision(3) << std::fixed
-                            << cp[i] << std::endl;
+                          << cp[i] << std::endl;
                 std::cout << "indice de proximite normalise:\n";
                 std::cout << i << " a " << j << " : " << cpn[i] << std::endl<<std::endl;
             }
@@ -384,50 +365,51 @@ void Graphe::supp_arete()
 {
     int indice=0;
     int nombre=0;
-    std::cout<< "Combien d'aretes voulez-vous supprimer ?" <<std::endl;
-    std::cin >> nombre;
-        ///creer methode dans arrete pour supprimer les adjacences en pointant sur sommets
-        ///faire une boucle
- for (int i=0; i<nombre; ++i)
- {
-    std::cout << "Arete a supprimer : ";
-    std::cin >> indice;
-
-     for (int j=0; j<m_aretes.size(); ++j)
-    {
-        if (indice == m_aretes[j]->getIndice())
-        {
-            delete m_aretes[indice];
-            m_aretes.erase(m_aretes.begin()+indice);
-        }
-    }
-
- }
-
-/*
-    for (int i=0; i< m_sommets.size(); ++i)
-    {
-        for (int j=0; j< m_aretes.size(); ++j)
-        {
-            if (indice==j)
-            {
-            delete m_aretes[indice];
-            m_aretes.erase(m_aretes.begin()+indice);
-            }
-        }
-        delete m_sommets[i]->estAdjacentA(indice);
-        m_sommets.erase(m_sommets.begin()+indice);
-    }
-*/
-     for(auto s : m_aretes)
+    int s=0;
+    std::cout << "\nles aretes sont :\n";
+    for(auto s : m_aretes)
     {
         std::cout<<"\t"<<s->getIndice()<<" ";
-        std::cout<<s->getExtrem1()->getNum()<<" ";
-        std::cout<<s->getExtrem2()->getNum()<<" ";
+        std::cout<<s->getExtrem1()->getLettre()<<"  ";
+        std::cout<<s->getExtrem2()->getLettre()<<"  ";
         std::cout<<s->getPoids();
         std::cout << std::endl;
     }
+
+
+    std::cout<< "Combien d'aretes voulez-vous supprimer ?" <<std::endl;
+    std::cin >> nombre;
+
+    for (int i=0; i<nombre; ++i)
+    {
+        std::cout << "Arete a supprimer : ";
+        std::cin >> indice;
+
+        for (unsigned int j=0; j<m_aretes.size(); ++j)
+        {
+            if (indice == m_aretes[j]->getIndice())
+            {
+                delete m_aretes[indice];
+                m_aretes.erase(m_aretes.begin()+indice);
+            }
+        }
+
+    }
+    std::cout << "\nles aretes sont donc :\n";
+    for(auto s : m_aretes)
+    {
+        std::cout<<"\t"<<s->getIndice()<<" ";
+        std::cout<<s->getExtrem1()->getLettre()<<" ";
+        std::cout<<s->getExtrem2()->getLettre()<<" ";
+        std::cout<<s->getPoids();
         std::cout << std::endl;
+    }
+    ///lorsqu'on retire 1 ou plusieurs aretes les calculs d'indices et la sauvegarde sont automatiques
+    c_degre();
+    c_propre();
+    calcul_cp_auto();
+    sauvegarde(s+1); //rappel de sauvegarde à améliorer en incrémentant le s...
+    std::cout << std::endl;
 
 }
 
@@ -615,39 +597,39 @@ void Graphe::recherchecompoConnexes()
     std::cout << std::endl << std::endl << "Le graphe a " << k << " composante(s) connexe(s)." << std::endl;
     std::cout << std::endl;
 
-
-    if (m_orient==0) //si le graphe est non orienté
-    {
-        int i;
-        ///recherche de chaine ou cycle eulérien
-        for (auto it : compoConnexes)
-            i=it.first;
-/*        if (i!=1) //graphe non connexe car plusiseurs composantes connexes
-            std::cout<<std::endl<<"Le graphe n'admet ni une chaine ni un cycle eulerien car il n'est pas connexe";
-        else
+    /*
+        if (m_orient==0) //si le graphe est non orienté
         {
-            int nbSommetDegImpaire=0;
-            for (auto it :m_sommets)
-            {
-                if (it->estDegreImpair()) //revoie vrai si le sommet est de degré impair
-                {
-                    ++nbSommetDegImpaire; //compte le nb de sommets impairs
-                }
-
-            }
-            if (nbSommetDegImpaire==0)
-                std::cout<<std::endl<<"Le graphe admet un cycle eulerien";
-            else if (nbSommetDegImpaire==2)
-                std::cout<<std::endl<<"Le graphe admet une chaine eulerienne";
+            int i;
+            ///recherche de chaine ou cycle eulérien
+            for (auto it : compoConnexes)
+                i=it.first;
+            if (i!=1) //graphe non connexe car plusiseurs composantes connexes
+                std::cout<<std::endl<<"Le graphe n'admet ni une chaine ni un cycle eulerien car il n'est pas connexe";
             else
-                std::cout<<std::endl<<"Le graphe n'admet ni une chaine ni un cycle eulerien car il possède 1 ou plus de 2 sommets de degre impaire";
+            {
+                int nbSommetDegImpaire=0;
+                for (auto it :m_sommets)
+                {
+                    if (it->estDegreImpair()) //revoie vrai si le sommet est de degré impair
+                    {
+                        ++nbSommetDegImpaire; //compte le nb de sommets impairs
+                    }
+
+                }
+                if (nbSommetDegImpaire==0)
+                    std::cout<<std::endl<<"Le graphe admet un cycle eulerien";
+                else if (nbSommetDegImpaire==2)
+                    std::cout<<std::endl<<"Le graphe admet une chaine eulerienne";
+                else
+                    std::cout<<std::endl<<"Le graphe n'admet ni une chaine ni un cycle eulerien car il possède 1 ou plus de 2 sommets de degre impaire";
+            }
         }
-    }
-    else
-        std::cout<<std::endl<<"Le graphe n'admet ni une chaine ni un cycle eulerien car il est oriente";
-*/
+        else
+            std::cout<<std::endl<<"Le graphe n'admet ni une chaine ni un cycle eulerien car il est oriente";
+    */
 }
-}
+
 
 Sommet* Graphe::recupSommet (int indice)
 {

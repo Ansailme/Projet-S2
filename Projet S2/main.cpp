@@ -15,7 +15,7 @@ int main()
         std::cout<<std::endl;
         Graphe monGraphe{"g_" + nomF +".txt"};
         bool fermeture = 1;
-        int a,choix=0;
+        int a,choix=0, s=0;
         int i_debut,i_fin;
         double poids=0;
         do
@@ -91,8 +91,8 @@ int main()
                 break;
 
             case 8 :
-                monGraphe.sauvegarde(); ///sauvegarde des indices dans fichier txt
-                std::cout<<"\tsauvegarde operationelle chef !\n"<<std::endl;
+                monGraphe.sauvegarde(s); ///sauvegarde des indices dans fichier txt
+                std::cout<<"\tsauvegarde du fichier operationelle chef !\n"<<std::endl;
                 break;
 
             case 10:

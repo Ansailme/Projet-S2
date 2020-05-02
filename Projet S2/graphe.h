@@ -33,7 +33,7 @@ public :
     void calcul_cp (int i_debut, int i_fin); //calcul centralité promixité à la main
     void calcul_cp_auto(); //calcul centralité promixité automatisé pour tout sommet
 
-    void sauvegarde(); //sauvegarde de tous les indices dans fichier
+    void sauvegarde(int s); //sauvegarde de tous les indices dans fichier
 
     void supp_arete();
 
