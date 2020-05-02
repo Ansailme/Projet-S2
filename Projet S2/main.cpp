@@ -102,6 +102,7 @@ int main()
 
             case 11:
                 monGraphe.supp_arete();
+                s=s+1;
                 break;
 
             case 12 :

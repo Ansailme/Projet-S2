@@ -408,7 +408,8 @@ void Graphe::supp_arete()
     c_degre();
     c_propre();
     calcul_cp_auto();
-    sauvegarde(s+1); //rappel de sauvegarde à améliorer en incrémentant le s...
+    //sauvegarde(s+1); //rappel de sauvegarde à améliorer en incrémentant le s...
+
     std::cout << std::endl;
 
 }
