@@ -65,9 +65,9 @@
 <text x="170" y="80" fill="rgb(0,0,0)" >A</text>
 <circle cx="100" cy="200" r="15" fill="rgb(104,188,124)" />
 <text x="70" y="180" fill="rgb(0,0,0)" >B</text>
-<circle cx="200" cy="200" r="15" fill="rgb(4,244,4)" />
+<circle cx="200" cy="200" r="15" fill="rgb(210,144,200)" />
 <text x="170" y="180" fill="rgb(0,0,0)" >C</text>
-<circle cx="300" cy="200" r="15" fill="rgb(154,32,184)" />
+<circle cx="300" cy="200" r="15" fill="rgb(104,188,124)" />
 <text x="270" y="180" fill="rgb(0,0,0)" >D</text>
 <circle cx="200" cy="300" r="15" fill="rgb(104,188,124)" />
 <text x="170" y="280" fill="rgb(0,0,0)" >E</text>
@@ -75,6 +75,8 @@
 <text x="200" y="150" fill="rgb(0,0,0)" >5</text>
 <line x1="100" y1="200" x2="200" y2="200" stroke="rgb(0,0,0)" />
 <text x="150" y="200" fill="rgb(0,0,0)" >10</text>
+<line x1="200" y1="200" x2="300" y2="200" stroke="rgb(0,0,0)" />
+<text x="250" y="200" fill="rgb(0,0,0)" >15</text>
 <line x1="200" y1="200" x2="200" y2="300" stroke="rgb(0,0,0)" />
 <text x="200" y="250" fill="rgb(0,0,0)" >20</text>
 

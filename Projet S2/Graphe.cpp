@@ -361,7 +361,7 @@ void Graphe:: calcul_cp_auto()
 }
 
 
-void Graphe::supp_arete()
+void Graphe::supp_arete(int modif)
 {
     int indice=0;
     int nombre=0;
@@ -404,6 +404,9 @@ void Graphe::supp_arete()
         std::cout<<s->getPoids();
         std::cout << std::endl;
     }
+
+    s = modif;
+
     ///lorsqu'on retire 1 ou plusieurs aretes les calculs d'indices et la sauvegarde sont automatiques
     c_degre();
     c_propre();

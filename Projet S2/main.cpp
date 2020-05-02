@@ -16,7 +16,7 @@ int main()
         std::cout<<std::endl;
         Graphe monGraphe{"g_" + nomF +".txt"};
         bool fermeture = 1;
-        int a,choix=0, s=0;
+        int a,choix=0, s=0, modif=-1;
         int i_debut,i_fin;
         double poids=0;
         do
@@ -101,7 +101,8 @@ int main()
                 break;
 
             case 11:
-                monGraphe.supp_arete();
+                modif ++;
+                monGraphe.supp_arete(modif);
                 break;
 
             case 12 :
