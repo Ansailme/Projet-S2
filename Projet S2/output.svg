@@ -61,94 +61,24 @@
 <text x="1705" y="15" fill="lightgrey" >1700</text>
 <line x1="1800" y1="0" x2="1800" y2="1000" stroke="lightgrey" />
 <text x="1805" y="15" fill="lightgrey" >1800</text>
-<circle cx="600" cy="100" r="15" fill="rgb(4,244,4)" />
-<text x="570" y="80" fill="rgb(0,0,0)" >Lille</text>
-<circle cx="400" cy="200" r="15" fill="rgb(4,244,4)" />
-<text x="370" y="180" fill="rgb(0,0,0)" >Rouen</text>
-<circle cx="100" cy="300" r="15" fill="rgb(54,88,64)" />
-<text x="70" y="280" fill="rgb(0,0,0)" >Brest</text>
-<circle cx="300" cy="300" r="15" fill="rgb(210,144,200)" />
-<text x="270" y="280" fill="rgb(0,0,0)" >Rennes</text>
-<circle cx="500" cy="300" r="15" fill="rgb(10,0,216)" />
-<text x="470" y="280" fill="rgb(0,0,0)" >Paris</text>
-<circle cx="700" cy="300" r="15" fill="rgb(210,144,200)" />
-<text x="670" y="280" fill="rgb(0,0,0)" >Reims</text>
-<circle cx="900" cy="300" r="15" fill="rgb(54,88,64)" />
-<text x="870" y="280" fill="rgb(0,0,0)" >Strasbourg</text>
-<circle cx="300" cy="400" r="15" fill="rgb(4,244,4)" />
-<text x="270" y="380" fill="rgb(0,0,0)" >Nantes</text>
-<circle cx="400" cy="400" r="15" fill="rgb(4,244,4)" />
-<text x="370" y="380" fill="rgb(0,0,0)" >Tours</text>
-<circle cx="500" cy="500" r="15" fill="rgb(4,244,4)" />
-<text x="470" y="480" fill="rgb(0,0,0)" >Limoges</text>
-<circle cx="600" cy="500" r="15" fill="rgb(210,144,200)" />
-<text x="570" y="480" fill="rgb(0,0,0)" >ClermontF</text>
-<circle cx="700" cy="500" r="15" fill="rgb(160,44,140)" />
-<text x="670" y="480" fill="rgb(0,0,0)" >Lyon</text>
-<circle cx="300" cy="600" r="15" fill="rgb(54,88,64)" />
-<text x="270" y="580" fill="rgb(0,0,0)" >Bordeaux</text>
-<circle cx="400" cy="700" r="15" fill="rgb(4,244,4)" />
-<text x="370" y="680" fill="rgb(0,0,0)" >Toulouse</text>
-<circle cx="600" cy="800" r="15" fill="rgb(4,244,4)" />
-<text x="570" y="780" fill="rgb(0,0,0)" >Montpellier</text>
-<circle cx="700" cy="800" r="15" fill="rgb(54,88,64)" />
-<text x="670" y="780" fill="rgb(0,0,0)" >Marseille</text>
-<circle cx="900" cy="800" r="15" fill="rgb(154,32,184)" />
-<text x="870" y="780" fill="rgb(0,0,0)" >Nice</text>
-<line x1="600" y1="100" x2="400" y2="200" stroke="rgb(0,0,0)" />
-<text x="500" y="150" fill="rgb(0,0,0)" >225</text>
-<line x1="600" y1="100" x2="500" y2="300" stroke="rgb(0,0,0)" />
-<text x="550" y="200" fill="rgb(0,0,0)" >260</text>
-<line x1="600" y1="100" x2="700" y2="300" stroke="rgb(0,0,0)" />
-<text x="650" y="200" fill="rgb(0,0,0)" >213</text>
-<line x1="400" y1="200" x2="300" y2="300" stroke="rgb(0,0,0)" />
-<text x="350" y="250" fill="rgb(0,0,0)" >312</text>
-<line x1="400" y1="200" x2="500" y2="300" stroke="rgb(0,0,0)" />
-<text x="450" y="250" fill="rgb(0,0,0)" >135</text>
-<line x1="100" y1="300" x2="300" y2="300" stroke="rgb(0,0,0)" />
-<text x="200" y="300" fill="rgb(0,0,0)" >245</text>
-<line x1="100" y1="300" x2="300" y2="400" stroke="rgb(0,0,0)" />
-<text x="200" y="350" fill="rgb(0,0,0)" >295</text>
-<line x1="300" y1="300" x2="500" y2="300" stroke="rgb(0,0,0)" />
-<text x="400" y="300" fill="rgb(0,0,0)" >359</text>
-<line x1="300" y1="300" x2="300" y2="400" stroke="rgb(0,0,0)" />
-<text x="300" y="350" fill="rgb(0,0,0)" >107</text>
-<line x1="500" y1="300" x2="400" y2="400" stroke="rgb(0,0,0)" />
-<text x="450" y="350" fill="rgb(0,0,0)" >239</text>
-<line x1="500" y1="300" x2="500" y2="500" stroke="rgb(0,0,0)" />
-<text x="500" y="400" fill="rgb(0,0,0)" >392</text>
-<line x1="500" y1="300" x2="600" y2="500" stroke="rgb(0,0,0)" />
-<text x="550" y="400" fill="rgb(0,0,0)" >423</text>
-<line x1="500" y1="300" x2="700" y2="500" stroke="rgb(0,0,0)" />
-<text x="600" y="400" fill="rgb(0,0,0)" >466</text>
-<line x1="500" y1="300" x2="700" y2="300" stroke="rgb(0,0,0)" />
-<text x="600" y="300" fill="rgb(0,0,0)" >146</text>
-<line x1="700" y1="300" x2="700" y2="500" stroke="rgb(0,0,0)" />
-<text x="700" y="400" fill="rgb(0,0,0)" >489</text>
-<line x1="700" y1="300" x2="900" y2="300" stroke="rgb(0,0,0)" />
-<text x="800" y="300" fill="rgb(0,0,0)" >351</text>
-<line x1="900" y1="300" x2="700" y2="500" stroke="rgb(0,0,0)" />
-<text x="800" y="400" fill="rgb(0,0,0)" >493</text>
-<line x1="300" y1="400" x2="400" y2="400" stroke="rgb(0,0,0)" />
-<text x="350" y="400" fill="rgb(0,0,0)" >216</text>
-<line x1="400" y1="400" x2="300" y2="600" stroke="rgb(0,0,0)" />
-<text x="350" y="500" fill="rgb(0,0,0)" >347</text>
-<line x1="500" y1="500" x2="400" y2="700" stroke="rgb(0,0,0)" />
-<text x="450" y="600" fill="rgb(0,0,0)" >290</text>
-<line x1="500" y1="500" x2="600" y2="500" stroke="rgb(0,0,0)" />
-<text x="550" y="500" fill="rgb(0,0,0)" >230</text>
-<line x1="600" y1="500" x2="700" y2="500" stroke="rgb(0,0,0)" />
-<text x="650" y="500" fill="rgb(0,0,0)" >167</text>
-<line x1="600" y1="500" x2="600" y2="800" stroke="rgb(0,0,0)" />
-<text x="600" y="650" fill="rgb(0,0,0)" >332</text>
-<line x1="700" y1="500" x2="700" y2="800" stroke="rgb(0,0,0)" />
-<text x="700" y="650" fill="rgb(0,0,0)" >314</text>
-<line x1="300" y1="600" x2="400" y2="700" stroke="rgb(0,0,0)" />
-<text x="350" y="650" fill="rgb(0,0,0)" >245</text>
-<line x1="400" y1="700" x2="600" y2="800" stroke="rgb(0,0,0)" />
-<text x="500" y="750" fill="rgb(0,0,0)" >243</text>
-<line x1="600" y1="800" x2="700" y2="800" stroke="rgb(0,0,0)" />
-<text x="650" y="800" fill="rgb(0,0,0)" >169</text>
+<circle cx="200" cy="100" r="15" fill="rgb(104,188,124)" />
+<text x="170" y="80" fill="rgb(0,0,0)" >A</text>
+<circle cx="100" cy="200" r="15" fill="rgb(104,188,124)" />
+<text x="70" y="180" fill="rgb(0,0,0)" >B</text>
+<circle cx="200" cy="200" r="15" fill="rgb(210,144,200)" />
+<text x="170" y="180" fill="rgb(0,0,0)" >C</text>
+<circle cx="300" cy="200" r="15" fill="rgb(104,188,124)" />
+<text x="270" y="180" fill="rgb(0,0,0)" >D</text>
+<circle cx="200" cy="300" r="15" fill="rgb(104,188,124)" />
+<text x="170" y="280" fill="rgb(0,0,0)" >E</text>
+<line x1="200" y1="100" x2="200" y2="200" stroke="rgb(0,0,0)" />
+<text x="200" y="150" fill="rgb(0,0,0)" >5</text>
+<line x1="100" y1="200" x2="200" y2="200" stroke="rgb(0,0,0)" />
+<text x="150" y="200" fill="rgb(0,0,0)" >10</text>
+<line x1="200" y1="200" x2="300" y2="200" stroke="rgb(0,0,0)" />
+<text x="250" y="200" fill="rgb(0,0,0)" >15</text>
+<line x1="200" y1="200" x2="200" y2="300" stroke="rgb(0,0,0)" />
+<text x="200" y="250" fill="rgb(0,0,0)" >20</text>
 
 
 </svg>

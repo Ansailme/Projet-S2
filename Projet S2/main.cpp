@@ -23,10 +23,6 @@ int main()
         int verif=0;
         do
         {
-            /* std::cout<<std::endl<<"\t1) BFS "
-                      <<std::endl<<"\t2) DFS "
-                      <<std::endl<<"\t3) Recherche des composantes connexes "*/
-
             ///Affichage menu avec les choix
             std::cout<<"Que souhaitez-vous faire ?\n"<<std::endl
                      <<"\t1) Lire & afficher les donnees du graphe\n"

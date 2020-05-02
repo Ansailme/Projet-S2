@@ -7,6 +7,7 @@
 #include <map>
 #include <iostream>
 
+
 ///Source constructeur graphe : code TP1 M.Fercoq
 
 ///Un constructeur qui charge un graphe en mémoire à partir d’un fichier texte
@@ -20,64 +21,66 @@ Graphe::Graphe(std::string fichier)
         //throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier );*/
     }
 
-    else{
-
-    ifs >> m_orient;
-    if ( ifs.fail() )
-        throw std::runtime_error("Probleme lecture de l'orientation");
-
-    ifs >> m_ordre;
-    if ( ifs.fail() )
-        throw std::runtime_error("Probleme lecture ordre du graphe");
-
-    int num,x,y;
-    std::string lettre;
-    deg.resize(m_ordre);
-    for(int i=0; i<m_ordre; ++i)
+    else
     {
-        ifs>>num>>lettre>>x>>y;
-        m_sommets.push_back(new Sommet{i,lettre,x,y});
-        deg[i]=0;
-    }
-    cp.reserve(m_sommets.size());
-    cpn.reserve(m_sommets.size());
-    if ( ifs.fail() )
-        throw std::runtime_error("Probleme lecture donnees du graphe");
 
-    int taille;
-    ifs >> taille;
-    if ( ifs.fail() )
-        throw std::runtime_error("Probleme lecture taille du graphe");
+        ifs >> m_orient;
+        if ( ifs.fail() )
+            throw std::runtime_error("Probleme lecture de l'orientation");
 
-    int nb1, nb2, indiceTaille;
-    for (int j=0; j<taille; ++j) //pour chaque arrete/arc on lit les extremités
-    {
-        ifs>>indiceTaille>>nb1>>nb2;
-        m_aretes.push_back(new Arete {j,m_sommets[nb1],m_sommets[nb2]});
-        //deg[nb1]+= 1;
-        //deg[nb2]+= 1;
+        ifs >> m_ordre;
+        if ( ifs.fail() )
+            throw std::runtime_error("Probleme lecture ordre du graphe");
 
-        if(m_orient==0) //si non oriente
+        int num,x,y;
+        std::string lettre;
+        deg.resize(m_ordre);
+        for(int i=0; i<m_ordre; ++i)
         {
-            m_sommets[nb1]->remplir(m_sommets[nb2]); //on ajoute le sommet nb2 comme adejacent au sommet nb1
-            m_sommets[nb2]->remplir(m_sommets[nb1]); //on ajoute le sommet nb1 comme adejacent au sommet nb2
+            ifs>>num>>lettre>>x>>y;
+            m_sommets.push_back(new Sommet{i,lettre,x,y});
+            deg[i]=0;
         }
-        else //si oriente
-            m_sommets[nb1]->remplir(m_sommets[nb2]); //on ajoute le sommet nb2 comme adejacent au sommet nb1
+        cp.reserve(m_sommets.size());
+        cpn.reserve(m_sommets.size());
+        if ( ifs.fail() )
+            throw std::runtime_error("Probleme lecture donnees du graphe");
+
+        int taille;
+        ifs >> taille;
+        if ( ifs.fail() )
+            throw std::runtime_error("Probleme lecture taille du graphe");
+
+        int nb1, nb2, indiceTaille;
+        for (int j=0; j<taille; ++j) //pour chaque arrete/arc on lit les extremités
+        {
+            ifs>>indiceTaille>>nb1>>nb2;
+            m_aretes.push_back(new Arete {j,m_sommets[nb1],m_sommets[nb2]});
+            //deg[nb1]+= 1;
+            //deg[nb2]+= 1;
+
+            if(m_orient==0) //si non oriente
+            {
+                m_sommets[nb1]->remplir(m_sommets[nb2]); //on ajoute le sommet nb2 comme adejacent au sommet nb1
+                m_sommets[nb2]->remplir(m_sommets[nb1]); //on ajoute le sommet nb1 comme adejacent au sommet nb2
+            }
+            else //si oriente
+                m_sommets[nb1]->remplir(m_sommets[nb2]); //on ajoute le sommet nb2 comme adejacent au sommet nb1
+        }
+
+        ifs.close();
+
+        remove("sauvegarde0.txt");
+        remove("sauvegarde_brut0.txt");
+        remove("sauvegarde1.txt");
+        remove("sauvegarde_brut1.txt");
+        remove("sauvegarde2.txt");
+        remove("sauvegarde_brut2.txt");
+        remove("sauvegarde3.txt");
+        remove("sauvegarde_brut3.txt");
+
     }
-
-    ifs.close();
-
-    remove("sauvegarde0.txt");
-    remove("sauvegarde_brut0.txt");
-    remove("sauvegarde1.txt");
-    remove("sauvegarde_brut1.txt");
-    remove("sauvegarde2.txt");
-    remove("sauvegarde_brut2.txt");
-    remove("sauvegarde3.txt");
-    remove("sauvegarde_brut3.txt");
-
-}}
+}
 
 
 void Graphe::lectureFichierP()
@@ -172,16 +175,16 @@ void Graphe::c_degre()
 {
     std::cout<< std::endl <<"Indice de centralite et centralite normalise\n";
     for(unsigned int i=0; i<m_sommets.size(); ++i)
+    {
+        deg[i]=0;
+        for(unsigned int j=0; j<m_sommets.size(); ++j)
         {
-            deg[i]=0;
-            for(unsigned int j=0; j<m_sommets.size(); ++j)
+            if(m_sommets[i]->estAdjacentA(j) == true)
             {
-                if(m_sommets[i]->estAdjacentA(j) == true)
-                {
-                    deg[i]+=1;
-                }
+                deg[i]+=1;
             }
         }
+    }
 
     for (unsigned int i=0; i<m_sommets.size(); ++i)
     {
@@ -230,7 +233,7 @@ void Graphe::c_propre()
     for(unsigned int i=0; i<m_sommets.size(); ++i)
     {
         //std::cout << cvp[i] << std::endl;
-        std::cout << "\n\tsommet " << i << " : " << std::setprecision(3) << std::fixed
+        std::cout << "\n\tsommet " << i << " : "
                   << cvp[i] <<" et " <<(cvp[i]*(1.0/(m_ordre-1)))<<std::endl;
         std::cout<<std::endl;
     }
@@ -265,7 +268,7 @@ void Graphe::sauvegarde(int s)
         ofs<< std::endl;
         ofs<<"Ordre des indices bruts et normalisés : \n\tcentralité de degré /centralité de vecteur propre / centralité de proximité"<<std::endl<<std::endl;
         for (unsigned int i=0; i<m_sommets.size(); ++i)
-            ofs<< "sommet " << i << " : " << std::setprecision(3) << std::fixed
+            ofs<< "sommet " << i << " : "
                << deg[i]<<"   "<< (deg[i]*(1.0/(m_ordre-1)))
                <<"\t"<< cvp[i]<<"   "<< (cvp[i]*(1.0/(m_ordre-1)))
                <<"\t\t\t"<< cp[i] <<"   "<< cpn[i]<< std::endl;
@@ -283,10 +286,10 @@ void Graphe::sauvegarde(int s)
     else
     {
         for (unsigned int i=0; i<m_sommets.size(); ++i)
-            ofs2 << std::setprecision(3) << std::fixed
-               << i << " " << deg[i]<< " " << (deg[i]*(1.0/(m_ordre-1)))
-               << " " << cvp[i]<< " " << (cvp[i]*(1.0/(m_ordre-1)))
-               << " " << cp[i] <<" "<< cpn[i]<< std::endl;
+            ofs2
+                 << i << " " << deg[i]<< " " << (deg[i]*(1.0/(m_ordre-1)))
+                 << " " << cvp[i]<< " " << (cvp[i]*(1.0/(m_ordre-1)))
+                 << " " << cp[i] <<" "<< cpn[i]<< std::endl;
         ofs2 << std::endl;
     }
 }
@@ -393,7 +396,7 @@ void Graphe:: calcul_cp_auto()
                 cpn[i] = (m_ordre-1)/p_poids;
                 std::cout << std::endl;
                 std::cout <<"indice de proximite :\n";
-                std::cout << i << " a " << j << " : " << std::setprecision(3) << std::fixed
+                std::cout << i << " a " << j << " : "
                           << cp[i] << std::endl;
                 std::cout << "indice de proximite normalise:\n";
                 std::cout << i << " a " << j << " : " << cpn[i] << std::endl;
@@ -453,7 +456,7 @@ void Graphe::supp_arete()
     c_propre();
     calcul_cp_auto();
 
-    std::cout << "Veuillez enregistrer la modif en tapant 8 !!! "<< std::endl;
+    std::cout << "Veuillez enregistrer la modif en tapant 8 !!! \n"<< std::endl;
 
 }
 
@@ -473,39 +476,112 @@ void Graphe::calculDiff_indice (int f1, int f2) //recoit en parametre les numero
     if (!ifs1)
         throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier1 );
 
-    double num1, ideg1, idegn1, ivp1, ivpn1, icp1, icpn1;
-    ifs1>> num1 >> ideg1 >> idegn1 >> ivp1 >> ivpn1 >> icpn1;
+    std::vector<double> indice1;
+    indice1.reserve(m_sommets.size());
+    std::vector<double> ideg1;
+    ideg1.reserve(m_sommets.size());
+    std::vector<double> idegn1;
+    idegn1.reserve(m_sommets.size());
+    std::vector<double> ivp1;
+    ivp1.reserve(m_sommets.size());
+    std::vector<double> ivpn1;
+    ivpn1.reserve(m_sommets.size());
+    std::vector<double> icp1;
+    icp1.reserve(m_sommets.size());
+    std::vector<double> icpn1;
+    icpn1.reserve(m_sommets.size());
+
+    for (unsigned int i=0; i<m_sommets.size(); ++i)
+    {
+        ifs1>> indice1[i] >> ideg1[i] >> idegn1[i] >> ivp1[i] >> ivpn1[i] >> icp1[i] >> icpn1[i];
+    }
 
     if ( ifs1.fail() )
-        throw std::runtime_error("Probleme lecture données");
+        throw std::runtime_error("Probleme lecture données fichier 1");
 
 ///lecture du 2eme fichier brut et stockage des valeurs
 
     std::ifstream ifs2{fichier2}; //ouverture en mode lecture
     if (!ifs2)
-        throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier1 );
+        throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier2 );
 
-    double num2, ideg2, idegn2, ivp2, ivpn2, icp2, icpn2;
-    ifs2 >> num2 >> ideg2 >> idegn2 >> ivp2 >> ivpn2 >> icpn2;
+    std::vector<double> indice2;
+    indice2.reserve(m_sommets.size());
+    std::vector<double> ideg2;
+    ideg2.reserve(m_sommets.size());
+    std::vector<double> idegn2;
+    idegn2.reserve(m_sommets.size());
+    std::vector<double> ivp2;
+    ivp2.reserve(m_sommets.size());
+    std::vector<double> ivpn2;
+    ivpn2.reserve(m_sommets.size());
+    std::vector<double> icp2;
+    icp2.reserve(m_sommets.size());
+    std::vector<double> icpn2;
+    icpn2.reserve(m_sommets.size());
 
-    if ( ifs1.fail() )
-        throw std::runtime_error("Probleme lecture données");
+    for (unsigned int i=0; i<m_sommets.size(); ++i)
+    {
+        ifs2>> indice2[i] >> ideg2[i] >> idegn2[i] >> ivp2[i] >> ivpn2[i] >> icp2[i] >> icpn2[i];
+    }
+
+    if ( ifs2.fail() )
+        throw std::runtime_error("Probleme lecture donnees fichier2");
 
 ///Calcul de différence des indices
 
-    double dif_num, dif_ideg, dif_idegn, dif_ivp, dif_ivpn, dif_icp, dif_icpn;
+    std::vector<double> dif_indice;
+    dif_indice.reserve(m_sommets.size());
+    std::vector<double> dif_ideg;
+    dif_ideg.reserve(m_sommets.size());
+    std::vector<double> dif_idegn;
+    dif_idegn.reserve(m_sommets.size());
+    std::vector<double> dif_ivp;
+    dif_ivp.reserve(m_sommets.size());
+    std::vector<double> dif_ivpn;
+    dif_ivpn.reserve(m_sommets.size());
+    std::vector<double> dif_icp;
+    dif_icp.reserve(m_sommets.size());
+    std::vector<double> dif_icpn;
+    dif_icpn.reserve(m_sommets.size());
 
-    dif_num = num2-num1;
+    for (unsigned int i=0; i<m_sommets.size(); ++i)
+    {
+        dif_indice[i] = indice2[i]-indice1[i];
+        dif_ideg[i] = ideg2[i]-ideg1[i];
+        dif_idegn[i] = idegn2[i]-idegn1[i];
+        dif_ivp[i] = ivp2[i]-ivp1[i];
+        dif_ivpn[i] = ivpn2[i]-ivpn1[i];
+        dif_icp[i] = icp2[i]-icp1[i];
+        dif_icpn[i] = icpn2[i]-icpn1[i];
+    }
+
+
+    /*dif_num = num2-num1;
     dif_ideg = ideg2-ideg1;
     dif_idegn = idegn2-idegn1;
     dif_ivp = ivp2-ivp1;
     dif_ivpn = ivpn2-ivpn1;
     dif_icp = icp2-icp1;
     dif_icpn = icpn2-icpn1;
+    */
 
 ///Affichage des résultats de calculs de différence pour 1er sommet
 
-    std::cout << " dif num / deg / degn / vp / vpn / cp / cpn :\n"
+    std::cout << " dif num / deg / degn / vp / vpn / cp / cpn :\n";
+    for (unsigned int i=0; i<m_sommets.size(); ++i)
+    {
+        std::cout << dif_indice[i]
+                  << "  " << dif_ideg[i]
+                  << "  "<< dif_idegn[i]
+                  << "  "<< dif_ivp[i]
+                  << "  "<< dif_ivpn[i]
+                  << "  "<< dif_icp[i]
+                  << "  "<< dif_icpn[i] <<std::endl
+                  <<std::endl;
+    }
+
+    /*std::cout << " dif num / deg / degn / vp / vpn / cp / cpn :\n"
               << dif_num
               << "  " << dif_ideg
               << "  "<< dif_idegn
@@ -514,6 +590,7 @@ void Graphe::calculDiff_indice (int f1, int f2) //recoit en parametre les numero
               << "  "<< dif_icp
               << "  "<< dif_icpn<<std::endl
               <<std::endl;
+    */
 ///
 }
 
