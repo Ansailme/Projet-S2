@@ -20,6 +20,7 @@ int main()
         int i_debut,i_fin;
         double poids=0;
         int f1=0, f2=0;
+        int verif=0;
         do
         {
             /* std::cout<<std::endl<<"\t1) BFS "
@@ -78,11 +79,15 @@ int main()
             case 6 :
                 ///Dijkstra : calcul + court chemin = centralité de proximité
                 monGraphe.calcul_cp_auto();
-
                 break;
 
             case 7 :
-                std::cout<<std::endl<<"Plus court chemin entre:"
+                std::cout << "Etes-vous sur ? 1:oui 0:non" <<std::endl;
+                std::cin>>verif;
+                std::cout << std::endl;
+                if(verif ==1)
+                {
+                    std::cout<<std::endl<<"Plus court chemin entre:"
                          <<std::endl<<"Choisir le sommet de depart : ";
                 std::cin>>i_debut;
                 std::cout<<std::endl<<"Choisir le sommet d'arrivee : ";
@@ -91,7 +96,10 @@ int main()
                 std::cout<< std::endl;
                 monGraphe.affichage(i_fin, poids);
                 std::cout<< std::endl;
+                }
+                else
                 break;
+
 
             case 8 :
                 monGraphe.sauvegarde(s); ///sauvegarde des indices dans fichier txt
@@ -103,8 +111,15 @@ int main()
                 break;
 
             case 11 :
-                monGraphe.supp_arete();
-                s=s+1;
+                std::cout << "Etes-vous sur ? 1:oui 0:non" <<std::endl;
+                std::cin>>verif;
+                std::cout << std::endl;
+                if(verif ==1)
+                {
+                    monGraphe.supp_arete();
+                    s=s+1;
+                }
+
                 break;
 
             case 12 :
@@ -116,8 +131,9 @@ int main()
             case 13 :
                 return fermeture;
                 break;
+                }
 
-            }
+
         } while (choix!=9);
     } while (choice==0);
 
