@@ -830,3 +830,68 @@ Graphe::~Graphe()
         delete it;
 }
 
+
+
+void Graphe::DFS(int premier)
+{
+    std::map<int, int> i_preds;
+
+    ///mets les sommets en blancs
+    for (auto it : m_sommets)
+        it->reinitialiserCouleur();
+
+    ///parcours
+    recuDFS(i_preds,m_sommets[premier]);
+
+    ///affichage
+    int pred;
+    for (auto it : i_preds)
+    {
+        if (it.first!=premier)
+        {
+            int temp=it.second; //valeur tempon
+            std::cout<<std::endl<<it.first;
+            if (temp!=premier) //si le sommet i n'est pas un adjacent au premier
+            {
+                do
+                {
+                    //on remonte le tableau de predecesseur en predesseur jusqu'à ce qu'on remonte au premier
+                    pred=temp;
+                    std::cout<<" <-- "<<pred;
+                    temp=i_preds[pred];
+
+                }
+                while (pred!=premier);
+            }
+            else
+            {
+                std::cout<<" <-- "<<premier;
+            }
+
+        }
+
+    }
+
+
+}
+
+void Graphe::recuDFS(std::map<int, int>& i_preds,Sommet* s)
+{
+    //algorithme recurence de Mme Palasi
+    s->setCouleur(1);//gris
+    for (auto it : m_sommets)
+    {
+        if (it->estAdjacentA(s->getNum()))
+        {
+            if (it->getCouleur()==0) //si ne fait pas déjà partie de la pile
+            {
+                i_preds[it->getNum()]=s->getNum();
+                recuDFS(i_preds,it); //par recurence
+
+            }
+        }
+
+    }
+    s->setCouleur(2); //met en noir
+
+}
