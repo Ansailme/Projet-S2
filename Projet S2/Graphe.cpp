@@ -14,7 +14,13 @@ Graphe::Graphe(std::string fichier)
 {
     std::ifstream ifs{fichier}; //ouverture en mode lecture
     if (!ifs)
-        throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier );
+    {
+
+        std::cout << "Ce graphe n'existe pas, chargez en un autre en entrant 9" << std::endl<< std::endl ;
+        //throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier );*/
+    }
+
+    else{
 
     ifs >> m_orient;
     if ( ifs.fail() )
@@ -71,7 +77,7 @@ Graphe::Graphe(std::string fichier)
     remove("sauvegarde3.txt");
     remove("sauvegarde_brut3.txt");
 
-}
+}}
 
 
 void Graphe::lectureFichierP()
@@ -172,9 +178,7 @@ void Graphe::c_degre()
             {
                 if(m_sommets[i]->estAdjacentA(j) == true)
                 {
-
                     deg[i]+=1;
-                    //break;
                 }
             }
         }
