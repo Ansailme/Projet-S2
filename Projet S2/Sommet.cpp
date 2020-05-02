@@ -123,7 +123,7 @@ void Sommet::effacer_Adj(Sommet* a)
 
 void Sommet::afficher_result() const
 {
-    std::cout << m_num ;
+    std::cout << m_lettre ;
     if(m_precedent!=nullptr)
     {
         std::cout << "<--";

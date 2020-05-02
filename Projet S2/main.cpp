@@ -9,14 +9,14 @@ int main()
     int choice =0;
     do
     {
-        std::cout <<"graphes disponibles : \n\t-etoile1-2-3-4 \n\t-cube \n\t-france \n\t-monde\n";
+        std::cout <<"Graphes disponibles : \n\t-etoile1-2-3-4 \n\t-cube \n\t-france \n\t-monde\n";
         std::cout<<"\n\nQuel graphe souhaitez-vous utiliser? \n";
         std::string nomF;
         std::cin>>nomF;
         std::cout<<std::endl;
         Graphe monGraphe{"g_" + nomF +".txt"};
         bool fermeture = 1;
-        int a,choix=0, s=0;
+        int a,choix=0, s=0, modif=-1;
         int i_debut,i_fin;
         double poids=0;
         do
