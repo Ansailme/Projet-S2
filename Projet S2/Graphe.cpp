@@ -677,6 +677,7 @@ void Graphe::BFS(int premier)
     }
 }
 
+/*
 void Graphe::DFS(int premier)
 {
     std::map<int, int> i_preds;
@@ -734,6 +735,7 @@ void Graphe::recuDFS(std::map<int, int>& i_preds,Sommet* s)
     s->setCouleur(2); //met en noir
 
 }
+*/
 
 void Graphe::recherchecompoConnexes()
 {
@@ -843,6 +845,7 @@ void Graphe::DFS(int premier)
     ///parcours
     recuDFS(i_preds,m_sommets[premier]);
 
+
     ///affichage
     int pred;
     for (auto it : i_preds)
@@ -873,12 +876,53 @@ void Graphe::DFS(int premier)
     }
 
 
+std::cout << std::endl << std::endl;
+
 }
 
 void Graphe::recuDFS(std::map<int, int>& i_preds,Sommet* s)
 {
     //algorithme recurence de Mme Palasi
     s->setCouleur(1);//gris
+
+
+    int k=99999;
+    int tot_chemin=0;
+
+    for(int i=0; i<m_sommets.size(); ++i)
+    {
+
+        tot_chemin=0;
+
+        for (auto it : m_sommets)
+        {
+
+
+            if (it->estAdjacentA(s->getNum()))
+            {
+                if(k > tot_chemin && tot_chemin > 1)
+                {
+                    k = tot_chemin;
+                    std::cout << std::endl << "le k est de : " << k << std::endl << std::endl;
+                }
+
+                if (it->getCouleur()==0) //si ne fait pas déjà partie de la pile
+                {
+                    i_preds[it->getNum()]=s->getNum();
+                    recuDFS(i_preds,it); //par recurence
+                    tot_chemin++;
+                }
+            }
+
+
+        }
+
+        s->setCouleur(2); //met en noir
+
+    }
+
+
+/*
     for (auto it : m_sommets)
     {
         if (it->estAdjacentA(s->getNum()))
@@ -887,11 +931,13 @@ void Graphe::recuDFS(std::map<int, int>& i_preds,Sommet* s)
             {
                 i_preds[it->getNum()]=s->getNum();
                 recuDFS(i_preds,it); //par recurence
-
             }
         }
-
     }
+
     s->setCouleur(2); //met en noir
+
+*/
+
 
 }
