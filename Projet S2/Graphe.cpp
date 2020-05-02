@@ -48,8 +48,8 @@ Graphe::Graphe(std::string fichier)
     {
         ifs>>indiceTaille>>nb1>>nb2;
         m_aretes.push_back(new Arete {j,m_sommets[nb1],m_sommets[nb2]});
-        deg[nb1]+= 1;
-        deg[nb2]+= 1;
+        //deg[nb1]+= 1;
+        //deg[nb2]+= 1;
 
         if(m_orient==0) //si non oriente
         {
@@ -72,6 +72,7 @@ Graphe::Graphe(std::string fichier)
     remove("sauvegarde_brut3.txt");
 
 }
+
 
 void Graphe::lectureFichierP()
 {
@@ -164,6 +165,20 @@ void Graphe::afficherPoids()const
 void Graphe::c_degre()
 {
     std::cout<< std::endl <<"Indice de centralite et centralite normalise\n";
+    for(unsigned int i=0; i<m_sommets.size(); ++i)
+        {
+            deg[i]=0;
+            for(unsigned int j=0; j<m_sommets.size(); ++j)
+            {
+                if(m_sommets[i]->estAdjacentA(j) == true)
+                {
+
+                    deg[i]+=1;
+                    //break;
+                }
+            }
+        }
+
     for (unsigned int i=0; i<m_sommets.size(); ++i)
     {
         std::cout << "\n\tsommet " << i <<" : "<< m_sommets[i]->getNbAdj() <<" et "<< (m_sommets[i]->getNbAdj())*(1.0/(m_ordre-1)) << std::endl;

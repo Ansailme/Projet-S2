@@ -37,6 +37,7 @@ public :
 
     void supp_arete();
 
+
     /*-----------------*/
     void BFS(int premier);
     Sommet* recupSommet(int indice);
