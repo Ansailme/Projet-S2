@@ -11,14 +11,14 @@
 ///Source constructeur graphe : code TP1 M.Fercoq
 
 ///Un constructeur qui charge un graphe en mémoire à partir d’un fichier texte
+
 Graphe::Graphe(std::string fichier)
 {
     std::ifstream ifs{fichier}; //ouverture en mode lecture
     if (!ifs)
     {
-
-        std::cout << "Ce graphe n'existe pas, chargez en un autre en entrant 9" << std::endl<< std::endl ;
-        //throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier );*/
+        std::cout << "Ce graphe n'existe pas, chargez en un autre" << std::endl ;
+        std::cout<<"\n\tTapez 8"<<std::endl<<std::endl;
     }
 
     else
@@ -93,30 +93,36 @@ Graphe::~Graphe()
 
 
 
-void Graphe::lectureFichierP()
+int Graphe::lectureFichierP()
 {
     std::cout<< std::endl <<"Quel fichier ponderation souhaitez-vous lire?\n";
     std::string fichier2;
     std::cin>>fichier2;
     std::ifstream ifs2{"p_" + fichier2 + ".txt"}; //ouverture en mode lecture
     if (!ifs2)
-        throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichier2 );
-
-    int nbr_arete;
-    ifs2 >> nbr_arete;
-    if ( ifs2.fail() )
-        throw std::runtime_error("Probleme lecture nombre d'arete du graphe");
-
-    int indiceTaille2;
-    double poids;
-    for(int k=0; k<nbr_arete; k++)
     {
-        ifs2>>indiceTaille2>>poids;
-        m_aretes[indiceTaille2]->setPoids(poids);
+        std::cout << "Ce fichier ponderation n'existe pas, chargez en un autre" << std::endl ;
+        return 1;
     }
-    if ( ifs2.fail() )
-        throw std::runtime_error("Probleme lecture donnees du graphe");
+    else
+    {
+        int nbr_arete;
+        ifs2 >> nbr_arete;
+        if ( ifs2.fail() )
+            throw std::runtime_error("Probleme lecture nombre d'arete du graphe");
 
+        int indiceTaille2;
+        double poids;
+        for(int k=0; k<nbr_arete; k++)
+        {
+            ifs2>>indiceTaille2>>poids;
+            m_aretes[indiceTaille2]->setPoids(poids);
+        }
+        if ( ifs2.fail() )
+            throw std::runtime_error("Probleme lecture donnees du graphe");
+
+    return 0;
+    }
     ifs2.close();
 }
 
@@ -127,11 +133,11 @@ void Graphe::afficherG()const
     if (m_orient==0)
         std::cout<<"\nGrahe non oriente";
     else
+    {
         std::cout<<"Graphe oriente";
+    }
 
-    std::cout<<" d'ordre : "<< m_sommets.size();
-    std::cout << std::endl;
-
+    std::cout<<"\nordre du graphe : "<< m_sommets.size();
     std::cout << "\nsommets :\n";
     for( auto s : m_sommets)
     {
@@ -142,7 +148,7 @@ void Graphe::afficherG()const
         std::cout << std::endl;
     }
 
-    std::cout << "\ntaille : " << m_aretes.size();
+    std::cout << "\ntaille du graphe : " << m_aretes.size();
     std::cout << std::endl;
     std::cout << "aretes :\n";
     for(auto s : m_aretes)
@@ -151,31 +157,23 @@ void Graphe::afficherG()const
         std::cout<<s->getExtrem1()->getNum()<<" ";
         std::cout<<s->getExtrem2()->getNum()<<" ";
         std::cout << std::endl;
-        std::cout << std::endl;
     }
+    std::cout<<std::endl;
 }
 
 void Graphe::afficherPoids()const
 {
 
-    std::cout << "\tfichier de ponderation\n " << std::endl;
-    std::cout << "nombre d'aretes : " << m_aretes.size() << std::endl;
+    std::cout << "\n\tfichier de ponderation\n " << std::endl;
+    std::cout << "\ntaille du graphe : " << m_aretes.size() << std::endl;
     for(auto s : m_aretes)
     {
         std::cout << "\t" << s->getIndice() << " ";
-        std::cout << "\t" << s->getPoids() << std::endl;
-    }
-
-    std::cout << "\n\nAsssociation 2 fichiers :\n";
-    for(auto s : m_aretes)
-    {
-        std::cout<<"\t"<<s->getIndice()<<" ";
         std::cout<<s->getExtrem1()->getNum()<<" ";
         std::cout<<s->getExtrem2()->getNum()<<" ";
-        std::cout<<s->getPoids();
-        std::cout << std::endl;
-        std::cout << std::endl;
+        std::cout << "\t" << s->getPoids() << std::endl;
     }
+    std::cout<<std::endl;
 }
 
 void Graphe::affichage(int arrive, double poids) const
@@ -219,7 +217,6 @@ void Graphe::dessinerGraphe() const ///sp permet de dessiner le graphe dans svgf
 
 void Graphe::c_degre()
 {
-    std::cout<< std::endl <<"Indice de centralite et centralite normalise\n";
     for(unsigned int i=0; i<m_sommets.size(); ++i)
     {
         deg[i]=0;
@@ -231,12 +228,13 @@ void Graphe::c_degre()
             }
         }
     }
-
+    std::cout <<"\nINDICES CENTRALITE DEGRE / NORMALISE\n";
     for (unsigned int i=0; i<m_sommets.size(); ++i)
     {
-        std::cout << "\n\tsommet " << i <<" : "<< m_sommets[i]->getNbAdj() <<" et "<< (m_sommets[i]->getNbAdj())*(1.0/(m_ordre-1)) << std::endl;
-        std::cout<<std::endl;
+        std::cout << "\n\tsommet " << i <<" : "<< m_sommets[i]->getNbAdj()
+                  <<" et "<< (m_sommets[i]->getNbAdj())*(1.0/(m_ordre-1));
     }
+    std::cout<<std::endl;
 }
 
 void Graphe::c_propre()
@@ -275,13 +273,12 @@ void Graphe::c_propre()
         }
 
     }
-    std::cout<<"Indice de vecteur propre et vecteur propre normalise :\n";
+    std::cout<<"\nINDICES CENTRALITE VECTEUR PROPRE / NORMALISE :\n";
     for(unsigned int i=0; i<m_sommets.size(); ++i)
     {
         //std::cout << cvp[i] << std::endl;
         std::cout << "\n\tsommet " << i << " : "
-                  << cvp[i] <<" et " <<(cvp[i]*(1.0/(m_ordre-1)))<<std::endl;
-        std::cout<<std::endl;
+                  << cvp[i] <<" et " <<(cvp[i]*(1.0/(m_ordre-1)));
     }
     std::cout<<std::endl;
 }
@@ -352,7 +349,8 @@ void Graphe::calcul_cp (int i_debut, int i_fin)
 void Graphe:: calcul_cp_auto()
 {
     double p_poids=0;
-
+    std::cout <<"\nINDICE CENTRALITE PROXIMITE / NORMALISE :\n";
+    std::cout << std::endl;
     for(unsigned int i=0; i<m_sommets.size(); ++i)
     {
         for(unsigned int j=0; j<m_sommets.size(); ++j)
@@ -370,18 +368,68 @@ void Graphe:: calcul_cp_auto()
                     cp[i] = 1/p_poids;
                     cpn[i] = (m_ordre-1)/p_poids;
                 }
-
-                std::cout << std::endl;
-                std::cout <<"indice de proximite :\n";
-                std::cout << i << " a " << j << " : "
-                          << std::setprecision(3)<<std::fixed << cp[i] << std::endl;
-                std::cout << "indice de proximite normalise:\n";
-                std::cout << i << " a " << j << " : " << cpn[i] << std::endl;
+                std::cout <<"\tsommet : "<< i << " au sommet : " << j << " = "
+                          << std::setprecision(3)<<std::fixed << cp[i] << " et "<< cpn[i] << std::endl;
             }
         }
     }
     std::cout <<std::endl;
 }
+
+
+void Graphe::supp_arete()
+{
+    int indice=0;
+    int nombre=0;
+    std::cout<< "\nles aretes sont :\n";
+    for(auto s : m_aretes)
+    {
+        std::cout<<"\t"<<s->getIndice()<<" ";
+        std::cout<<s->getExtrem1()->getLettre()<<"  ";
+        std::cout<<s->getExtrem2()->getLettre()<<"  ";
+        std::cout<<s->getPoids();
+        std::cout << std::endl;
+    }
+
+
+    std::cout<<std::endl << "Combien d'aretes voulez-vous supprimer ?" <<std::endl;
+    std::cin >> nombre;
+
+    for (int i=0; i<nombre; ++i)
+    {
+        std::cout << std::endl << "Arete a supprimer : ";
+        std::cin >> indice;
+
+        for (unsigned int j=0; j<m_aretes.size(); ++j)
+        {
+            if (indice == m_aretes[j]->getIndice())
+            {
+                delete m_aretes[indice];
+                m_aretes.erase(m_aretes.begin()+indice);
+            }
+        }
+
+    }
+    std::cout << "\nles aretes sont donc :\n";
+    for(auto s : m_aretes)
+    {
+        std::cout<<"\t"<<s->getIndice()<<" ";
+        std::cout<<s->getExtrem1()->getLettre()<<" ";
+        std::cout<<s->getExtrem2()->getLettre()<<" ";
+        std::cout<<s->getPoids();
+        std::cout << std::endl;
+    }
+
+
+    ///lorsqu'on retire 1 ou plusieurs aretes les calculs d'indices et la sauvegarde sont automatiques
+    c_degre();
+    c_propre();
+    calcul_cp_auto();
+
+    std::cout << "Veuillez à bien sauvegarder la modification en tapant 5 \n"<< std::endl;
+
+}
+
 
 void Graphe::calculDiff_indice (int f1, int f2) //recoit en parametre les numeros de fichiers à comparer
 {
@@ -477,19 +525,10 @@ void Graphe::calculDiff_indice (int f1, int f2) //recoit en parametre les numero
         dif_icpn[i] = icpn2[i]-icpn1[i];
     }
 
-
-    /*dif_num = num2-num1;
-    dif_ideg = ideg2-ideg1;
-    dif_idegn = idegn2-idegn1;
-    dif_ivp = ivp2-ivp1;
-    dif_ivpn = ivpn2-ivpn1;
-    dif_icp = icp2-icp1;
-    dif_icpn = icpn2-icpn1;
-    */
-
 ///Affichage des résultats de calculs de différence pour 1er sommet
 
     std::cout << " sommet / nom sommet / deg / degn / vp / vpn / cp / cpn :\n";
+    std::cout <<std::endl;
     for (unsigned int i=0; i<m_sommets.size(); ++i)
     {
         std::cout << "sommet : "<< i <<" dit "<< m_sommets[i]->getLettre()<< " -> "
@@ -502,17 +541,6 @@ void Graphe::calculDiff_indice (int f1, int f2) //recoit en parametre les numero
                   <<std::endl;
     }
 
-    /*std::cout << " dif num / deg / degn / vp / vpn / cp / cpn :\n"
-              << dif_num
-              << "  " << dif_ideg
-              << "  "<< dif_idegn
-              << "  "<< dif_ivp
-              << "  "<< dif_ivpn
-              << "  "<< dif_icp
-              << "  "<< dif_icpn<<std::endl
-              <<std::endl;
-    */
-///
 }
 
 

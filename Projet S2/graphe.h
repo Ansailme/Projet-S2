@@ -23,7 +23,7 @@ public :
     Graphe (std::string fichier);
     ~Graphe();
 
-    void lectureFichierP();
+    int lectureFichierP();
     void afficherG()const;
     void afficherPoids()const;
     void affichage(int arrive, double poids) const; //affichage Didjkstra
