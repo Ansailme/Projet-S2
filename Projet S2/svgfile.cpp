@@ -123,6 +123,15 @@ void Svgfile::addLine(int x1, int y1, int x2, int y2, std::string color)
             << "/>\n";
 }
 
+void Svgfile::addTrait(int mod, int tri, std::string color)
+{
+    m_ostrm << "<line "
+            << attrib("x", mod)
+            << attrib("y", tri)
+            << attrib("stroke", color)
+            << "/>\n";
+}
+
 void Svgfile::addArete(int ind1, int ind2, std::string color)
 {
     m_ostrm << "<line "

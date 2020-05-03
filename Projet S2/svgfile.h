@@ -25,6 +25,7 @@ class Svgfile
         void addTriangle(double x1, double y1, double x2, double y2,
                          double x3, double y3, std::string colorFill=defcol);
         void addLine(int x1, int y1, int x2, int y2, std::string color=defcol);
+        void addTrait (int mod, int tri, std::string color=defcol);
         void addArete (int ind1, int ind2, std::string color=defcol);
         void addCross(double x, double y, double span, std::string color=defcol);
 

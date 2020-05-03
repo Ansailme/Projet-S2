@@ -1,6 +1,7 @@
 #include "Arete.h"
 #include "couleur.h"
 #include "Graphe.h"
+#include <cmath>
 
 //constructeur
 Arete::Arete(int indice,Sommet* extremite1, Sommet* extremite2)
@@ -54,6 +55,11 @@ void Arete::setPoids(double new_poids)
 //affichage aretes
 void Arete::dessinerA(Svgfile& svgout, Graphe* graphe)
 {
+    double tot = (m_sommet[0]->getX()+m_sommet[1]->getX())*(m_sommet[0]->getY()+m_sommet[1]->getY());
+    double module = sqrt(tot);
+
+
+
     if(graphe->Orientation() == true)
     {
         Couleur noir{0,0,0}; //declaration d'une couleur
@@ -70,6 +76,7 @@ void Arete::dessinerA(Svgfile& svgout, Graphe* graphe)
     svgout.addText(((m_sommet[0]->getX()*100)+m_sommet[1]->getX()*100)/2,
                    ((m_sommet[0]->getY()*100)+m_sommet[1]->getY()*100)/2, getPoids(), noir); //dessin poids sur milieu d'arete
     }
+
 }
 
 

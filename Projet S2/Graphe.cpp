@@ -578,10 +578,16 @@ void Graphe::BFS(int premier)
 {
     std::vector<int> i_preds(m_sommets.size());
     int i;
+    std::vector<int> chemin(m_sommets.size());
+    double poids = 0;
+    chemin[premier]=1;
 
     //initalisation à 99 pour voir lesquels vont être parcourus ou non
     for (size_t i=0; i<i_preds.size(); ++i)
+    {
         i_preds[i]=99;
+    }
+
 
     //initialisation des couleurs à blanc
     for (auto it : m_sommets)
@@ -590,6 +596,8 @@ void Graphe::BFS(int premier)
     std::queue<Sommet*> file;
     file.push(m_sommets[premier]); //enfile le premier
     m_sommets[premier]->setCouleur(1); //on met le premier en gris
+
+    i_preds[premier] = 0;
 
     //parcours
     while (!file.empty())
@@ -604,13 +612,31 @@ void Graphe::BFS(int premier)
                 if (it->getCouleur()==0) //si ne fait pas déjà partie de la file
                 {
                     file.push(it);
-                    i_preds[it->getNum()]=i;
+                    it->setAdjacents(2); //met les adjacents en gris
                 }
+
+                for(auto a : m_aretes)
+                {
+                    if(a->recup_poids_adj(poids,m_sommets[i],it))
+                    {
+                        break;
+                    }
+                }
+
+                if(i_preds[it->getNum()] > i_preds[i] + poids)
+                {
+                    i_preds[it->getNum()] = i_preds[i] + poids;
+                    chemin[it->getNum()] = chemin[i];
+                }
+                else if(i_preds[it->getNum()] == i_preds[i] + poids)
+                    chemin[it->getNum()] += chemin[i];
             }
         }
-        m_sommets[i]->setAdjacents(1); //met les adjacents en gris
     }
 
+    std::cout << chemin[1] << std::endl;
+
+/*
     //affichage
     int pred;
     for (size_t i=0; i<i_preds.size(); ++i)
@@ -636,7 +662,7 @@ void Graphe::BFS(int premier)
             else
                 std::cout<<" <-- "<<premier;
         }
-    }
+    }*/
 }
 
 //calcul DFS
@@ -897,12 +923,6 @@ void Graphe::supp_arete()
 }
 
 
-/*
-void c_intermediarite()
-{
-    for
-}
-*/
 
 
 
