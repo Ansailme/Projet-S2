@@ -9,18 +9,18 @@
 
 int main()
 {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //initialisation de la couleur
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //utilisation de la couleur sur la console
 
     int choice =0;
     do
     {
         int k=15;
-        SetConsoleTextAttribute(hConsole, k);
-        std::cout<<"\n\n\tACCESSIBILITE & VULNERABILITE DES RESEAUX \n";
-        std::cout<<"\n\t\t    MENU PRINCIPAL\n";
+        SetConsoleTextAttribute(hConsole, k); //initialisation de la couleur à chaque utilisation de cette fonction
+        std::cout<<"\n\n\t\tACCESSIBILITE & VULNERABILITE DES RESEAUX \n";
+        std::cout<<"\n\t\t\t    MENU PRINCIPAL\n";
         k=14;
         SetConsoleTextAttribute(hConsole, k);
-        std::cout<<"\n\tQuel graphe souhaitez-vous charger? \n";
+        std::cout<<"\n\t\tQuel graphe souhaitez-vous charger? \n";
         std::string nomF;
         std::cin>>nomF;
         std::cout<<std::endl;
@@ -70,7 +70,8 @@ int main()
                 do
                 {
                     lectureF2=monGraphe.lectureFichierP(); ///lecture fichier pondération
-                } while (lectureF2==1);
+                }
+                while (lectureF2==1);
                 monGraphe.afficherPoids(); ///affichage fichier pondération
                 break;
 
@@ -89,7 +90,9 @@ int main()
 
             case 5 :
                 monGraphe.sauvegarde(s); ///sauvegarde des indices dans fichier txt
-                std::cout<<"\tsauvegarde du fichier operationelle chef !\n"<<std::endl;
+                k=10;
+                SetConsoleTextAttribute(hConsole, k);
+                std::cout<<"\tsauvegarde du fichier "<<s<<" operationelle chef !\n"<<std::endl;
                 break;
 
             case 6 :
@@ -105,7 +108,7 @@ int main()
                     std::cin>>i_fin;
                     poids = monGraphe.c_prox(i_debut,i_fin);
                     std::cout<< std::endl;
-                    monGraphe.affichage(i_fin, poids);
+                    monGraphe.affichage(i_fin, poids); //affichage du plus court chemin
                     std::cout<< std::endl;
                 }
                 break;
@@ -129,15 +132,22 @@ int main()
                     monGraphe.supp_arete();
                     s=s+1;
                 }
-                k=11;
-                SetConsoleTextAttribute(hConsole, k);
-                monGraphe.c_degre();
-                monGraphe.c_propre();
-                monGraphe.calcul_cp_auto();
-                monGraphe.c_intermediarite();
-                k=12;
-                SetConsoleTextAttribute(hConsole, k);
-                std::cout << "\tVeuillez a bien sauvegarder la modification en tapant 5 \n"<< std::endl;
+                std::cout<<std::endl;
+                std::cout<<"\nVoulez vous re-calculer les indices ? 1:oui 0:non "<<std::endl;
+                std::cin>>verif;
+                std::cout<<std::endl;
+                if (verif == 1)
+                {
+                    k=11;
+                    SetConsoleTextAttribute(hConsole, k);
+                    monGraphe.c_degre();
+                    monGraphe.c_propre();
+                    monGraphe.calcul_cp_auto();
+                    monGraphe.c_intermediarite();
+                    k=12;
+                    SetConsoleTextAttribute(hConsole, k);
+                    std::cout << "\tVeuillez a bien sauvegarder la modification en tapant 5 \n"<< std::endl;
+                }
                 break;
 
             case 10 :
@@ -151,8 +161,10 @@ int main()
                 break;
             }
 
-        } while (choix!=8);
-    } while (choice==0);
+        }
+        while (choix!=8);
+    }
+    while (choice==0);
 
 
     return 0;
