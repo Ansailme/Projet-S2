@@ -9,6 +9,7 @@
 #include <map>
 #include "Sommet.h"
 
+class Graphe;
 
 class Arete
 {
@@ -27,7 +28,7 @@ public :
     Sommet* getExtrem2 ()const;
 
     void setPoids(double new_poids);
-    void dessinerA(Svgfile& svgout)const;
+    void dessinerA(Svgfile& svgout, Graphe* graphe);
 
     Sommet* recupExtrem1(int indice);
     Sommet* recupExtrem2(int indice);

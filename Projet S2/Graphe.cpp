@@ -92,7 +92,6 @@ Graphe::~Graphe()
 
 
 
-
 int Graphe::lectureFichierP()
 {
     std::cout<< std::endl <<"Quel fichier ponderation souhaitez-vous lire?\n";
@@ -124,6 +123,19 @@ int Graphe::lectureFichierP()
     return 0;
     }
     ifs2.close();
+}
+
+bool Graphe::Orientation()
+{
+    bool verif;
+
+    if(m_orient == 0)
+        verif = true;
+
+    if(m_orient == 1)
+        verif == false;
+
+    return verif;
 }
 
 void Graphe::afficherG()const
@@ -191,7 +203,7 @@ void Graphe::affichage(int arrive, double poids) const
     std::cout <<  "= " << poids << std::endl;
 }
 
-void Graphe::dessinerGraphe() const ///sp permet de dessiner le graphe dans svgfile
+void Graphe::dessinerGraphe() ///sp permet de dessiner le graphe dans svgfile
 {
     Svgfile svgout;
     svgout.addGrid();
@@ -203,7 +215,7 @@ void Graphe::dessinerGraphe() const ///sp permet de dessiner le graphe dans svgf
 
     for(auto s : m_aretes)
     {
-        s->dessinerA(svgout);
+        s->dessinerA(svgout, this);
     }
 
     if (m_aretes[1]->getPoids()==0)
@@ -725,8 +737,7 @@ void Graphe::recherchecompoConnexes()
     std::cout << std::endl << std::endl << "Le graphe a " << k << " composante(s) connexe(s)." << std::endl;
     std::cout << std::endl;
 
-    /*
-        if (m_orient==0) //si le graphe est non orienté
+        /*if (m_orient==0) //si le graphe est non orienté
         {
             int i;
             ///recherche de chaine ou cycle eulérien
@@ -754,12 +765,16 @@ void Graphe::recherchecompoConnexes()
             }
         }
         else
-            std::cout<<std::endl<<"Le graphe n'admet ni une chaine ni un cycle eulerien car il est oriente";
-    */
+            std::cout<<std::endl<<"Le graphe n'admet ni une chaine ni un cycle eulerien car il est oriente";*/
 }
 
 void Graphe::connexite()
 {
+    if (m_orient== 1)
+        std:: cout << "On ne peut pas calculer la k-connexite"<< std::endl;
+
+    else
+    {
     int k,tot_chemin;
     k=99999;
 
@@ -783,13 +798,12 @@ void Graphe::connexite()
                 }
             }
 
-
         }
     }
 
     std::cout << "\nK-CONNEXITE - Il faut enlever " << k << " arete(s) pour former au moins 2 composantes connexes.";
     std::cout << std::endl << std::endl;
-
+    }
 }
 
 Sommet* Graphe::recupSommet (int indice)

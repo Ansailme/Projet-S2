@@ -24,11 +24,11 @@ public :
     ~Graphe();
 
     int lectureFichierP();
+    bool Orientation();
     void afficherG()const;
     void afficherPoids()const;
     void affichage(int arrive, double poids) const; //affichage Didjkstra
-    void dessinerGraphe()const;
-
+    void dessinerGraphe();
 
     void c_degre(); //calcul centralité de degre
     void c_propre(); //calcul de centralite vecteur propre

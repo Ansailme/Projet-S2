@@ -1,5 +1,6 @@
 #include "Arete.h"
 #include "couleur.h"
+#include "Graphe.h"
 
 Arete::Arete(int indice,Sommet* extremite1, Sommet* extremite2)
     :m_indice{indice}
@@ -48,13 +49,23 @@ void Arete::setPoids(double new_poids)
     m_poids = new_poids;
 }
 
-void Arete::dessinerA(Svgfile& svgout)const
+void Arete::dessinerA(Svgfile& svgout, Graphe* graphe)
 {
-    Couleur noir{0,0,0}; //declaration d'une couleur
+    if(graphe->Orientation() == true)
+    {
+        Couleur noir{0,0,0}; //declaration d'une couleur
     svgout.addLine(m_sommet[0]->getX()*100,m_sommet[0]->getY()*100,m_sommet[1]->getX()*100,m_sommet[1]->getY()*100,noir); //dessin arete
     svgout.addText(((m_sommet[0]->getX()*100)+m_sommet[1]->getX()*100)/2,
                    ((m_sommet[0]->getY()*100)+m_sommet[1]->getY()*100)/2, getPoids(), noir); //dessin poids sur milieu d'arete
-
+    }
+    else
+    {
+        Couleur noir{0,0,0}; //declaration d'une couleur
+        Couleur test{255,150,50};
+    svgout.addLine(m_sommet[0]->getX()*100,m_sommet[0]->getY()*100,m_sommet[1]->getX()*100,m_sommet[1]->getY()*100,test); //dessin arete
+    svgout.addText(((m_sommet[0]->getX()*100)+m_sommet[1]->getX()*100)/2,
+                   ((m_sommet[0]->getY()*100)+m_sommet[1]->getY()*100)/2, getPoids(), noir); //dessin poids sur milieu d'arete
+    }
 }
 
 
