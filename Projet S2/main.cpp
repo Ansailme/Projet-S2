@@ -2,14 +2,24 @@
 #include "graphe.h"
 #include "svgfile.h"
 #include "couleur.h"
+#include "windows.h"
+
+///source couleur :
+///-https://www.daniweb.com/programming/software-development/code/216345/add-a-little-color-to-your-console-text
 
 int main()
 {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //initialisation de la couleur
+
     int choice =0;
     do
     {
+        int k=15;
+        SetConsoleTextAttribute(hConsole, k);
         std::cout<<"\n\n\tACCESSIBILITE & VULNERABILITE DES RESEAUX \n";
         std::cout<<"\n\t\t    MENU PRINCIPAL\n";
+        k=14;
+        SetConsoleTextAttribute(hConsole, k);
         std::cout<<"\n\tQuel graphe souhaitez-vous charger? \n";
         std::string nomF;
         std::cin>>nomF;
@@ -25,6 +35,8 @@ int main()
         do
         {
             ///Affichage menu avec les choix
+            int k=15;
+            SetConsoleTextAttribute(hConsole, k);
             std::cout<<"\tQue souhaitez-vous faire ?\n"<<std::endl
                      <<"\t1) Donnees du graphe\n"
                      <<"\t2) Charger un fichier de ponderation \n"
@@ -38,10 +50,13 @@ int main()
                      <<"\t10) Calcul des differences d'indice\n"
                      <<"\t11) Quitter le programme\n"
                      << std::endl;
-
+            k=14;
+            SetConsoleTextAttribute(hConsole, k);
             std::cout<<"Faites votre choix : ";
             std::cin >> choix;
             std::cout<<std::endl;
+            k=15;
+            SetConsoleTextAttribute(hConsole, k);
 
 
             switch(choix)
@@ -64,6 +79,8 @@ int main()
                 break;
 
             case 4 :
+                k=11;
+                SetConsoleTextAttribute(hConsole, k);
                 monGraphe.c_degre(); ///calcul centralité de degré
                 monGraphe.c_propre(); ///calcul centralité vecteur propre
                 monGraphe.calcul_cp_auto(); ///calcul centralité proximité
@@ -93,6 +110,8 @@ int main()
                 break;
 
             case 7 :
+                k=11;
+                SetConsoleTextAttribute(hConsole, k);
                 monGraphe.recherchecompoConnexes();
                 monGraphe.connexite();
                 break;

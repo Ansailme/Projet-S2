@@ -228,10 +228,10 @@ void Graphe::c_degre()
             }
         }
     }
-    std::cout <<"\nINDICES CENTRALITE DEGRE / NORMALISE\n";
+    std::cout <<"\n\tINDICES CENTRALITE DEGRE / NORMALISE\n";
     for (unsigned int i=0; i<m_sommets.size(); ++i)
     {
-        std::cout << "\n\tsommet " << i <<" : "<< m_sommets[i]->getNbAdj()
+        std::cout << "\n\t\tsommet " << i <<" : "<< m_sommets[i]->getNbAdj()
                   <<" et "<< (m_sommets[i]->getNbAdj())*(1.0/(m_ordre-1));
     }
     std::cout<<std::endl;
@@ -273,11 +273,11 @@ void Graphe::c_propre()
         }
 
     }
-    std::cout<<"\nINDICES CENTRALITE VECTEUR PROPRE / NORMALISE :\n";
+    std::cout<<"\n\tINDICES CENTRALITE VECTEUR PROPRE / NORMALISE :\n";
     for(unsigned int i=0; i<m_sommets.size(); ++i)
     {
         //std::cout << cvp[i] << std::endl;
-        std::cout << "\n\tsommet " << i << " : "
+        std::cout << "\n\t\tsommet " << i << " : "
                   << cvp[i] <<" et " <<(cvp[i]*(1.0/(m_ordre-1)));
     }
     std::cout<<std::endl;
@@ -349,7 +349,7 @@ void Graphe::calcul_cp (int i_debut, int i_fin)
 void Graphe:: calcul_cp_auto()
 {
     double p_poids=0;
-    std::cout <<"\nINDICE CENTRALITE PROXIMITE / NORMALISE :\n";
+    std::cout <<"\n\tINDICE CENTRALITE PROXIMITE / NORMALISE :\n";
     std::cout << std::endl;
     for(unsigned int i=0; i<m_sommets.size(); ++i)
     {
@@ -368,7 +368,7 @@ void Graphe:: calcul_cp_auto()
                     cp[i] = 1/p_poids;
                     cpn[i] = (m_ordre-1)/p_poids;
                 }
-                std::cout <<"\tsommet : "<< i << " au sommet : " << j << " = "
+                std::cout <<"\t\tsommet : "<< i << " au sommet : " << j << " = "
                           << std::setprecision(3)<<std::fixed << cp[i] << " et "<< cpn[i] << std::endl;
             }
         }
@@ -717,12 +717,12 @@ void Graphe::recherchecompoConnexes()
     ///affichage
     for (auto it : compoConnexes)
     {
-        std::cout<<std::endl<<"Composante connexe "<<it.first<<" : ";
+        std::cout<<std::endl<<" Composante connexe "<<it.first<<" : ";
         for (auto et : it.second)
             std::cout<<et<<" ";
         k++;
     }
-    std::cout << std::endl << std::endl << "Le graphe a " << k << " composante(s) connexe(s)." << std::endl;
+    std::cout << std::endl << std::endl << " Le graphe a " << k << " composante(s) connexe(s)." << std::endl;
     std::cout << std::endl;
 
     /*
@@ -787,7 +787,7 @@ void Graphe::connexite()
         }
     }
 
-    std::cout << "\nK-CONNEXITE - Il faut enlever " << k << " arete(s) pour former au moins 2 composantes connexes.";
+    std::cout << "\n\tK-CONNEXITE\n Enlever " << k << " arete(s) pour former au moins 2 composantes connexes.";
     std::cout << std::endl << std::endl;
 
 }
