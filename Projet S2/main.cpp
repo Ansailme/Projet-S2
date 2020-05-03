@@ -116,6 +116,8 @@ int main()
                     std::cout<< std::endl;
                     monGraphe.affichage(i_fin, poids); //affichage du plus court chemin
                     std::cout<< std::endl;
+                    monGraphe.BFS(i_debut,i_fin);
+                    std::cout<<std::endl;
                 }
                 break;
 
@@ -173,10 +175,11 @@ int main()
                 return fermeture;
                 break;
             case 12 :
-                std::cout
-                            <<std::endl<<"Choisir le sommet de depart : ";
+                    std::cout<<std::endl<<"Choisir le sommet de depart : ";
                     std::cin>>i_debut;
-                monGraphe.BFS(i_debut);
+                    std::cout<<std::endl<<"Choisir le sommet d'arrivee : ";
+                    std::cin>>i_fin;
+                monGraphe.BFS(i_debut,i_fin);
             }
 
         }

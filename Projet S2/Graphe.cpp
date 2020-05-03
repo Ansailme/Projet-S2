@@ -421,10 +421,10 @@ void Graphe::c_intermediarite()
     cint.reserve(m_sommets.size());
     cintn.reserve(m_sommets.size());
 
-    for (unsigned int i=0;i<m_sommets.size();++i)
+    for (unsigned int i=0; i<m_sommets.size(); ++i)
     {
-        cint[i]=0;
-        cintn[i]=((2*cint[i])/((m_ordre*m_ordre)-3*m_ordre+2));
+            cint[i]=0;
+            cintn[i]=((2*cint[i])/((m_ordre*m_ordre)-3*m_ordre+2));
     }
 
     //affichage et calcul pour le vecteur propre normalisé et non normalisé
@@ -573,7 +573,7 @@ void Graphe::calculDiff_indice (int f1, int f2) //recoit en parametre les numero
 
 
 //calcul du BFS
-void Graphe::BFS(int premier)
+void Graphe::BFS(int premier, int arrive)
 {
     std::vector<int> i_preds(m_sommets.size());
     int i;
@@ -633,35 +633,8 @@ void Graphe::BFS(int premier)
         }
     }
 
-    std::cout << chemin[1] << std::endl;
+    std::cout << "le somme des plus courts chemins est de : "<<chemin[arrive] <<std::endl;
 
-/*
-    //affichage
-    int pred;
-    for (size_t i=0; i<i_preds.size(); ++i)
-    {
-
-        int temp=i_preds[i]; //valeur tempon
-        if (temp!=99) //s'il a été parcouru
-        {
-            std::cout<<std::endl<<i;
-            if (premier!=temp) //si le sommet i n'est pas un adjacent du premier
-            {
-                //on remonte le tableau de predecesseur en predesseur jusqu'à ce qu'on remonte au premier
-                do
-                {
-                    pred = temp;
-                    std::cout<<" <-- "<<pred;
-                    temp=i_preds[pred];
-
-                }
-                while (premier!=pred);
-
-            }
-            else
-                std::cout<<" <-- "<<premier;
-        }
-    }*/
 }
 
 //calcul DFS
@@ -704,7 +677,7 @@ void Graphe::DFS(int premier)
         }
     }
 
-std::cout << std::endl << std::endl;
+    std::cout << std::endl << std::endl;
 
 }
 
@@ -787,34 +760,34 @@ void Graphe::connexite()
 
     else
     {
-    int k,tot_chemin;
-    k=99999;
+        int k,tot_chemin;
+        k=99999;
 
-    for(unsigned int i=0;i<m_sommets.size();++i)
-    {
-        for(unsigned int j=0;j<m_sommets.size();++j)
+        for(unsigned int i=0; i<m_sommets.size(); ++i)
         {
-            if(i!=j) //parcours des sommets i par rapport au sommet j s'ils sont différents
+            for(unsigned int j=0; j<m_sommets.size(); ++j)
             {
-                for(unsigned int m=0;m<m_sommets.size();++m)
+                if(i!=j) //parcours des sommets i par rapport au sommet j s'ils sont différents
                 {
-                    m_sommets[m]->setCouleur(0); //remet le sommet en blanc
-                }
+                    for(unsigned int m=0; m<m_sommets.size(); ++m)
+                    {
+                        m_sommets[m]->setCouleur(0); //remet le sommet en blanc
+                    }
 
-                tot_chemin = 0; //initialisation chemin total
-                m_sommets[i]->connexite(j,tot_chemin);
+                    tot_chemin = 0; //initialisation chemin total
+                    m_sommets[i]->connexite(j,tot_chemin);
 
-                if(tot_chemin<k)
-                {
-                    k=tot_chemin; //implementation de k
+                    if(tot_chemin<k)
+                    {
+                        k=tot_chemin; //implementation de k
+                    }
                 }
             }
         }
-    }
 
-    //Affichage
-    std::cout << "\n\tK-CONNEXITE\n Enlever " << k << " arete(s) pour former au moins 2 composantes connexes.";
-    std::cout << std::endl << std::endl;
+        //Affichage
+        std::cout << "\n\tK-CONNEXITE\n Enlever " << k << " arete(s) pour former au moins 2 composantes connexes.";
+        std::cout << std::endl << std::endl;
     }
 }
 
