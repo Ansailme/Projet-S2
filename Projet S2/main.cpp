@@ -26,7 +26,7 @@ int main()
         std::cout<<std::endl;
         Graphe monGraphe{"g_"+nomF +".txt"};
         bool fermeture = 1;
-        int a,choix=0, s=0, modif=-1;
+        int choix=0, s=0;
         int i_debut,i_fin;
         double poids=0;
         int f1=0, f2=0;
@@ -152,7 +152,14 @@ int main()
 
             case 10 :
                 std::cout<<"Quels fichiers comptez-vous comparer ?\n"<< std::endl;
-                std::cin >> f1 >> f2;
+                k=10;
+                SetConsoleTextAttribute(hConsole, k);
+                std::cout<<" fichier : ";
+                std::cin >> f1;
+                std::cout<<" fichier : ";
+                std::cin >> f2;
+                k=15;
+                SetConsoleTextAttribute(hConsole, k);
                 monGraphe.calculDiff_indice(f1,f2);
                 break;
 

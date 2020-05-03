@@ -127,11 +127,10 @@ int Graphe::lectureFichierP()
         }
         if ( ifs2.fail() )
             throw std::runtime_error("Probleme lecture donnees du graphe");
-
-    return 0;
     }
 
     ifs2.close(); //fermeture du fichier
+    return 0;
 }
 
 //verification de l'orientation du graphe
@@ -143,7 +142,7 @@ bool Graphe::Orientation()
         verif = true;
 
     if(m_orient == 1)
-        verif == false;
+        verif = false;
 
     return verif; //si le graphe est orienté, le sous programme renvoit la valeur 1, sinon 0
 }
