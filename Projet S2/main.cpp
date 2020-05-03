@@ -94,6 +94,7 @@ int main()
 
             case 7 :
                 monGraphe.recherchecompoConnexes();
+                monGraphe.connexite();
                 break;
 
             case 8 :
@@ -119,16 +120,14 @@ int main()
             case 11 :
                 return fermeture;
                 break;
+            }
 
-            case 14:
-                monGraphe.connexite();
-                break;
-
-        }
-        while (choix!=8);
-    }
-    while (choice==0);
+        } while (choix!=8);
+    } while (choice==0);
 
 
     return 0;
 }
+
+
+

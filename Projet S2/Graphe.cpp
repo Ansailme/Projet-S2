@@ -426,7 +426,7 @@ void Graphe::supp_arete()
     c_propre();
     calcul_cp_auto();
 
-    std::cout << "Veuillez à bien sauvegarder la modification en tapant 5 \n"<< std::endl;
+    std::cout << "Veuillez a bien sauvegarder la modification en tapant 5 \n"<< std::endl;
 
 }
 
@@ -763,13 +763,13 @@ void Graphe::connexite()
     int k,tot_chemin;
     k=99999;
 
-    for(int i=0;i<m_sommets.size();++i)
+    for(unsigned int i=0;i<m_sommets.size();++i)
     {
-        for(int j=0;j<m_sommets.size();++j)
+        for(unsigned int j=0;j<m_sommets.size();++j)
         {
             if(i!=j)
             {
-                for(int m=0;m<m_sommets.size();++m)
+                for(unsigned int m=0;m<m_sommets.size();++m)
                 {
                     m_sommets[m]->setCouleur(0);
                 }
@@ -787,7 +787,7 @@ void Graphe::connexite()
         }
     }
 
-    std::cout << "Il faut enlever " << k << " arete(s) pour former au moins 2 composantes connexes.";
+    std::cout << "\nK-CONNEXITE - Il faut enlever " << k << " arete(s) pour former au moins 2 composantes connexes.";
     std::cout << std::endl << std::endl;
 
 }
@@ -841,57 +841,4 @@ void Graphe::sauvegarde(int s)
                     << " " << cp[i] <<" "<< cpn[i]<< std::endl;
         ofs2 << std::endl;
     }
-}
-
-void Graphe::supp_arete()
-{
-    int indice=0;
-    int nombre=0;
-    std::cout<< "\nles aretes sont :\n";
-    for(auto s : m_aretes)
-    {
-        std::cout<<"\t"<<s->getIndice()<<" ";
-        std::cout<<s->getExtrem1()->getLettre()<<"  ";
-        std::cout<<s->getExtrem2()->getLettre()<<"  ";
-        std::cout<<s->getPoids();
-        std::cout << std::endl;
-    }
-
-
-    std::cout<<std::endl << "Combien d'aretes voulez-vous supprimer ?" <<std::endl;
-    std::cin >> nombre;
-
-    for (int i=0; i<nombre; ++i)
-    {
-        std::cout << std::endl << "Arete a supprimer : ";
-        std::cin >> indice;
-
-        for (unsigned int j=0; j<m_aretes.size(); ++j)
-        {
-            if (indice == m_aretes[j]->getIndice())
-            {
-                delete m_aretes[indice];
-                m_aretes.erase(m_aretes.begin()+indice);
-            }
-        }
-
-    }
-    std::cout << "\nles aretes sont donc :\n";
-    for(auto s : m_aretes)
-    {
-        std::cout<<"\t"<<s->getIndice()<<" ";
-        std::cout<<s->getExtrem1()->getLettre()<<" ";
-        std::cout<<s->getExtrem2()->getLettre()<<" ";
-        std::cout<<s->getPoids();
-        std::cout << std::endl;
-    }
-
-
-    ///lorsqu'on retire 1 ou plusieurs aretes les calculs d'indices et la sauvegarde sont automatiques
-    c_degre();
-    c_propre();
-    calcul_cp_auto();
-
-    std::cout << "Veuillez enregistrer la modif en tapant 8 !!! \n"<< std::endl;
-
 }
