@@ -6,7 +6,7 @@
 #include <fstream>
 #include <set>
 
-/// header svgfile.h tiré de correction TP 6 maillage de M FERCOQ
+/// header svgfile.h tiré de correction TP 6 maillage de M FERCOQ repris integralement
 
 
 constexpr char defcol[] = "black";

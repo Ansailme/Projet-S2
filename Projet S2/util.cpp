@@ -3,7 +3,7 @@
 #include <random>
 #include <ctime>
 #include <iostream>
-/// fichier util.cpp tiré de correction TP 6 maillage de M FERCOQ
+/// fichier util.cpp tiré de correction TP 6 maillage de M FERCOQ repris integralement
 ///utilisé pour générer des couleurs dans couleur.cpp
 namespace util
 {

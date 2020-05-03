@@ -2,8 +2,7 @@
 #include <iostream>
 #include <sstream>
 
-/// fichier svgfile.cpp tiré de correction TP 6 maillage de M FERCOQ
-///Utilisation de l'auto-refresh proposé au 1er
+/// fichier svgfile.cpp tiré de correction TP 6 maillage de M FERCOQ repris integralement
 
 const std::string svgHeader =
     "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"

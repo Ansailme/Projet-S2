@@ -3,7 +3,7 @@
 #include "util.h"
 #include <iostream>
 
-/// fichier couleur.cpp tiré de correction TP 6 maillage de M FERCOQ
+/// fichier couleur.cpp tiré de correction TP 6 maillage de M FERCOQ repris integralement
 
 Couleur::Couleur(uint8_t rouge, uint8_t vert, uint8_t bleu)
     : m_rouge{rouge}, m_vert{vert}, m_bleu{bleu}
