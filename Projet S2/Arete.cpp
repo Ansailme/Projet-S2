@@ -2,24 +2,26 @@
 #include "couleur.h"
 #include "Graphe.h"
 
+//constructeur
 Arete::Arete(int indice,Sommet* extremite1, Sommet* extremite2)
     :m_indice{indice}
 {
-    m_sommet[0]=extremite1;
-    m_sommet[1]=extremite2;
+    m_sommet[0]=extremite1; //on attribue la 1ere case du tableau a la 1ere extremite (sommet1)
+    m_sommet[1]=extremite2; //on attribue la 2eme case du tableau a la 2eme extremite (sommet2)
 
 }
 
+//destructeur
 Arete:: ~Arete()
 {
-    m_sommet[0]->effacer_Adj(m_sommet[1]);
-    m_sommet[1]->effacer_Adj(m_sommet[0]);
+    m_sommet[0]->effacer_Adj(m_sommet[1]); //on dissocie les sommets d'une arete
+    m_sommet[1]->effacer_Adj(m_sommet[0]); //par ex le sommet 1 ne sera plus relie au sommet 2 et inversement
 }
 
 
 
 
-
+//recuperer des donnees
 int Arete::getIndice ()const
 {
     return m_indice;
@@ -43,12 +45,13 @@ Sommet* Arete::getExtrem2 ()const
 
 
 
-
+//attribuer des nouvelles donnees
 void Arete::setPoids(double new_poids)
 {
     m_poids = new_poids;
 }
 
+//affichage aretes
 void Arete::dessinerA(Svgfile& svgout, Graphe* graphe)
 {
     if(graphe->Orientation() == true)
@@ -70,7 +73,7 @@ void Arete::dessinerA(Svgfile& svgout, Graphe* graphe)
 
 
 
-
+//recuperer les extremites d'une arrete
 Sommet* Arete::recupExtrem1(int indice)
 {
         if ((getIndice())==indice)
@@ -87,6 +90,7 @@ Sommet* Arete::recupExtrem2(int indice)
         }
 }
 
+//recuperer les poids des aretes adjacentes au sommet
 bool Arete::recup_poids_adj(double &poids,Sommet* prec, Sommet* suivant)const
 {
     if(((m_sommet[0] == prec) && (suivant == m_sommet[1])) || (((prec == m_sommet[1])) && suivant == m_sommet[0]))

@@ -3,16 +3,18 @@
 #include "couleur.h"
 #include "Arete.h"
 
+//constructeur
 Sommet::Sommet (int num, std::string lettre, int x, int y)
     :m_num{num},m_couleur {0}, m_lettre{lettre},m_x{x},m_y{y}
 {}
 
+//destructeur
 Sommet::~Sommet()
 {}
 
 
 
-
+//recuperer les donnees
 int Sommet::getX() const
 {
     return m_x;
@@ -82,7 +84,7 @@ std::pair <Sommet*,double> Sommet::get_voisin(Sommet* p, double poids_total,std:
 
 
 
-
+//attribuer des nouvelles valeurs
 void Sommet::setCouleur(int nv)
 {
     m_couleur=nv;
@@ -102,7 +104,7 @@ void Sommet::setAdjacents(int i)
 
 
 
-
+//affichage des sommets
 void Sommet::dessinerS(Svgfile& svgout) const
 {
     Couleur noir{0,0,0};
@@ -112,6 +114,7 @@ void Sommet::dessinerS(Svgfile& svgout) const
     svgout.addText(m_x*100-30,m_y*100-20,m_lettre,noir);
 }
 
+//affichage de l'indice des sommets
 void Sommet::afficher_num()const
 {
     std::cout<<std::endl<<"\t sommet "
@@ -120,6 +123,7 @@ void Sommet::afficher_num()const
         std::cout<<it->getNum()<<" ";
 }
 
+//affichage des lettres des sommets pour calculer le plus court chemin
 void Sommet::afficher_result() const
 {
     std::cout << m_lettre ;
@@ -130,6 +134,7 @@ void Sommet::afficher_result() const
     }
 }
 
+//affichage du poids pour calculer le plus court chemin
 int Sommet::afficher_poids() const
 {
 
@@ -146,7 +151,7 @@ int Sommet::afficher_poids() const
 
 
 
-
+//initialiser la couleur des sommets en blanc
 void Sommet::init_marque()
 {
     m_marque = 0;
@@ -154,11 +159,13 @@ void Sommet::init_marque()
 
 }
 
+//verifier le booleen
 void Sommet::marque()
 {
     m_marque=true;
 }
 
+//verifier les adjacences a un sommet
 bool Sommet::estAdjacentA(int i)
 {
     bool adjacent=false;
@@ -168,6 +175,7 @@ bool Sommet::estAdjacentA(int i)
     return adjacent;
 }
 
+/*
 bool Sommet::estDegreImpair()
 {
     bool temp;
@@ -178,23 +186,27 @@ bool Sommet::estDegreImpair()
         temp=true;
 
     return temp;
-}
+}*/
 
+//recuperer le nombre de voisins total a un sommet
 size_t Sommet::nb_voisin() const
 {
     return m_voisin.size();
 }
 
+//ajouter un nouveau voisin
 void Sommet::ajouter_voisin(std::pair <Sommet*,int> cote)
 {
     m_voisin.push_back(cote);
 }
 
+//ajouter un nouveau sommet
 void Sommet::remplir(Sommet* adjacent)
 {
     m_adjacents.push_back(adjacent);
 }
 
+//parcours de differents chemins pour la k-connexite
 void Sommet::connexite(int arriver, int& k)
 {
     if(getCouleur() == 2)
@@ -216,6 +228,7 @@ void Sommet::connexite(int arriver, int& k)
     }
 }
 
+//effacer l'adjacence entre 2 sommets pour les dissocier
 void Sommet::effacer_Adj(Sommet* a)
 {
     for (int i=0; i<m_adjacents.size();++i)
@@ -227,6 +240,7 @@ void Sommet::effacer_Adj(Sommet* a)
     }
 }
 
+//remettre la couleur a blanc pour qu'un sommet ne soit plus marqué
 void Sommet::reinitialiserCouleur()
 {
     m_couleur=0;
