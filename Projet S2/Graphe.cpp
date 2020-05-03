@@ -15,7 +15,7 @@
 Graphe::Graphe(std::string fichier)
 {
     std::ifstream ifs{fichier}; //ouverture en mode lecture
-    if (!ifs)
+    if (!ifs) //si le fichier n'existe pas, indication pour charger un autre graphe
     {
         std::cout << "Ce graphe n'existe pas, chargez en un autre" << std::endl ;
         std::cout<<"\n\tTapez 8"<<std::endl<<std::endl;
@@ -23,53 +23,52 @@ Graphe::Graphe(std::string fichier)
 
     else
     {
-
-        ifs >> m_orient;
+        ifs >> m_orient; //recuperer l'orientation du graphe
         if ( ifs.fail() )
             throw std::runtime_error("Probleme lecture de l'orientation");
 
-        ifs >> m_ordre;
+        ifs >> m_ordre; //recuperer l'ordre du graphe
         if ( ifs.fail() )
             throw std::runtime_error("Probleme lecture ordre du graphe");
 
         int num,x,y;
         std::string lettre;
         deg.resize(m_ordre);
-        for(int i=0; i<m_ordre; ++i)
+        for(int i=0; i<m_ordre; ++i) //parcours le nombre total de sommets
         {
-            ifs>>num>>lettre>>x>>y;
-            m_sommets.push_back(new Sommet{i,lettre,x,y});
-            deg[i]=0;
+            ifs>>num>>lettre>>x>>y; //recuperer l'indice, le nom et les coordonnées des sommets
+            m_sommets.push_back(new Sommet{i,lettre,x,y}); //alloue une nouvelle place pour les données d'un nouveau sommet
+            deg[i]=0; //initialistaion des degrés d'un sommet à 0
         }
-        cp.reserve(m_sommets.size());
+        cp.reserve(m_sommets.size()); //reserve de la place pour les calculs d'indice du vecteur propre normalisé et non normalisé
         cpn.reserve(m_sommets.size());
+
         if ( ifs.fail() )
             throw std::runtime_error("Probleme lecture donnees du graphe");
 
         int taille;
-        ifs >> taille;
+        ifs >> taille; //recupere la taille du graphe
         if ( ifs.fail() )
             throw std::runtime_error("Probleme lecture taille du graphe");
 
         int nb1, nb2, indiceTaille;
         for (int j=0; j<taille; ++j) //pour chaque arrete/arc on lit les extremités
         {
-            ifs>>indiceTaille>>nb1>>nb2;
-            m_aretes.push_back(new Arete {j,m_sommets[nb1],m_sommets[nb2]});
-            //deg[nb1]+= 1;
-            //deg[nb2]+= 1;
+            ifs>>indiceTaille>>nb1>>nb2; //recuperer l'indice des aretes, et ses 2 extremités
+            m_aretes.push_back(new Arete {j,m_sommets[nb1],m_sommets[nb2]});////alloue une nouvelle place pour les données d'une nouvelle arete
 
-            if(m_orient==0) //si non oriente
+            if(m_orient==0) //si graphe non oriente
             {
-                m_sommets[nb1]->remplir(m_sommets[nb2]); //on ajoute le sommet nb2 comme adejacent au sommet nb1
-                m_sommets[nb2]->remplir(m_sommets[nb1]); //on ajoute le sommet nb1 comme adejacent au sommet nb2
+                m_sommets[nb1]->remplir(m_sommets[nb2]); //on ajoute le sommet nb2 comme adjacent au sommet nb1
+                m_sommets[nb2]->remplir(m_sommets[nb1]); //on ajoute le sommet nb1 comme adjacent au sommet nb2
             }
             else //si oriente
                 m_sommets[nb1]->remplir(m_sommets[nb2]); //on ajoute le sommet nb2 comme adejacent au sommet nb1
         }
 
-        ifs.close();
+        ifs.close(); //fermeture du fichier
 
+        //effacer toutes les sauvegardes faites précédemment
         remove("sauvegarde0.txt");
         remove("sauvegarde_brut0.txt");
         remove("sauvegarde1.txt");
@@ -82,6 +81,7 @@ Graphe::Graphe(std::string fichier)
     }
 }
 
+//destructeur
 Graphe::~Graphe()
 {
     for (auto it : m_sommets)
@@ -91,14 +91,14 @@ Graphe::~Graphe()
 
 
 
-
+//lecture des fichiers
 int Graphe::lectureFichierP()
 {
     std::cout<< std::endl <<"Quel fichier ponderation souhaitez-vous lire?\n";
     std::string fichier2;
     std::cin>>fichier2;
-    std::ifstream ifs2{"p_" + fichier2 + ".txt"}; //ouverture en mode lecture
-    if (!ifs2)
+    std::ifstream ifs2{"p_" + fichier2 + ".txt"}; //ouverture du fichier
+    if (!ifs2) //si le fichier n'existe pas
     {
         std::cout << "Ce fichier ponderation n'existe pas, chargez en un autre" << std::endl ;
         return 1;
@@ -106,25 +106,27 @@ int Graphe::lectureFichierP()
     else
     {
         int nbr_arete;
-        ifs2 >> nbr_arete;
+        ifs2 >> nbr_arete; //recupere le nombre d'aretes total
         if ( ifs2.fail() )
             throw std::runtime_error("Probleme lecture nombre d'arete du graphe");
 
         int indiceTaille2;
         double poids;
-        for(int k=0; k<nbr_arete; k++)
+        for(int k=0; k<nbr_arete; k++) //parcours de toutes les aretes
         {
-            ifs2>>indiceTaille2>>poids;
-            m_aretes[indiceTaille2]->setPoids(poids);
+            ifs2>>indiceTaille2>>poids; //recupere l'indice de l'arete, et son poids
+            m_aretes[indiceTaille2]->setPoids(poids); //on associe le poids a l'arete
         }
         if ( ifs2.fail() )
             throw std::runtime_error("Probleme lecture donnees du graphe");
 
     return 0;
     }
-    ifs2.close();
+
+    ifs2.close(); //fermeture du fichier
 }
 
+//verification de l'orientation du graphe
 bool Graphe::Orientation()
 {
     bool verif;
@@ -135,9 +137,10 @@ bool Graphe::Orientation()
     if(m_orient == 1)
         verif == false;
 
-    return verif;
+    return verif; //si le graphe est orienté, le sous programme renvoit la valeur 1, sinon 0
 }
 
+//affichage du fichier topologique
 void Graphe::afficherG()const
 {
     std::cout<<"\tfichier topologie\n";
@@ -151,8 +154,9 @@ void Graphe::afficherG()const
 
     std::cout<<"\nordre du graphe : "<< m_sommets.size();
     std::cout << "\nsommets :\n";
-    for( auto s : m_sommets)
+    for( auto s : m_sommets) //parcours de tous les sommets
     {
+        //ecrit l'indice, la lettre et les coordonnées
         std::cout << "\t"<<s->getNum()<<" ";
         std::cout << s->getLettre()<<" ";
         std::cout << s->getX()<<" ";
@@ -163,8 +167,9 @@ void Graphe::afficherG()const
     std::cout << "\ntaille du graphe : " << m_aretes.size();
     std::cout << std::endl;
     std::cout << "aretes :\n";
-    for(auto s : m_aretes)
+    for(auto s : m_aretes) //parcours de toutes les aretes
     {
+        //ecrit l'indice de l'arete, et ses extremités (sommet)
         std::cout<<"\t"<<s->getIndice()<<" ";
         std::cout<<s->getExtrem1()->getNum()<<" ";
         std::cout<<s->getExtrem2()->getNum()<<" ";
@@ -173,13 +178,15 @@ void Graphe::afficherG()const
     std::cout<<std::endl;
 }
 
+//affichage du fichier de pondération
 void Graphe::afficherPoids()const
 {
 
     std::cout << "\n\tfichier de ponderation\n " << std::endl;
     std::cout << "\ntaille du graphe : " << m_aretes.size() << std::endl;
-    for(auto s : m_aretes)
+    for(auto s : m_aretes) //parcours de toutes les aretes
     {
+        //ecrit l'indice des artes, l'indice des extremites de ses sommets, et leur poids
         std::cout << "\t" << s->getIndice() << " ";
         std::cout<<s->getExtrem1()->getNum()<<" ";
         std::cout<<s->getExtrem2()->getNum()<<" ";
@@ -188,6 +195,7 @@ void Graphe::afficherPoids()const
     std::cout<<std::endl;
 }
 
+//affichage du parcours du plus court chemin (Dijkstra)
 void Graphe::affichage(int arrive, double poids) const
 {
     if(!m_sommets[arrive]->get_marque())
@@ -196,78 +204,82 @@ void Graphe::affichage(int arrive, double poids) const
         return;
     }
 
-    m_sommets[arrive]->afficher_result();
-
+    m_sommets[arrive]->afficher_result(); //on appelle la fonction pour afficher le parcours des sommets
     std::cout << " : poids total parcouru";
 
-    std::cout <<  "= " << poids << std::endl;
+    std::cout <<  "= " << poids << std::endl; //affichage du poids total
 }
 
-void Graphe::dessinerGraphe() ///sp permet de dessiner le graphe dans svgfile
+//dessiner le graphe dans svgfile
+void Graphe::dessinerGraphe()
 {
     Svgfile svgout;
-    svgout.addGrid();
+    svgout.addGrid(); //appelle la grille
 
-    for(auto s : m_sommets)
+    for(auto s : m_sommets) //parcours de tous les sommets
     {
-        s->dessinerS(svgout);
+        s->dessinerS(svgout); //appelle chaque sommet
     }
 
-    for(auto s : m_aretes)
+    for(auto s : m_aretes) //parcours de toutes les aretes
     {
-        s->dessinerA(svgout, this);
+        s->dessinerA(svgout, this); //appelle chaque arete
     }
 
-    if (m_aretes[1]->getPoids()==0)
+    if (m_aretes[1]->getPoids()==0) // verification blindage
         std::cout <<"mais fichier ponderation non lu : poids = 0\n\n"<<std::endl;
 }
 
 
 
+//calculs
 
 
-
+//centralite de degré
 void Graphe::c_degre()
 {
-    for(unsigned int i=0; i<m_sommets.size(); ++i)
+    for(unsigned int i=0; i<m_sommets.size(); ++i) //parcours de tous les sommets
     {
-        deg[i]=0;
-        for(unsigned int j=0; j<m_sommets.size(); ++j)
+        deg[i]=0; //initialise tous les degres des sommets à 0 à chaque fois qu'on change de sommet de "référence"
+        for(unsigned int j=0; j<m_sommets.size(); ++j) //parcours de tous les sommets
         {
-            if(m_sommets[i]->estAdjacentA(j) == true)
+            if(m_sommets[i]->estAdjacentA(j) == true) //verifie si les sommets sont bien adjacents
             {
-                deg[i]+=1;
+                deg[i]+=1; //si oui, on implémente le degré
             }
         }
     }
+
+    //affichage et calcul pour le degré normalisé
     std::cout <<"\n\tINDICES CENTRALITE DEGRE / NORMALISE\n";
-    for (unsigned int i=0; i<m_sommets.size(); ++i)
+    for (unsigned int i=0; i<m_sommets.size(); ++i)//parcours de tous les sommets
     {
-        std::cout << "\n\t\tsommet " << i <<" : "<< m_sommets[i]->getNbAdj()
-                  <<" et "<< (m_sommets[i]->getNbAdj())*(1.0/(m_ordre-1));
+        std::cout << "\n\t\tsommet " << i <<" : "<< m_sommets[i]->getNbAdj() //affiche le nombre total d'adjacences
+                  <<" et "<< (m_sommets[i]->getNbAdj())*(1.0/(m_ordre-1)); //affiche le nombre total d'adjacences divisé par l'odre -1
     }
     std::cout<<std::endl;
 }
 
+//centralite de vecteur propre
 void Graphe::c_propre()
 {
     double lambda=0,lambda_prec=1;
     std::vector < double > c;
 
-    for (unsigned int j=0; j<m_sommets.size(); ++j)
+    for (unsigned int j=0; j<m_sommets.size(); ++j) //parcours de tous les sommets pour initialiser les valeurs
     {
         cvp.push_back(1);
         c.push_back(0);
     }
 
-    while(abs(lambda-lambda_prec)>0.01)
+    while(abs(lambda-lambda_prec)>0.01) //tant que la valeur absolue de la différence du lambda et de son précédent est grande
     {
-        lambda_prec=lambda;
-        lambda = 0;
-        for(unsigned int i=0; i<m_sommets.size(); ++i)
+        lambda_prec=lambda; //lambda précédent prend la valeur du lambda
+        lambda = 0; //initialisation pour refaire les calculs
+        for(unsigned int i=0; i<m_sommets.size(); ++i) //parcours des sommets
         {
-            c[i]=0;
-            for(unsigned int j=0; j<m_sommets.size(); ++j)
+            c[i]=0; //initialisation de c[i] (somme de tous les indices des voisins)
+            for(unsigned int j=0; j<m_sommets.size(); ++j)//parcours des sommets
             {
                 if(m_sommets[i]->estAdjacentA(j) == true)   //Voisin  i par rapport au sommet j
                 {
@@ -279,16 +291,17 @@ void Graphe::c_propre()
 
         lambda = sqrt(lambda);
 
-        for(unsigned int i=0; i<m_sommets.size(); ++i)
+        for(unsigned int i=0; i<m_sommets.size(); ++i) //parcours des sommets
         {
-            cvp[i] = c[i] / lambda;
+            cvp[i] = c[i] / lambda; //reprend toutes les valeurs calculées pour trouver notre cvp
         }
 
     }
+
+    //affichage et calcul pour le vecteur propre normalisé et non normalisé
     std::cout<<"\n\tINDICES CENTRALITE VECTEUR PROPRE / NORMALISE :\n";
     for(unsigned int i=0; i<m_sommets.size(); ++i)
     {
-        //std::cout << cvp[i] << std::endl;
         std::cout << "\n\t\tsommet " << i << " : "
                   << cvp[i] <<" et " <<(cvp[i]*(1.0/(m_ordre-1)));
     }
