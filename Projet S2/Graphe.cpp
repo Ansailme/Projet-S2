@@ -771,7 +771,7 @@ void Graphe::recherchecompoConnexes()
 void Graphe::connexite()
 {
     if (m_orient== 1)
-        std:: cout << "On ne peut pas calculer la k-connexite"<< std::endl;
+        std:: cout << "On ne peut pas calculer la k-connexite car le graphe est oriente."<< std::endl<< std::endl;
 
     else
     {
