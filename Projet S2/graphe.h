@@ -20,33 +20,33 @@ private :
 
 
 public :
-    Graphe (std::string fichier);
-    ~Graphe();
+    Graphe (std::string fichier); //Constructeur
+    ~Graphe(); //destructeur
 
-    int lectureFichierP();
-    bool Orientation();
-    void afficherG()const;
-    void afficherPoids()const;
-    void affichage(int arrive, double poids) const; //affichage Didjkstra
-    void dessinerGraphe();
+    int lectureFichierP(); //lecture des fichiers
+    bool Orientation(); //verification de l'orientation du graphe
+    void afficherG()const; //affichage du fichier topologique
+    void afficherPoids()const; //affichage du fichier de pondération
+    void affichage(int arrive, double poids) const; //affichage du parcours du plus court chemin (Dijkstra)
+    void dessinerGraphe(); //dessiner le graphe dans svgfile
 
     void c_degre(); //calcul centralité de degre
     void c_propre(); //calcul de centralite vecteur propre
     double c_prox(int premier, int arrive); //calcul poidsTot : dijkstra
-    void verification();
+    void verification(); //affiche coord des extremites d'aretes
     void calcul_cp (int i_debut, int i_fin); //calcul centralité promixité à la main
     void calcul_cp_auto(); //calcul centralité promixité automatisé pour tout sommet
-    void calculDiff_indice (int f1, int f2);
+    void calculDiff_indice (int f1, int f2); //calcul de la difference des indices entre 2 fichiers
 
-    void BFS(int premier);
-    void DFS(int premier);
-    void recuDFS(std::map<int, int>& i_preds,Sommet* s);
-    void recherchecompoConnexes();
-    void connexite();
-    Sommet* recupSommet(int indice);
+    void BFS(int premier); //calcul du BFS
+    void DFS(int premier); //calcul DFS
+    void recuDFS(std::map<int, int>& i_preds,Sommet* s); //calcul du chemin pour le DFS
+    void recherchecompoConnexes(); //recherche des composantes connexes
+    void connexite(); //k-connexité
+    Sommet* recupSommet(int indice); //recuperer l'indice du sommet
 
     void sauvegarde(int s); //sauvegarde de tous les indices dans fichier
-    void supp_arete();
+    void supp_arete(); //Supprimer une ou plusieurs aretes
 
 };
 
