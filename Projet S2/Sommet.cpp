@@ -55,11 +55,9 @@ bool Sommet::get_marque_voisin(int i) const
     return m_voisin[i].first->m_marque;
 }
 
-std::pair <Sommet*,double> Sommet::get_voisin(Sommet* p, double poids_total,std::vector<Arete*> m_arete)
+std::pair <Sommet*,std::pair<Sommet*,double>> Sommet::get_voisin(Sommet* p, double poids_total,std::vector<Arete*> m_arete)
 {
     double poids=0;
-
-    m_precedent = p;
 
     for(auto a : m_arete)
     {
@@ -76,7 +74,7 @@ std::pair <Sommet*,double> Sommet::get_voisin(Sommet* p, double poids_total,std:
         m_voisin[i].first->m_poids_precedent=m_voisin[i].second;
     }
     */
-    return std::pair <Sommet*,double> {this, poids_total+poids};
+    return std::pair <Sommet*,std::pair<Sommet*,double>> {this, std::pair<Sommet*,double> {p,poids_total+poids}};
     //return m_voisin[i];
 }
 
@@ -98,6 +96,11 @@ void Sommet::setAdjacents(int i)
             if (it->getCouleur()!=2)//verifie que le sommet a pas déjà été étudier
                 it->setCouleur(i); //met en gris
     }
+}
+
+void Sommet::set_prec(Sommet* s)
+{
+    m_precedent = s;
 }
 
 

@@ -45,11 +45,13 @@ public :
     //int getMarquage()const;
     bool get_marque() const;
     bool get_marque_voisin(int i) const;
-    std::pair <Sommet*,double> get_voisin(Sommet* p,double poids_total,std::vector<Arete*> m_arete);
+    std::pair <Sommet*,std::pair<Sommet*,double>> get_voisin(Sommet* p,double poids_total,std::vector<Arete*> m_arete);
 
     //attribuer de nouvelles valeurs
     void setCouleur(int nv);
     void setAdjacents(int i);
+    void set_prec(Sommet* s);
+
     // void setMarquage(int nv);
 
     //affichages

@@ -320,34 +320,37 @@ double Graphe::c_prox(int premier, int arrive)
 {
     double p_poids=0; //initialisation
 
-    auto cmp = [] (std::pair <Sommet*,double> p1, std::pair <Sommet*,double> p2) //compare 2 tableaux de pairs
+    auto cmp = [] (std::pair <Sommet*,std::pair<Sommet*,double>> p1, std::pair <Sommet*,std::pair<Sommet*,double>> p2) //compare 2 tableaux de pairs
     {
-        return p2.second<p1.second; //return la valeur du plus petit poids des aretes des sommets adjacents
+        return p2.second.second<p1.second.second; //return la valeur du plus petit poids des aretes des sommets adjacents
     };
 
-    std::priority_queue <std::pair <Sommet*,double>, std::vector <std::pair <Sommet*,double>>, decltype(cmp) > file(cmp);
+    std::priority_queue <std::pair <Sommet*,std::pair<Sommet*,double>>, std::vector <std::pair <Sommet*,std::pair<Sommet*,double>>>, decltype(cmp) > file(cmp);
 
-    file.push({m_sommets[premier],0}); //initialisation des poids
+    file.push({m_sommets[premier],std::pair<Sommet*,double>{nullptr,0}}); //initialisation des poids
 
     for(auto m : m_sommets)
     {
         m->init_marque(); //initialisation de la couleur
+        m->set_prec(nullptr); //initialisation precedent
     }
-
 
     while(!file.empty() && !m_sommets[arrive]->get_marque()) //tant que le fichier n'est pas vide et que le dernier sommet n'est pas marqué
     {
-        Sommet* p=file.top().first; //ajoute un sommet au chemin
 
+        Sommet* p=file.top().first; //ajoute un sommet au chemin
         for(unsigned int i=0; i<m_sommets.size(); i++)
         {
             if((p->estAdjacentA(i)) && (!m_sommets[i]->get_marque()))
             {
-                std::pair <Sommet*,double> tampon = m_sommets[i]->get_voisin(p, file.top().second,m_aretes);
+                std::pair <Sommet*,std::pair<Sommet*,double>> tampon = m_sommets[i]->get_voisin(p, file.top().second.second,m_aretes);
                 file.push(tampon);
             }
         }
-        p_poids = file.top().second;
+
+        if(p->get_marque() == 0)
+            p->set_prec(file.top().second.first);
+        p_poids = file.top().second.second;
         file.pop();     //Retire dernier élement de priority_queue
         p->marque();
     }
@@ -892,3 +895,17 @@ void Graphe::supp_arete()
     }
 
 }
+
+
+/*
+void c_intermediarite()
+{
+    for
+}
+*/
+
+
+
+
+
+
