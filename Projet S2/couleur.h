@@ -4,7 +4,7 @@
 #include <string>
 #include <cstdint>
 
-/// header couleur.h tiré de correction TP 6 maillage de M FERCOQ
+/// header couleur.h tiré de correction TP 6 maillage de M FERCOQ repris integralement
 
 class Couleur
 {

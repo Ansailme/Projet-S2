@@ -67,19 +67,8 @@ std::pair <Sommet*,std::pair<Sommet*,double>> Sommet::get_voisin(Sommet* p, doub
         }
     }
 
-    /*
-    if( m_voisin[i].first->m_poids_precedent<0 ||  m_voisin[i].first->m_poids_precedent>m_voisin[i].second)
-    {
-        m_voisin[i].first->m_precedent=p;
-        m_voisin[i].first->m_poids_precedent=m_voisin[i].second;
-    }
-    */
     return std::pair <Sommet*,std::pair<Sommet*,double>> {this, std::pair<Sommet*,double> {p,poids_total+poids}};
-    //return m_voisin[i];
 }
-
-
-
 
 
 //attribuer des nouvelles valeurs
@@ -93,7 +82,7 @@ void Sommet::setAdjacents(int i)
     for (auto it : m_adjacents)
     {
         if (i==1)//si gris
-            if (it->getCouleur()!=2)//verifie que le sommet a pas déjà été étudier
+            if (it->getCouleur()!=2)//verifie que le sommet a pas déjà été étudié
                 it->setCouleur(i); //met en gris
     }
 }
@@ -118,7 +107,6 @@ void Sommet::dessinerS(Svgfile& svgout) const
     svgout.addText(m_x*100-30,m_y*100-20,m_lettre,noir);
     svgout.addDisk(m_x*100,m_y*100,2, rouge);
     //svgout.addTriangle(m_x*100-50,m_y*100+50,m_x*100-50,m_y*100+50,m_x*100,m_y*100, noir); //tentative triangle de fleche
-    //svgout.addTriangle(m_x*100-5,m_y*100+5,m_x*100+5,m_y*100+5,m_x*100,m_y*100,noir,1, noir);
 }
 
 //affichage de l'indice des sommets
@@ -182,18 +170,6 @@ bool Sommet::estAdjacentA(int i)
     return adjacent;
 }
 
-/*
-bool Sommet::estDegreImpair()
-{
-    bool temp;
-
-    if(m_adjacents.size()%2==0)
-        temp=false;
-    else
-        temp=true;
-
-    return temp;
-}*/
 
 //recuperer le nombre de voisins total a un sommet
 size_t Sommet::nb_voisin() const

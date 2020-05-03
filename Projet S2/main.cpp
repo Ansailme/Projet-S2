@@ -1,11 +1,17 @@
+///SOURCES
+/// couleur de la console: https://www.daniweb.com/programming/software-development/code/216345/add-a-little-color-to-your-console-text
+/// base du constructeur du graphe inspiré de : code TP1 M FERCOQ
+/// SVG file-util-couleur: code correction TP 6 maillage de M FERCOQ
+/// Code TP2&3 Juliette Hoarau pour DFS et recherche de composants connexes
+/// Code TP3 Alexander Colle-Abbey sur Dijkstra pour recherche + court chemin
+/// auto-refresh : code proposé par Lorenzo au 1er semestre
+
+
 #include <iostream>
 #include "graphe.h"
 #include "svgfile.h"
 #include "couleur.h"
 #include "windows.h"
-
-///source couleur :
-///-https://www.daniweb.com/programming/software-development/code/216345/add-a-little-color-to-your-console-text
 
 int main()
 {
@@ -146,7 +152,7 @@ int main()
                     monGraphe.c_intermediarite();
                     k=12;
                     SetConsoleTextAttribute(hConsole, k);
-                    std::cout << "\tVeuillez a bien sauvegarder la modification en tapant 5 \n"<< std::endl;
+                    std::cout << "\t Sauvegarder la modification des indices en tapant 5 \n"<< std::endl;
                 }
                 break;
 

@@ -2,15 +2,14 @@
 #include "svgfile.h"
 #include "couleur.h"
 #include "util.h"
+#include "windows.h"
 #include <cmath>
 #include <queue>
 #include <map>
 #include <iostream>
-#include "windows.h"
+
 
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //utilisation de la couleur sur la console
-
-///Source constructeur graphe : code TP1 M.Fercoq
 
 ///Un constructeur qui charge un graphe en mémoire à partir d’un fichier texte
 
@@ -72,7 +71,7 @@ Graphe::Graphe(std::string fichier)
 
         ifs.close(); //fermeture du fichier
 
-        //effacer toutes les sauvegardes faites précédemment
+        //effacer toutes les sauvegardes faites précédemment (jusque 3)
         remove("sauvegarde0.txt");
         remove("sauvegarde_brut0.txt");
         remove("sauvegarde1.txt");
@@ -921,10 +920,6 @@ void Graphe::supp_arete()
     }
 
 }
-
-
-
-
 
 
 
