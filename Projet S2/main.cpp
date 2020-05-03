@@ -84,6 +84,7 @@ int main()
                 monGraphe.c_degre(); ///calcul centralité de degré
                 monGraphe.c_propre(); ///calcul centralité vecteur propre
                 monGraphe.calcul_cp_auto(); ///calcul centralité proximité
+                monGraphe.c_intermediarite();
                 break;
 
             case 5 :
@@ -128,6 +129,15 @@ int main()
                     monGraphe.supp_arete();
                     s=s+1;
                 }
+                k=11;
+                SetConsoleTextAttribute(hConsole, k);
+                monGraphe.c_degre();
+                monGraphe.c_propre();
+                monGraphe.calcul_cp_auto();
+                monGraphe.c_intermediarite();
+                k=12;
+                SetConsoleTextAttribute(hConsole, k);
+                std::cout << "\tVeuillez a bien sauvegarder la modification en tapant 5 \n"<< std::endl;
                 break;
 
             case 10 :

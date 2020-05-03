@@ -13,8 +13,10 @@ private :
 
     std::vector <double> deg; //indice de degre de sommet
     std::vector <double> cvp; //indice de vecteur propre
-    std::vector< double > cp; //indice de proximite
-    std::vector< double > cpn; //indice de proximite normalise
+    std::vector <double > cp; //indice de proximite
+    std::vector <double > cpn; //indice de proximite normalise
+    std::vector <double> cint; //indice d'intermediarite
+    std::vector <double> cintn; //indice d'intermediarite normalisé
     std::vector <Sommet* > m_sommets; //vecteur de sommets
     std::vector <Arete* > m_aretes; //vecteur d'aretes
 
@@ -33,6 +35,7 @@ public :
     void c_degre(); //calcul centralité de degre
     void c_propre(); //calcul de centralite vecteur propre
     double c_prox(int premier, int arrive); //calcul poidsTot : dijkstra
+    void c_intermediarite();
     void verification();
     void calcul_cp (int i_debut, int i_fin); //calcul centralité promixité à la main
     void calcul_cp_auto(); //calcul centralité promixité automatisé pour tout sommet

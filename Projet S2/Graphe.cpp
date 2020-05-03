@@ -89,8 +89,6 @@ Graphe::~Graphe()
 }
 
 
-
-
 //lecture des fichiers
 int Graphe::lectureFichierP()
 {
@@ -232,7 +230,7 @@ void Graphe::dessinerGraphe()
 
 
 
-//calculs
+///--- calculs ---///
 
 
 //centralite de degré
@@ -401,6 +399,29 @@ void Graphe:: calcul_cp_auto()
     std::cout <<std::endl;
 }
 
+//centralite d'intermediarite
+void Graphe::c_intermediarite()
+{
+    cint.reserve(m_sommets.size());
+    cintn.reserve(m_sommets.size());
+
+    for (unsigned int i=0;i<m_sommets.size();++i)
+    {
+        cint[i]=0;
+        cintn[i]=((2*cint[i])/((m_ordre*m_ordre)-3*m_ordre+2));
+    }
+
+    //affichage et calcul pour le vecteur propre normalisé et non normalisé
+    std::cout<<"\n\tINDICES CENTRALITE INTERMEDIARITE / NORMALISE :\n";
+    for(unsigned int i=0; i<m_sommets.size(); ++i)
+    {
+        std::cout << "\n\t\tsommet " << i << " : "
+                  << cint[i] <<" et " << cintn[i];
+    }
+
+    std::cout<<std::endl<<std::endl;
+}
+
 
 void Graphe::supp_arete()
 {
@@ -445,14 +466,6 @@ void Graphe::supp_arete()
         std::cout << std::endl;
     }
 
-
-    ///lorsqu'on retire 1 ou plusieurs aretes les calculs d'indices et la sauvegarde sont automatiques
-    c_degre();
-    c_propre();
-    calcul_cp_auto();
-
-    std::cout << "Veuillez a bien sauvegarder la modification en tapant 5 \n"<< std::endl;
-
 }
 
 
@@ -484,10 +497,14 @@ void Graphe::calculDiff_indice (int f1, int f2) //recoit en parametre les numero
     icp1.reserve(m_sommets.size());
     std::vector<double> icpn1;
     icpn1.reserve(m_sommets.size());
+    std::vector<double> icint1;
+    icint1.reserve(m_sommets.size());
+    std::vector<double> icintn1;
+    icintn1.reserve(m_sommets.size());
 
     for (unsigned int i=0; i<m_sommets.size(); ++i)
     {
-        ifs1>> indice1[i] >> ideg1[i] >> idegn1[i] >> ivp1[i] >> ivpn1[i] >> icp1[i] >> icpn1[i];
+        ifs1>> indice1[i] >> ideg1[i] >> idegn1[i] >> ivp1[i] >> ivpn1[i] >> icp1[i] >> icpn1[i] >> icint1[i] >> icintn1[i];
     }
 
     if ( ifs1.fail() )
@@ -513,10 +530,14 @@ void Graphe::calculDiff_indice (int f1, int f2) //recoit en parametre les numero
     icp2.reserve(m_sommets.size());
     std::vector<double> icpn2;
     icpn2.reserve(m_sommets.size());
+    std::vector<double> icint2;
+    icint2.reserve(m_sommets.size());
+    std::vector<double> icintn2;
+    icintn2.reserve(m_sommets.size());
 
     for (unsigned int i=0; i<m_sommets.size(); ++i)
     {
-        ifs2>> indice2[i] >> ideg2[i] >> idegn2[i] >> ivp2[i] >> ivpn2[i] >> icp2[i] >> icpn2[i];
+        ifs2>> indice2[i] >> ideg2[i] >> idegn2[i] >> ivp2[i] >> ivpn2[i] >> icp2[i] >> icpn2[i]>> icint2[i] >> icintn2[i];
     }
 
     if ( ifs2.fail() )
@@ -538,6 +559,10 @@ void Graphe::calculDiff_indice (int f1, int f2) //recoit en parametre les numero
     dif_icp.reserve(m_sommets.size());
     std::vector<double> dif_icpn;
     dif_icpn.reserve(m_sommets.size());
+    std::vector<double> dif_icint;
+    dif_icint.reserve(m_sommets.size());
+    std::vector<double> dif_icintn;
+    dif_icintn.reserve(m_sommets.size());
 
     for (unsigned int i=0; i<m_sommets.size(); ++i)
     {
@@ -548,11 +573,13 @@ void Graphe::calculDiff_indice (int f1, int f2) //recoit en parametre les numero
         dif_ivpn[i] = ivpn2[i]-ivpn1[i];
         dif_icp[i] = icp2[i]-icp1[i];
         dif_icpn[i] = icpn2[i]-icpn1[i];
+        dif_icint[i] = icint2[i]-icint1[i];
+        dif_icintn[i] = icintn2[i]-icintn1[i];
     }
 
 ///Affichage des résultats de calculs de différence pour 1er sommet
 
-    std::cout << " sommet / nom sommet / deg / degn / vp / vpn / cp / cpn :\n";
+    std::cout << " sommet / nom sommet / deg / degn / vp / vpn / cp / cpn / int / intn :\n";
     std::cout <<std::endl;
     for (unsigned int i=0; i<m_sommets.size(); ++i)
     {
@@ -562,7 +589,9 @@ void Graphe::calculDiff_indice (int f1, int f2) //recoit en parametre les numero
                   << "  "<< dif_ivp[i]
                   << "  "<< dif_ivpn[i]
                   << "  "<< dif_icp[i]
-                  << "  "<< dif_icpn[i] <<std::endl
+                  << "  "<< dif_icpn[i]
+                  << "  "<< dif_icint[i]
+                  << "  "<< dif_icintn[i]<<std::endl
                   <<std::endl;
     }
 
@@ -842,12 +871,13 @@ void Graphe::sauvegarde(int s)
     {
         ofs<<"\t INDICES"<<std::endl;
         ofs<< std::endl;
-        ofs<<"Ordre des indices bruts et normalisés : \n\tcentralité de degré /centralité de vecteur propre / centralité de proximité"<<std::endl<<std::endl;
+        ofs<<"Ordre des indices bruts et normalisés : \n\tcentralité de degré /centralité de vecteur propre / centralité de proximité / centralité intermediarité"<<std::endl<<std::endl;
         for (unsigned int i=0; i<m_sommets.size(); ++i)
             ofs<< "sommet " << i << " : "
                << deg[i]<<"   "<< (deg[i]*(1.0/(m_ordre-1)))
                <<"\t"<< cvp[i]<<"   "<< (cvp[i]*(1.0/(m_ordre-1)))
-               <<"\t\t\t"<< cp[i] <<"   "<< cpn[i]<< std::endl;
+               <<"\t\t\t"<< cp[i] <<"   "<< cpn[i]
+               <<"\t\t"<< cint[i] <<"   "<< cintn[i]<< std::endl;
         ofs << std::endl;
     }
 
@@ -865,7 +895,8 @@ void Graphe::sauvegarde(int s)
             ofs2
                     << i << " " << deg[i]<< " " << (deg[i]*(1.0/(m_ordre-1)))
                     << " " << cvp[i]<< " " << (cvp[i]*(1.0/(m_ordre-1)))
-                    << " " << cp[i] <<" "<< cpn[i]<< std::endl;
+                    << " " << cp[i] <<" "<< cpn[i]
+                    << " " << cint[i]<<" "<< cintn[i]<<std::endl;
         ofs2 << std::endl;
     }
 }
