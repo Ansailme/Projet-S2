@@ -109,9 +109,13 @@ void Sommet::dessinerS(Svgfile& svgout) const
 {
     Couleur noir{0,0,0};
     Couleur deg{(85-m_adjacents.size())*50, (200-m_adjacents.size())*100,(50-m_adjacents.size())*60};
+    Couleur rouge{255,0,0};
 
     svgout.addDisk(m_x*100,m_y*100,15,deg);
     svgout.addText(m_x*100-30,m_y*100-20,m_lettre,noir);
+    svgout.addDisk(m_x*100,m_y*100,2, rouge);
+    //svgout.addTriangle(m_x*100-50,m_y*100+50,m_x*100-50,m_y*100+50,m_x*100,m_y*100, noir); //tentative triangle de fleche
+    //svgout.addTriangle(m_x*100-5,m_y*100+5,m_x*100+5,m_y*100+5,m_x*100,m_y*100,noir,1, noir);
 }
 
 //affichage de l'indice des sommets
