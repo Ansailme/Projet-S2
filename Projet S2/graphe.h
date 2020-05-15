@@ -42,6 +42,7 @@ public :
     void calcul_cp_auto(); //calcul centralité promixité automatisé pour tout sommet
     void calculDiff_indice (int f1, int f2); //calcul de la difference des indices entre 2 fichiers
 
+    void calcul_totBFS();
     void BFS(int premier, int arrive); //calcul du BFS
     void DFS(int premier); //calcul DFS
     void recuDFS(std::map<int, int>& i_preds,Sommet* s); //calcul du chemin pour le DFS

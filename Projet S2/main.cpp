@@ -175,11 +175,8 @@ int main()
                 return fermeture;
                 break;
             case 12 :
-                    std::cout<<std::endl<<"Choisir le sommet de depart : ";
-                    std::cin>>i_debut;
-                    std::cout<<std::endl<<"Choisir le sommet d'arrivee : ";
-                    std::cin>>i_fin;
-                monGraphe.BFS(i_debut,i_fin);
+                monGraphe.calcul_totBFS();
+
             }
 
         }

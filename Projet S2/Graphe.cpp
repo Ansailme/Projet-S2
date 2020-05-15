@@ -570,6 +570,17 @@ void Graphe::calculDiff_indice (int f1, int f2) //recoit en parametre les numero
 }
 
 
+void Graphe::calcul_totBFS()
+{
+    for(int i=0;i<m_sommets.size();++i)
+    {
+        for(int j=0;j<m_sommets.size();++j)
+        {
+            BFS(i,j);
+        }
+    }
+}
+
 
 
 //calcul du BFS
@@ -577,6 +588,7 @@ void Graphe::BFS(int premier, int arrive)
 {
     std::vector<int> i_preds(m_sommets.size());
     int i;
+    int total=0;
     std::vector<int> chemin(m_sommets.size());
     double poids = 0;
     chemin[premier]=1;
@@ -629,11 +641,13 @@ void Graphe::BFS(int premier, int arrive)
                 }
                 else if(i_preds[it->getNum()] == i_preds[i] + poids)
                     chemin[it->getNum()] += chemin[i];
+                total = total + chemin[arrive];
             }
         }
     }
 
-    std::cout << "le somme des plus courts chemins est de : "<<chemin[arrive] <<std::endl;
+
+    std::cout << "le somme des plus courts chemins entre" << premier << "|" << arrive << "est de : "<< total << std::endl << std::endl;
 
 }
 
